@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CSVhåndtering {
@@ -28,18 +29,20 @@ public class CSVhåndtering {
         }
     }
 
-    public void skrivMedlem(Medlem medlem) throws FileNotFoundException {
+    public void skrivMedlem(ArrayList<Medlem> medlemmer) throws FileNotFoundException {
         printStream = new PrintStream(filnavn);
-
-        printStream.print(medlem.getAlder());
-        printStream.print(";");
-        printStream.print(medlem.getNavn());
-        printStream.print(";");
-        printStream.print(medlem.getAktivtMedlemskab());
-        printStream.print(";");
-        printStream.print(medlem.getKonkurrenceSvømmer());
-        printStream.print(";");
-        printStream.print(medlem.getRestance());
+        for(Medlem medlem : medlemmer) {
+            printStream.print(medlem.getAlder());
+            printStream.print(";");
+            printStream.print(medlem.getNavn());
+            printStream.print(";");
+            printStream.print(medlem.getAktivtMedlemskab());
+            printStream.print(";");
+            printStream.print(medlem.getKonkurrenceSvømmer());
+            printStream.print(";");
+            printStream.print(medlem.getRestance());
+            printStream.println();
+        }
     }
 
 }

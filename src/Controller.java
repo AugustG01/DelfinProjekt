@@ -25,8 +25,12 @@ public class Controller {
 
         System.out.print("Betalt? ");
         boolean restance = in.nextBoolean();
+        db.tilføjMedlem(new Medlem(alder, navn, medlemskab, konkurrencesvømmer, restance));
+    }
 
-        db.skriv(new Medlem(alder, navn, medlemskab, konkurrencesvømmer, restance));
+    // TODO: 10/05/2022 husk exceptionshåndtering 
+    public void gem() throws FileNotFoundException {
+        db.skriv();
     }
 
     public void indlæsMedlemmer() throws FileNotFoundException {

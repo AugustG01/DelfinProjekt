@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class DataBase {
@@ -7,11 +6,14 @@ public class DataBase {
     String filnavn = "medlemmer.csv";
 
     // TODO: 10-05-2022 håndter throw
-    public void skriv(Medlem medlem) throws FileNotFoundException {
+    public void skriv() throws FileNotFoundException {
         filnavn = "medlemmer.csv";
 
         CSVhåndtering csv = new CSVhåndtering(filnavn);
-        csv.skrivMedlem(medlem);
+        csv.skrivMedlem(medlemmer);
+    }
+    public void tilføjMedlem(Medlem medlem){
+        medlemmer.add(medlem);
     }
 
     public void indlæs() throws FileNotFoundException {
