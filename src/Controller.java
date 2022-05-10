@@ -18,13 +18,31 @@ public class Controller {
         String navn = in.nextLine();
 
         System.out.print("Aktivt medlemskab? ");
-        boolean medlemskab = in.nextBoolean();
+        String medlemskabSvar = in.nextLine();
+        boolean medlemskab;
+        switch (medlemskabSvar){
+            case "ja", "j" -> medlemskab = true;
+            case "nej", "n" -> medlemskab = false;
+            default -> medlemskab = false;
+        }
 
         System.out.print("Konkurrencesvømmer? ");
-        boolean konkurrencesvømmer = in.nextBoolean();
+        String konkurrenceSvar = in.nextLine();
+        boolean konkurrencesvømmer;
+        switch (konkurrenceSvar){
+            case "ja", "j" -> konkurrencesvømmer = true;
+            case "nej", "n" -> konkurrencesvømmer = false;
+            default -> konkurrencesvømmer = false;
+        }
 
         System.out.print("Betalt? ");
-        boolean restance = in.nextBoolean();
+        String betalt = in.nextLine();
+        boolean restance;
+        switch (betalt){
+            case "ja", "j" -> restance = false;
+            case "nej", "n" -> restance = true;
+            default -> restance = false;
+        }
 
         db.skriv(new Medlem(alder, navn, medlemskab, konkurrencesvømmer, restance));
     }
