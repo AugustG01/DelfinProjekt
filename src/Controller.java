@@ -24,16 +24,36 @@ public class Controller {
         boolean konkurrencesvømmer = in.nextBoolean();
 
         System.out.print("Betalt? ");
-        boolean restance = in.nextBoolean();
+        String betalt = in.nextLine();
+        boolean restance;
+        switch (betalt){
+            case "ja", "j" -> restance = false;
+            case "nej", "n" -> restance = true;
+            default -> restance = false;
+        }
+
         db.tilføjMedlem(new Medlem(alder, navn, medlemskab, konkurrencesvømmer, restance));
     }
 
-    // TODO: 10/05/2022 husk exceptionshåndtering 
-    public void gem() throws FileNotFoundException {
-        db.skriv();
-    }
+
 
     public void indlæsMedlemmer() throws FileNotFoundException {
         db.indlæs();
+    }
+
+    public void ændrMedlem() {
+
+    }
+
+    public void sletMedlem() {
+
+    }
+
+    public void konkurrenceMenu() {
+
+    }
+
+    public void økonomiMenu() {
+
     }
 }
