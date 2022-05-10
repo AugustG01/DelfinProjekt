@@ -38,6 +38,4 @@ public class CSVhåndtering {
         printStream.print(medlem.getRestance());
     }
 
-
-
 }
