@@ -50,4 +50,20 @@ public class Controller {
     public void indlæsMedlemmer() throws FileNotFoundException {
         db.indlæs();
     }
+
+    public void ændrMedlem() {
+
+    }
+
+    public void sletMedlem() {
+
+    }
+
+    public void konkurrenceMenu() {
+
+    }
+
+    public void økonomiMenu() {
+
+    }
 }
