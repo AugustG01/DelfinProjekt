@@ -35,7 +35,7 @@ public class UI {
         int svar = in.nextInt();
         switch (svar){
             case 1 -> controller.seListe();
-            case 2 -> controller.tilføjMedlem();
+            case 2 -> tilføj();
             case 3 -> controller.ændrMedlem();
             case 4 -> controller.sletMedlem();
             case 5 -> controller.konkurrenceMenu();
@@ -43,6 +43,30 @@ public class UI {
             case 7 -> controller.indlæsMedlemmer();
             case 0 -> afslut();
         }
+    }
+    public void tilføj() throws FileNotFoundException {
+        System.out.print("Alder: ");
+        int alder = in.nextInt();
+
+        in.nextLine();
+        System.out.print("Navn: ");
+        String navn = in.nextLine();
+
+        System.out.print("Aktivt medlemskab? ");
+        boolean medlemskab = in.nextBoolean();
+
+        System.out.print("Konkurrencesvømmer? ");
+        boolean konkurrencesvømmer = in.nextBoolean();
+
+        System.out.print("Betalt? ");
+        String betalt = in.nextLine();
+        boolean restance;
+        switch (betalt){
+            case "ja", "j" -> restance = false;
+            case "nej", "n" -> restance = true;
+            default -> restance = false;
+        }
+        controller.tilføjMedlem(alder, navn, medlemskab, konkurrencesvømmer, restance);
     }
 
     public void afslut() {

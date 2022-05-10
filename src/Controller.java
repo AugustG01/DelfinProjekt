@@ -9,30 +9,8 @@ public class Controller {
 
     }
 
-    public void tilføjMedlem() throws FileNotFoundException {
-        System.out.print("Alder: ");
-        int alder = in.nextInt();
-
-        in.nextLine();
-        System.out.print("Navn: ");
-        String navn = in.nextLine();
-
-        System.out.print("Aktivt medlemskab? ");
-        boolean medlemskab = in.nextBoolean();
-
-        System.out.print("Konkurrencesvømmer? ");
-        boolean konkurrencesvømmer = in.nextBoolean();
-
-        System.out.print("Betalt? ");
-        String betalt = in.nextLine();
-        boolean restance;
-        switch (betalt){
-            case "ja", "j" -> restance = false;
-            case "nej", "n" -> restance = true;
-            default -> restance = false;
-        }
-
-        db.tilføjMedlem(new Medlem(alder, navn, medlemskab, konkurrencesvømmer, restance));
+    public void tilføjMedlem(int alder, String navn, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) throws FileNotFoundException {
+        db.tilføjMedlem(new Medlem(alder, navn, aktivtMedlemskab, konkurrenceSvømmer, restance));
     }
 
 
