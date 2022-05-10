@@ -4,12 +4,12 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class CSVhåndtering {
-    String filnavn;
+    private String filnavn;
     private Scanner filScanner;
     PrintStream printStream;
 
 
-    public CSVhåndtering(String filnavn) throws FileNotFoundException {
+    public CSVhåndtering(String filnavn){
         this.filnavn = filnavn;
     }
 
