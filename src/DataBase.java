@@ -12,8 +12,9 @@ public class DataBase {
         CSVhåndtering csv = new CSVhåndtering(filnavn);
         csv.skrivMedlem(medlemmer);
     }
-    public void tilføjMedlem(Medlem medlem){
+    public void tilføjMedlem(Medlem medlem) throws FileNotFoundException {
         medlemmer.add(medlem);
+        skriv();
     }
 
     public void indlæs() throws FileNotFoundException {
