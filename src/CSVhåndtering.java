@@ -15,13 +15,17 @@ public class CSVhåndtering {
 
     public void indlæsMedlemmer() throws FileNotFoundException {
         filScanner = new Scanner(new File(filnavn)).useDelimiter(";");
-        int alder = filScanner.nextInt();
-        String navn = filScanner.next();
-        boolean aktivtMedlemskab = filScanner.nextBoolean();
-        boolean konkurrenceSvømmer = filScanner.nextBoolean();
-        boolean restance = filScanner.nextBoolean();
-        Medlem indlæsMedlem = new Medlem(alder, navn, aktivtMedlemskab, konkurrenceSvømmer, restance);
-
+        while (filScanner.hasNextLine()) {
+            int alder = filScanner.nextInt();
+            String navn = filScanner.next();
+            boolean aktivtMedlemskab = filScanner.nextBoolean();
+            boolean konkurrenceSvømmer = filScanner.nextBoolean();
+            boolean restance = filScanner.nextBoolean();
+            Medlem indlæsMedlem = new Medlem(alder, navn, aktivtMedlemskab, konkurrenceSvømmer, restance);
+            DataBase dataBase = new DataBase();
+            dataBase.medlemmer.add(indlæsMedlem);
+            System.out.println(dataBase.medlemmer);
+        }
     }
 
     public void skrivMedlem(Medlem medlem) throws FileNotFoundException {

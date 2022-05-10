@@ -26,8 +26,7 @@ public class UI {
         (5) Konkurrence menu
         (6) Økonomi menu
         (7) Se valgmuligheder igen
-        (0) Afslut programmet
-        """);
+        (0) Afslut programmet""");
     }
     public void valg() throws FileNotFoundException {
         int svar = in.nextInt();

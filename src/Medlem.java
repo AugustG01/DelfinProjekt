@@ -44,7 +44,7 @@ public class Medlem {
         this.restance = restance;
     }
 
-   /* @Override
+   @Override
     public String toString() {
         return
                 "alder: " + alder +
@@ -53,5 +53,5 @@ public class Medlem {
                 "\nkonkurrenceSvømmer: " + konkurrenceSvømmer +
                 "\nrestance: " + restance +
                 '\n';
-    }*/
+    }
 }
