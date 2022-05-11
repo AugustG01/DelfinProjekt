@@ -5,9 +5,9 @@ public class Medlem {
     private boolean konkurrenceSvømmer;
     private boolean restance;
 
-    public Medlem(int alder, String navn, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
-        setAlder(alder);
+    public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
         setNavn(navn);
+        setAlder(alder);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
@@ -44,14 +44,12 @@ public class Medlem {
         this.restance = restance;
     }
 
-   @Override
+    @Override
     public String toString() {
-        return
-                "alder: " + alder +
-                "\nnavn: " + navn +
-                "\naktivtMedlemskab: " + aktivtMedlemskab +
-                "\nkonkurrenceSvømmer: " + konkurrenceSvømmer +
-                "\nrestance: " + restance +
-                '\n';
+        return "Navn: " + navn + " | " +
+                "Alder: " + alder + " | " +
+                "Aktivt medlemskab: " + aktivtMedlemskab + " | " +
+                "Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
+                "Restance: " + restance + " | " + "\n";
     }
 }

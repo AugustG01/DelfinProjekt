@@ -3,17 +3,15 @@ import java.util.Scanner;
 
 public class Controller {
     DataBase db = new DataBase();
-    Scanner in = new Scanner(System.in);
+   //Scanner in = new Scanner(System.in);
 
     public void seListe() {
-
+        db.seListe();
     }
 
-    public void tilføjMedlem(int alder, String navn, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) throws FileNotFoundException {
-        db.tilføjMedlem(new Medlem(alder, navn, aktivtMedlemskab, konkurrenceSvømmer, restance));
+    public void tilføjMedlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
+        db.tilføjMedlem(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance));
     }
-
-
 
     public void indlæsMedlemmer() throws FileNotFoundException {
         db.indlæs();
@@ -33,5 +31,8 @@ public class Controller {
 
     public void økonomiMenu() {
 
+    }
+    public void gem() throws FileNotFoundException {
+        db.skriv();
     }
 }

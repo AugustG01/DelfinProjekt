@@ -8,39 +8,43 @@ public class CSVhåndtering {
     private String filnavn;
     private Scanner filScanner;
     PrintStream printStream;
+    DataBase db = new DataBase();
 
 
-    public CSVhåndtering(String filnavn){
+
+    public CSVhåndtering( String filnavn){
         this.filnavn = filnavn;
     }
 
-    public void indlæsMedlemmer() throws FileNotFoundException {
+    public ArrayList<Medlem> indlæsMedlemmer() throws FileNotFoundException {
         filScanner = new Scanner(new File(filnavn)).useDelimiter(";");
+        ArrayList<Medlem> indlæsteMedlemmer = new ArrayList<>();
         while (filScanner.hasNextLine()) {
-            int alder = filScanner.nextInt();
             String navn = filScanner.next();
+            int alder = filScanner.nextInt();
             boolean aktivtMedlemskab = filScanner.nextBoolean();
             boolean konkurrenceSvømmer = filScanner.nextBoolean();
             boolean restance = filScanner.nextBoolean();
-            Medlem indlæsMedlem = new Medlem(alder, navn, aktivtMedlemskab, konkurrenceSvømmer, restance);
-            DataBase dataBase = new DataBase();
-            dataBase.medlemmer.add(indlæsMedlem);
-            System.out.println(dataBase.medlemmer);
+            filScanner.nextLine();
+
+            indlæsteMedlemmer.add(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance));
         }
+            return indlæsteMedlemmer;
     }
 
     public void skrivMedlem(ArrayList<Medlem> medlemmer) throws FileNotFoundException {
         printStream = new PrintStream(filnavn);
         for(Medlem medlem : medlemmer) {
-            printStream.print(medlem.getAlder());
-            printStream.print(";");
             printStream.print(medlem.getNavn());
+            printStream.print(";");
+            printStream.print(medlem.getAlder());
             printStream.print(";");
             printStream.print(medlem.getAktivtMedlemskab());
             printStream.print(";");
             printStream.print(medlem.getKonkurrenceSvømmer());
             printStream.print(";");
             printStream.print(medlem.getRestance());
+            printStream.print(";");
             printStream.println();
         }
     }

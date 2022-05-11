@@ -13,6 +13,7 @@ public class UI {
 
     public void start() throws FileNotFoundException {
         System.out.println("Velkommen til Svømmeklubben Delfinens database");
+        controller.indlæsMedlemmer();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
             valgmuligheder();
@@ -28,7 +29,6 @@ public class UI {
         (4) Slet medlem
         (5) Konkurrence menu
         (6) Økonomi menu
-        (7) Indlæs liste af medlemmer (test)
         (0) Afslut programmet""");
     }
     public void valg() throws FileNotFoundException {
@@ -40,18 +40,18 @@ public class UI {
             case 4 -> controller.sletMedlem();
             case 5 -> controller.konkurrenceMenu();
             case 6 -> controller.økonomiMenu();
-            case 7 -> controller.indlæsMedlemmer();
             case 0 -> afslut();
         }
     }
     public void tilføj() throws FileNotFoundException {
-        System.out.print("Alder: ");
-        int alder = in.nextInt();
-
         in.nextLine();
         System.out.print("Navn: ");
         String navn = in.nextLine();
 
+        System.out.print("Alder: ");
+        int alder = in.nextInt();
+
+        in.nextLine();
         System.out.print("Aktivt medlemskab? ");
         String medlemskabSvar = in.nextLine();
         boolean medlemskab;
@@ -78,11 +78,13 @@ public class UI {
             case "nej", "n" -> restance = true;
             default -> restance = false;
         }
-        controller.tilføjMedlem(alder, navn, medlemskab, konkurrencesvømmer, restance);
+        controller.tilføjMedlem(navn, alder, medlemskab, konkurrencesvømmer, restance);
     }
 
-    public void afslut() {
-        System.out.println("Du har afsluttet programmet! Alle ændinger vil blive gemt");
+    public void afslut() throws FileNotFoundException {
+        System.out.println("Du har afsluttet programmet! Alle ændringer vil blive gemt");
+        controller.gem();
+        System.out.println(controller.db.medlemmer.size());
         isRunning = false;
     }
 }
