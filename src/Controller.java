@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
@@ -20,10 +21,6 @@ public class Controller {
 
     }
 
-    public void sletMedlem() {
-
-    }
-
     public void konkurrenceMenu() {
 
     }
@@ -34,7 +31,10 @@ public class Controller {
     public void gem() throws FileNotFoundException {
         db.skriv();
     }
-    public void findMedlem(String søg){
-        db.findMedlem(søg);
+    public ArrayList<Medlem> findMedlem(String søg){
+        return db.findMedlem(søg);
+    }
+    public void sletMedlem(Medlem medlem){
+        db.slet(medlem);
     }
 }

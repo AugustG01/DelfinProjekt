@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -39,11 +40,9 @@ public class UI {
         switch (svar) {
             case 1 -> controller.seListe();
             case 2 -> tilføj();
-            case 3 -> controller.ændrMedlem();
-            case 4 -> controller.sletMedlem();
-            case 5 -> controller.konkurrenceMenu();
-            case 6 -> controller.økonomiMenu();
-            case 7 -> findMedlem();
+            case 3 -> findMedlem();
+            case 4 -> controller.konkurrenceMenu();
+            case 5 -> controller.økonomiMenu();
             case 0 -> afslut();
         }
     }
@@ -94,6 +93,7 @@ public class UI {
     }
 
     public void findMedlem() {
+        ArrayList<Medlem> fundneMedlemmer = new ArrayList<>();
         System.out.println("""
                 Find et medlem
                 --------------
@@ -101,7 +101,36 @@ public class UI {
         in.nextLine();
         System.out.print(": ");
         String søg = in.nextLine().trim().toLowerCase();
-        controller.findMedlem(søg);
+        fundneMedlemmer = controller.findMedlem(søg);
 
+        // TODO: 11/05/2022 flyt sout
+        int i = 1;
+        for (Medlem medlem : fundneMedlemmer) {
+            System.out.println("#" + i + ". " + medlem);
+            i++;
+        }
+        System.out.println("Indtast nummeret på det medlem du vil ændre/fjerne: ");
+        vælgMedlem(fundneMedlemmer);
+
+    }
+
+    public void vælgMedlem(ArrayList<Medlem> fundneMedlemmer) {
+        int valg = in.nextInt();
+        Medlem medlem;
+        medlem = fundneMedlemmer.get(valg - 1);
+        System.out.println("""
+                Hvad vil du gøre?
+                (1) Ændre oplysninger på medlem
+                (2) Slet medlem fra databasen
+                (3) Annuller""");
+        int andetValg = in.nextInt();
+        switch (andetValg) {
+            case 1 -> ændreMedlem();
+            case 2 -> controller.sletMedlem(medlem);
+            default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
+        }
+    }
+    public void ændreMedlem(){
+        System.out.println("IKKE IMPLEMENTERET");
     }
 }

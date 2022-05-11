@@ -29,7 +29,10 @@ public class DataBase {
             System.out.println(medlem);
         }
     }
-    public void findMedlem(String søg){
+    public void slet(Medlem medlem){
+        medlemmer.remove(medlem);
+    }
+    public ArrayList<Medlem> findMedlem(String søg){
         ArrayList<Medlem> fundneMedlemmer = new ArrayList<>();
         for (Medlem medlem : medlemmer){
             if(medlem.matcher(søg))
