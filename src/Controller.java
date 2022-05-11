@@ -17,7 +17,7 @@ public class Controller {
         db.indlæs();
     }
 
-    public void ændrMedlem() {
+    public void ændreMedlem() {
 
     }
 
