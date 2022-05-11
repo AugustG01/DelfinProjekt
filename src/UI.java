@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
@@ -7,7 +8,7 @@ public class UI {
 
     Scanner in = new Scanner(System.in);
 
-    public UI(Controller controller){
+    public UI(Controller controller) {
         this.controller = controller;
     }
 
@@ -23,26 +24,30 @@ public class UI {
 
     public void valgmuligheder() {
         System.out.println("""
-        (1) Se liste over medlemmer
-        (2) Tilføj medlem
-        (3) Ændr medlem
-        (4) Slet medlem
-        (5) Konkurrence menu
-        (6) Økonomi menu
-        (0) Afslut programmet""");
+                (1) Se liste over medlemmer
+                (2) Tilføj medlem
+                (3) Ændr medlem
+                (4) Slet medlem
+                (5) Konkurrence menu
+                (6) Økonomi menu
+                (7) Søg efter navn
+                (0) Afslut programmet""");
     }
+
     public void valg() throws FileNotFoundException {
         int svar = in.nextInt();
-        switch (svar){
+        switch (svar) {
             case 1 -> controller.seListe();
             case 2 -> tilføj();
             case 3 -> controller.ændrMedlem();
             case 4 -> controller.sletMedlem();
             case 5 -> controller.konkurrenceMenu();
             case 6 -> controller.økonomiMenu();
+            case 7 -> findMedlem();
             case 0 -> afslut();
         }
     }
+
     public void tilføj() throws FileNotFoundException {
         in.nextLine();
         System.out.print("Navn: ");
@@ -55,7 +60,7 @@ public class UI {
         System.out.print("Aktivt medlemskab? ");
         String medlemskabSvar = in.nextLine();
         boolean medlemskab;
-        switch (medlemskabSvar){
+        switch (medlemskabSvar) {
             case "ja", "j" -> medlemskab = true;
             case "nej", "n" -> medlemskab = false;
             default -> medlemskab = false;
@@ -64,7 +69,7 @@ public class UI {
         System.out.print("Konkurrencesvømmer? ");
         String konkurrenceSvar = in.nextLine();
         boolean konkurrencesvømmer;
-        switch (konkurrenceSvar){
+        switch (konkurrenceSvar) {
             case "ja", "j" -> konkurrencesvømmer = true;
             case "nej", "n" -> konkurrencesvømmer = false;
             default -> konkurrencesvømmer = false;
@@ -73,7 +78,7 @@ public class UI {
         System.out.print("Betalt? ");
         String betalt = in.nextLine();
         boolean restance;
-        switch (betalt){
+        switch (betalt) {
             case "ja", "j" -> restance = false;
             case "nej", "n" -> restance = true;
             default -> restance = false;
@@ -86,5 +91,17 @@ public class UI {
         controller.gem();
         System.out.println(controller.db.medlemmer.size());
         isRunning = false;
+    }
+
+    public void findMedlem() {
+        System.out.println("""
+                Find et medlem
+                --------------
+                Skriv navnet eller dele af navnet for at finde et medlem.""");
+        in.nextLine();
+        System.out.print(": ");
+        String søg = in.nextLine().trim().toLowerCase();
+        controller.findMedlem(søg);
+
     }
 }

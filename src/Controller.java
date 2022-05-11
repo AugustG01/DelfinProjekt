@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Controller {
     DataBase db = new DataBase();
-   //Scanner in = new Scanner(System.in);
 
     public void seListe() {
         db.seListe();
@@ -34,5 +33,8 @@ public class Controller {
     }
     public void gem() throws FileNotFoundException {
         db.skriv();
+    }
+    public void findMedlem(String søg){
+        db.findMedlem(søg);
     }
 }

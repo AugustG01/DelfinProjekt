@@ -25,7 +25,18 @@ public class DataBase {
     }
     public void seListe() {
         for(Medlem medlem : medlemmer){
+            // TODO: 11/05/2022 flyt sout 
             System.out.println(medlem);
         }
+    }
+    public void findMedlem(String søg){
+        ArrayList<Medlem> fundneMedlemmer = new ArrayList<>();
+        for (Medlem medlem : medlemmer){
+            if(medlem.matcher(søg))
+                fundneMedlemmer.add(medlem);
+        }
+        // TODO: 11/05/2022 flyt sout
+        for(Medlem medlem : fundneMedlemmer)
+            System.out.println(medlem);
     }
 }

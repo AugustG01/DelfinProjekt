@@ -44,6 +44,10 @@ public class Medlem {
         this.restance = restance;
     }
 
+    public boolean matcher(String søg){
+        return navn.toLowerCase().contains(søg);
+    }
+
     @Override
     public String toString() {
         return "Navn: " + navn + " | " +
