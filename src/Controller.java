@@ -1,6 +1,5 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Controller {
     DataBase db = new DataBase();
@@ -17,7 +16,7 @@ public class Controller {
         db.indlæs();
     }
 
-    public void ændrMedlem() {
+    public void ændreMedlem() {
 
     }
 

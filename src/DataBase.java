@@ -38,8 +38,6 @@ public class DataBase {
             if(medlem.matcher(søg))
                 fundneMedlemmer.add(medlem);
         }
-        // TODO: 11/05/2022 flyt sout
-        for(Medlem medlem : fundneMedlemmer)
-            System.out.println(medlem);
+        return fundneMedlemmer;
     }
 }

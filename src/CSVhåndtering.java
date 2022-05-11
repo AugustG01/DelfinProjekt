@@ -8,7 +8,6 @@ public class CSVhåndtering {
     private String filnavn;
     private Scanner filScanner;
     PrintStream printStream;
-    DataBase db = new DataBase();
 
 
 

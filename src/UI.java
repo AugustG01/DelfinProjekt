@@ -27,11 +27,11 @@ public class UI {
         System.out.println("""
                 (1) Se liste over medlemmer
                 (2) Tilføj medlem
-                (3) Ændr medlem
-                (4) Slet medlem
-                (5) Konkurrence menu
-                (6) Økonomi menu
-                (7) Søg efter navn
+                (3) Søg efter medlem
+                    - Ændre medlem
+                    - Slet medlem
+                (4) Konkurrence menu
+                (5) Økonomi menu
                 (0) Afslut programmet""");
     }
 
