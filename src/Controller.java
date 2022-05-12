@@ -20,13 +20,20 @@ public class Controller {
 
     }
 
+    public void seKontigent(){
+        Økonomi økonomi = new Økonomi(db.medlemmer);
+        økonomi.totalKontingent();
+    }
+
+    public void seRestanceListe() {
+        Økonomi økonomi = new Økonomi(db.medlemmer);
+        økonomi.udskrivRestanceListe();
+    }
+
     public void konkurrenceMenu() {
 
     }
 
-    public void økonomiMenu() {
-
-    }
     public void gem() throws FileNotFoundException {
         db.skriv();
     }

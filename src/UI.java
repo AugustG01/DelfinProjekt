@@ -31,6 +31,8 @@ public class UI {
                     - Slet medlem
                 (4) Konkurrence menu
                 (5) Økonomi menu
+                    - Se total forventet indkomst
+                    - Se liste af medlemmer i restance
                 (0) Afslut programmet""");
         hovedMenu();
     }
@@ -43,7 +45,7 @@ public class UI {
                 case 2 -> tilføj();
                 case 3 -> findMedlem();
                 case 4 -> controller.konkurrenceMenu();
-                case 5 -> controller.økonomiMenu();
+                case 5 -> økonomiMenu();
                 case 0 -> afslut();
             }
         } catch (InputMismatchException ime) {
@@ -97,8 +99,27 @@ public class UI {
         isRunning = false;
     }
 
+    public void økonomiMenu() {
+        System.out.println("Hvad vil du gøre?");
+        System.out.println("""
+                (1) Se total forventet indkomst
+                (2) Se liste af medlemmer i restance
+                (3) Annuller""");
+        try {
+            int svar = in.nextInt();
+            switch (svar) {
+                case 1 -> controller.seKontigent();
+                case 2 -> controller.seRestanceListe();
+                default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
+            }
+        } catch (InputMismatchException ime) {
+            fejl();
+            in.next();
+        }
+    }
+
     public void findMedlem() {
-        ArrayList<Medlem> fundneMedlemmer = new ArrayList<>();
+        ArrayList<Medlem> fundneMedlemmer;
         System.out.println("""
                 Find et medlem
                 --------------
