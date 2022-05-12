@@ -125,12 +125,61 @@ public class UI {
                 (3) Annuller""");
         int andetValg = in.nextInt();
         switch (andetValg) {
-            case 1 -> ændreMedlem();
+            case 1 -> ændreMedlem(medlem);
             case 2 -> controller.sletMedlem(medlem);
             default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
         }
     }
-    public void ændreMedlem(){
-        System.out.println("IKKE IMPLEMENTERET");
+
+    public void ændreMedlem(Medlem medlem) {
+        System.out.println("""
+                Hvad vil du ændre?
+                (1) Konkurrence status
+                (2) Medlemskab
+                (3) Restance
+                """);
+        int valg = in.nextInt();
+        switch (valg) {
+            case 1 -> ændrKonkurrenceStatus(medlem);
+            case 2 -> ændrAktivMedlem(medlem);
+            case 3 -> ændrRestance(medlem);
+            //default mangler
+        }
+    }
+
+    public void ændrKonkurrenceStatus(Medlem medlem) {
+        in.nextLine();
+        System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+        System.out.println("Hvad vil du ændre konkurrence status til? ");
+        String valg = in.nextLine().toLowerCase();
+        switch (valg){
+            case "ja", "j", "true" -> medlem.setKonkurrenceSvømmer(true);
+            case "nej", "n", "false" -> medlem.setKonkurrenceSvømmer(false);
+        }
+        System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getKonkurrenceSvømmer());
+    }
+
+    public void ændrAktivMedlem(Medlem medlem){
+        in.nextLine();
+        System.out.println("Aktivt medlemskab på " + medlem.getNavn() + " er lige nu : " + medlem.getAktivtMedlemskab());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+        System.out.println("Hvad vil du ændre medlemskab til? ");
+        String valg = in.nextLine().toLowerCase();
+        switch (valg){
+            case "ja", "j", "true" -> medlem.setAktivtMedlemskab(true);
+            case "nej", "n", "false" -> medlem.setAktivtMedlemskab(false);
+        }
+        System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getAktivtMedlemskab());
+    }
+
+    public void ændrRestance(Medlem medlem){
+        in.nextLine();
+        System.out.println("Restance på " + medlem.getNavn() + " er lige nu : " + medlem.getRestance());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+        System.out.println("Hvad vil du ændre konkurrence status til? ");
+        String valg = in.nextLine().toLowerCase();
+        switch (valg){
+            case "ja", "j", "true" -> medlem.setRestance(true);
+            case "nej", "n", "false" -> medlem.setRestance(false);
+        }
+        System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getRestance());
     }
 }
