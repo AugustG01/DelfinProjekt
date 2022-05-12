@@ -75,7 +75,7 @@ public class Økonomi {
     }
 
     public void udskrivRestanceListe() {
-        System.err.println("Medlemmer i rastance: ");
+        System.err.println("Medlemmer i restance: ");
         for (Medlem medlem : restanceMedlemmer)
             System.err.println(medlem);
     }
