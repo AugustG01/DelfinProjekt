@@ -1,6 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UI {
@@ -18,12 +18,11 @@ public class UI {
         controller.indlæsMedlemmer();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
-            valgmuligheder();
-            valg();
+            valgmulighederHovedmenu();
         }
     }
 
-    public void valgmuligheder() {
+    public void valgmulighederHovedmenu() throws FileNotFoundException {
         System.out.println("""
                 (1) Se liste over medlemmer
                 (2) Tilføj medlem
@@ -33,18 +32,23 @@ public class UI {
                 (4) Konkurrence menu
                 (5) Økonomi menu
                 (0) Afslut programmet""");
+        hovedMenu();
     }
 
-    public void valg() throws FileNotFoundException {
-        int svar = in.nextInt();
-        switch (svar) {
-            case 1 -> controller.seListe();
-            case 2 -> tilføj();
-            case 3 -> findMedlem();
-            case 4 -> controller.konkurrenceMenu();
-            case 5 -> controller.økonomiMenu();
-            case 0 -> afslut();
-            default -> fejl();
+    public void hovedMenu() throws FileNotFoundException {
+        try {
+            int svar = in.nextInt();
+            switch (svar) {
+                case 1 -> controller.seListe();
+                case 2 -> tilføj();
+                case 3 -> findMedlem();
+                case 4 -> controller.konkurrenceMenu();
+                case 5 -> controller.økonomiMenu();
+                case 0 -> afslut();
+            }
+        } catch (InputMismatchException ime) {
+            fejl();
+            in.next();
         }
     }
 
@@ -104,15 +108,19 @@ public class UI {
         String søg = in.nextLine().trim().toLowerCase();
         fundneMedlemmer = controller.findMedlem(søg);
 
-        // TODO: 11/05/2022 flyt sout
-        int i = 1;
-        for (Medlem medlem : fundneMedlemmer) {
-            System.out.println("#" + i + ". " + medlem);
-            i++;
+        if (fundneMedlemmer.size() > 0) {
+            // TODO: 11/05/2022 flyt sout
+            int i = 1;
+            for (Medlem medlem : fundneMedlemmer) {
+                System.out.println("#" + i + ". " + medlem);
+                i++;
+            }
+            System.out.println("Indtast nummeret på det medlem du vil ændre/fjerne: ");
+            vælgMedlem(fundneMedlemmer);
+        } else {
+            System.out.println("Fandt ingen medlemmer i systemet! Prøv igen: ");
+            findMedlem();
         }
-        System.out.println("Indtast nummeret på det medlem du vil ændre/fjerne: ");
-        vælgMedlem(fundneMedlemmer);
-
     }
 
     public void vælgMedlem(ArrayList<Medlem> fundneMedlemmer) {
@@ -124,11 +132,16 @@ public class UI {
                 (1) Ændre oplysninger på medlem
                 (2) Slet medlem fra databasen
                 (3) Annuller""");
-        int andetValg = in.nextInt();
-        switch (andetValg) {
-            case 1 -> ændreMedlem(medlem);
-            case 2 -> controller.sletMedlem(medlem);
-            case 3 -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
+        try {
+            int andetValg = in.nextInt();
+            switch (andetValg) {
+                case 1 -> ændreMedlem(medlem);
+                case 2 -> controller.sletMedlem(medlem);
+                case 3 -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
+            }
+        } catch (InputMismatchException ime) {
+            fejl();
+            in.next();
         }
     }
 
@@ -139,15 +152,20 @@ public class UI {
                 (2) Medlemskab
                 (3) Restance
                 """);
-        int valg = in.nextInt();
-        switch (valg) {
-            case 1 -> ændrKonkurrenceStatus(medlem);
-            case 2 -> ændrAktivMedlem(medlem);
-            case 3 -> ændrRestance(medlem);
-            default -> {
-                fejl();
-                ændreMedlem(medlem);
+        try {
+            int valg = in.nextInt();
+            switch (valg) {
+                case 1 -> ændrKonkurrenceStatus(medlem);
+                case 2 -> ændrAktivMedlem(medlem);
+                case 3 -> ændrRestance(medlem);
+                default -> {
+                    fejl();
+                    ændreMedlem(medlem);
+                }
             }
+        } catch (InputMismatchException ime) {
+            fejl();
+            in.next();
         }
     }
 
@@ -171,7 +189,7 @@ public class UI {
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getKonkurrenceSvømmer());
     }
 
-    public void ændrAktivMedlem(Medlem medlem){
+    public void ændrAktivMedlem(Medlem medlem) {
         in.nextLine();
         boolean rigtigtInput = false;
         while (!rigtigtInput) {
@@ -191,7 +209,7 @@ public class UI {
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getAktivtMedlemskab());
     }
 
-    public void ændrRestance(Medlem medlem){
+    public void ændrRestance(Medlem medlem) {
         in.nextLine();
         boolean rigtigtInput = false;
         while (!rigtigtInput) {
@@ -210,7 +228,8 @@ public class UI {
         }
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getRestance());
     }
-    public void fejl(){
+
+    public void fejl() {
         System.err.println("Forkert input. Prøv igen: ");
     }
 }
