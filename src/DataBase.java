@@ -12,7 +12,7 @@ public class DataBase {
     public void skriv() throws FileNotFoundException {
         filnavn = "medlemmer.csv";
 
-        CSVhåndtering csv = new CSVhåndtering(filnavn);
+        CSVMedlemmer csv = new CSVMedlemmer(filnavn);
         csv.skrivMedlem(medlemmer);
     }
     public void tilføjMedlem(Medlem medlem) {
@@ -20,7 +20,7 @@ public class DataBase {
     }
 
     public void indlæs() throws FileNotFoundException {
-        CSVhåndtering csv = new CSVhåndtering(filnavn);
+        CSVMedlemmer csv = new CSVMedlemmer(filnavn);
         medlemmer = csv.indlæsMedlemmer();
     }
     public void seListe() {

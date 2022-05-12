@@ -145,6 +145,7 @@ public class UI {
     }
 
     public void vælgMedlem(ArrayList<Medlem> fundneMedlemmer) {
+        // TODO: 12-05-2022 InputMissMatch håndter 
         int valg = in.nextInt();
         Medlem medlem;
         medlem = fundneMedlemmer.get(valg - 1);

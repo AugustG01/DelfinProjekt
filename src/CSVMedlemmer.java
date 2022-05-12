@@ -4,14 +4,14 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CSVhåndtering {
+public class CSVMedlemmer {
     private String filnavn;
     private Scanner filScanner;
     PrintStream printStream;
 
 
 
-    public CSVhåndtering( String filnavn){
+    public CSVMedlemmer(String filnavn){
         this.filnavn = filnavn;
     }
 
