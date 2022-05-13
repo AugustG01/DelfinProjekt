@@ -44,7 +44,7 @@ public class UI {
                 case 1 -> controller.seListe();
                 case 2 -> tilføj();
                 case 3 -> findMedlem();
-                case 4 -> controller.konkurrenceMenu();
+                case 4 -> konkurrenceMenu();
                 case 5 -> økonomiMenu();
                 case 0 -> afslut();
             }
@@ -52,6 +52,11 @@ public class UI {
             fejl();
             in.next();
         }
+    }
+    public void konkurrenceMenu() throws FileNotFoundException {
+        System.out.println("IKKE IMPLEMENTERET HELT, MEN VI PRØVER AT GEMME");
+        controller.opretKonkurrenceSvømmere();
+        controller.gemKonkurrenceSvømmere();
     }
 
     public void tilføj() throws FileNotFoundException {

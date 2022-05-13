@@ -6,5 +6,15 @@ public class Konkurrence {
     ArrayList<KonkurrenceSvømmer> deltagere = new ArrayList<>();
 
 
+    public String getKonkurrenceNavn() {
+        return konkurrenceNavn;
+    }
 
+    public String getDato() {
+        return dato;
+    }
+
+    public ArrayList<KonkurrenceSvømmer> getDeltagere() {
+        return deltagere;
+    }
 }

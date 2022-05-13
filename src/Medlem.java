@@ -13,6 +13,10 @@ public class Medlem {
         setRestance(restance);
     }
 
+    public Medlem() {
+
+    }
+
 
     public int getAlder(){
         return alder;

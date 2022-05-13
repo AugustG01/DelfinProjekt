@@ -20,6 +20,11 @@ public class Controller {
 
     }
 
+    public void opretKonkurrenceSvømmere(){
+        db.tilføjKonkurrenceSvømmer();
+    }
+    public void gemKonkurrenceSvømmere() throws FileNotFoundException {db.skrivKonkurrenceSvømmere();}
+
     public void seKontigent(){
         Økonomi økonomi = new Økonomi(db.medlemmer);
         økonomi.totalKontingent();
@@ -35,7 +40,7 @@ public class Controller {
     }
 
     public void gem() throws FileNotFoundException {
-        db.skriv();
+        db.skrivMedlemmer();
     }
     public ArrayList<Medlem> findMedlem(String søg){
         return db.findMedlem(søg);
