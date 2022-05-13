@@ -16,16 +16,12 @@ public class Controller {
         db.indlæs();
     }
 
-    public void ændreMedlem() {
-
-    }
-
     public void opretKonkurrenceSvømmere(){
         db.tilføjKonkurrenceSvømmer();
     }
     public void gemKonkurrenceSvømmere() throws FileNotFoundException {db.skrivKonkurrenceSvømmere();}
 
-    public void seKontigent(){
+    public void seKontingent(){
         Økonomi økonomi = new Økonomi(db.medlemmer);
         økonomi.totalKontingent();
     }
@@ -33,10 +29,6 @@ public class Controller {
     public void seRestanceListe() {
         Økonomi økonomi = new Økonomi(db.medlemmer);
         økonomi.udskrivRestanceListe();
-    }
-
-    public void konkurrenceMenu() {
-
     }
 
     public void gem() throws FileNotFoundException {

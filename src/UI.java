@@ -113,7 +113,7 @@ public class UI {
         try {
             int svar = in.nextInt();
             switch (svar) {
-                case 1 -> controller.seKontigent();
+                case 1 -> controller.seKontingent();
                 case 2 -> controller.seRestanceListe();
                 default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
             }

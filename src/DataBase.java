@@ -27,10 +27,8 @@ public class DataBase {
     public void tilføjKonkurrenceSvømmer() {
         for (Medlem medlem : medlemmer) {
             if (medlem.getKonkurrenceSvømmer()) {
-                medlem = new KonkurrenceSvømmer();
-                if (medlem instanceof KonkurrenceSvømmer) {
-                    konkurrenceSvømmere.add((KonkurrenceSvømmer) medlem);
-                }
+                KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
+                    konkurrenceSvømmere.add(svømmer);
             }
         }
     }

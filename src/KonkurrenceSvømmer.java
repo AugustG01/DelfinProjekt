@@ -11,8 +11,9 @@ public class KonkurrenceSvømmer extends Medlem{
     private double butterflyRekord;
     ArrayList<Konkurrence> konkurrencer;
 
-    public KonkurrenceSvømmer(){
-        super();
+    public KonkurrenceSvømmer(Medlem medlem){
+        super.setNavn(medlem.getNavn());
+        super.setAlder(medlem.getAlder());
     }
 
     public KonkurrenceSvømmer(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance,

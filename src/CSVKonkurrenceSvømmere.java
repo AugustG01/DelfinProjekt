@@ -55,7 +55,7 @@ public class CSVKonkurrenceSvømmere {
                 printStream.print(";");
                 printStream.print(svømmer.getButterflyRekord());
                 printStream.print(";");
-                printKonkurrenceListe(svømmer.getKonkurrencer());
+                printStream.print(printKonkurrenceListe(svømmer.getKonkurrencer()));
                 printStream.println();
             }
         }
