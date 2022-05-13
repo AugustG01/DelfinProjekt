@@ -41,7 +41,7 @@ public class UI {
         try {
             int svar = in.nextInt();
             switch (svar) {
-                case 1 -> controller.seListe();
+                case 1 -> controller.seMedlemsListe();
                 case 2 -> tilføj();
                 case 3 -> findMedlem();
                 case 4 -> konkurrenceMenu();
@@ -56,7 +56,8 @@ public class UI {
     public void konkurrenceMenu() throws FileNotFoundException {
         System.out.println("IKKE IMPLEMENTERET HELT, MEN VI PRØVER AT GEMME");
         controller.opretKonkurrenceSvømmere();
-        controller.gemKonkurrenceSvømmere();
+        //controller.gemKonkurrenceSvømmere();
+        controller.seKonkurrenceListe();
     }
 
     public void tilføj() throws FileNotFoundException {

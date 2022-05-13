@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class CSVKonkurrenceSvømmere {
@@ -13,24 +15,39 @@ public class CSVKonkurrenceSvømmere {
             this.filnavn = filnavn;
         }
 
-        /*
+
 
         public ArrayList<KonkurrenceSvømmer> indlæsKonkurrenceSvømmere() throws FileNotFoundException {
             filScanner = new Scanner(new File(filnavn)).useDelimiter(";");
-            ArrayList<Konkurrence> indlæsteKonkurrencer = new ArrayList<>();
+            ArrayList<KonkurrenceSvømmer> indlæsteKonkurrenceSvømmere = new ArrayList<>();
             while (filScanner.hasNextLine()) {
-                String navn = filScanner.next();
-                int alder = filScanner.nextInt();
-                boolean aktivtMedlemskab = filScanner.nextBoolean();
-                boolean konkurrenceSvømmer = filScanner.nextBoolean();
-                boolean restance = filScanner.nextBoolean();
-                filScanner.nextLine();
-
-             //   indlæsteKonkurrencer.add(new Konkurrence(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance));
+                // Bruger Locale.ENGLISH for at undgå Scanneren forstår punktum i stedet for komma i indlæsning af double
+                Scanner linjeScanner = new Scanner(filScanner.nextLine()).useDelimiter(";").useLocale(Locale.ENGLISH);
+                String navn = linjeScanner.next();
+                int alder = linjeScanner.nextInt();
+                boolean crawl = linjeScanner.nextBoolean();
+                boolean bryst = linjeScanner.nextBoolean();
+                boolean butterfly = linjeScanner.nextBoolean();
+                boolean rygCrawl = linjeScanner.nextBoolean();
+                double crawlRekord = linjeScanner.nextDouble();
+                double brystRekord = linjeScanner.nextDouble();
+                double rygCrawlRekord = linjeScanner.nextDouble();
+                double butterflyRekord = linjeScanner.nextDouble();
+                ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
+                //filScanner.nextLine();
+                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord,konkurrencer));
             }
-            return indlæsteKonkurrencer;
+            return indlæsteKonkurrenceSvømmere;
         }
-        */
+        public ArrayList<Konkurrence> indlæsKonkurrencer(Scanner linjeScanner){
+            ArrayList<Konkurrence> konkurrencer = new ArrayList<>();
+            while(linjeScanner.hasNext()){
+                Konkurrence konkurrence = new Konkurrence(linjeScanner.next());
+                konkurrencer.add(konkurrence);
+            }
+            return konkurrencer;
+        }
+
 
         public void skrivSvømmer(ArrayList<KonkurrenceSvømmer> svømmere) throws FileNotFoundException {
             printStream = new PrintStream(filnavn);

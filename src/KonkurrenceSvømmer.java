@@ -24,6 +24,19 @@ public class KonkurrenceSvømmer extends Medlem{
         this.butterfly = butterfly;
         this.rygCrawl = rygCrawl;
     }
+    public KonkurrenceSvømmer(String navn,int alder,boolean crawl,boolean bryst,boolean butterfly,boolean rygCrawl,double crawlRekord,double brystRekord,double rygCrawlRekord,double butterflyRekord, ArrayList<Konkurrence> konkurrencer){
+        super.setNavn(navn);
+        super.setAlder(alder);
+        this.crawl = crawl;
+        this. bryst = bryst;
+        this.butterfly = butterfly;
+        this.rygCrawl = rygCrawl;
+        this.crawlRekord = crawlRekord;
+        this.brystRekord = brystRekord;
+        this.rygCrawlRekord = rygCrawlRekord;
+        this.butterflyRekord = butterflyRekord;
+        this.konkurrencer = konkurrencer;
+    }
 
     public boolean isCrawl() {
         return crawl;
@@ -59,5 +72,20 @@ public class KonkurrenceSvømmer extends Medlem{
 
     public ArrayList<Konkurrence> getKonkurrencer() {
         return konkurrencer;
+    }
+
+    @Override
+    public String toString() {
+        return "Navn: " + super.getNavn() + " | " +
+                "Alder: " + super.getAlder() + " | " +
+                "crawl: " + crawl + " | " +
+                "bryst: " + bryst + " | " +
+                "butterfly: " + butterfly + " | " +
+                "rygcrawl: " + rygCrawl + " | " +
+                "crawl rekord: " + crawlRekord + " | " +
+                "bryst rekord: " + brystRekord + " | " +
+                "rygcrawl rekord: " + rygCrawlRekord + " | " +
+                "butterfly rekord: " + butterflyRekord + " | " +
+                "Konkurrencer: " + konkurrencer + " | " + "\n";
     }
 }

@@ -34,14 +34,21 @@ public class DataBase {
     }
 
     public void indlæs() throws FileNotFoundException {
-        CSVMedlemmer csv = new CSVMedlemmer(medlemsFil);
-        medlemmer = csv.indlæsMedlemmer();
+        CSVMedlemmer csvMedlemmer = new CSVMedlemmer(medlemsFil);
+        CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);
+        medlemmer = csvMedlemmer.indlæsMedlemmer();
+        konkurrenceSvømmere = csvKonkurrenceSvømmere.indlæsKonkurrenceSvømmere();
     }
 
-    public void seListe() {
+    public void seListeAfMedlemmer() {
         for (Medlem medlem : medlemmer) {
             // TODO: 11/05/2022 flyt sout 
             System.out.println(medlem);
+        }
+    }
+    public void seListeAfKonkurrenceSvømmere(){
+        for(KonkurrenceSvømmer svømmer : konkurrenceSvømmere){
+            System.out.println(svømmer);
         }
     }
 

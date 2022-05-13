@@ -5,6 +5,11 @@ public class Konkurrence {
     private String dato;
     ArrayList<KonkurrenceSvømmer> deltagere = new ArrayList<>();
 
+    public Konkurrence(){}
+    public Konkurrence(String konkurrenceNavn) {
+        this.konkurrenceNavn = konkurrenceNavn;
+    }
+
 
     public String getKonkurrenceNavn() {
         return konkurrenceNavn;
@@ -16,5 +21,10 @@ public class Konkurrence {
 
     public ArrayList<KonkurrenceSvømmer> getDeltagere() {
         return deltagere;
+    }
+
+    @Override
+    public String toString() {
+        return "'" + konkurrenceNavn + "'";
     }
 }

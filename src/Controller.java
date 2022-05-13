@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class Controller {
     DataBase db = new DataBase();
 
-    public void seListe() {
-        db.seListe();
+    public void seMedlemsListe() {
+        db.seListeAfMedlemmer();
     }
 
     public void tilføjMedlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
@@ -14,6 +14,9 @@ public class Controller {
 
     public void indlæsMedlemmer() throws FileNotFoundException {
         db.indlæs();
+    }
+    public void seKonkurrenceListe(){
+        db.seListeAfKonkurrenceSvømmere();
     }
 
     public void opretKonkurrenceSvømmere(){
@@ -33,6 +36,7 @@ public class Controller {
 
     public void gem() throws FileNotFoundException {
         db.skrivMedlemmer();
+        db.skrivKonkurrenceSvømmere();
     }
     public ArrayList<Medlem> findMedlem(String søg){
         return db.findMedlem(søg);
