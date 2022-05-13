@@ -24,13 +24,11 @@ public class DataBase {
         medlemmer.add(medlem);
     }
 
-    public void tilføjKonkurrenceSvømmer() {
-        for (Medlem medlem : medlemmer) {
-            if (medlem.getKonkurrenceSvømmer()) {
-                KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
+    public void tilføjKonkurrenceSvømmer(Medlem medlem) {
+
+                    KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
                     konkurrenceSvømmere.add(svømmer);
-            }
-        }
+
     }
 
     public void indlæs() throws FileNotFoundException {

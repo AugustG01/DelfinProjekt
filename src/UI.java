@@ -55,7 +55,6 @@ public class UI {
     }
     public void konkurrenceMenu() throws FileNotFoundException {
         System.out.println("IKKE IMPLEMENTERET HELT, MEN VI PRØVER AT GEMME");
-        controller.opretKonkurrenceSvømmere();
         //controller.gemKonkurrenceSvømmere();
         controller.seKonkurrenceListe();
     }
@@ -82,7 +81,9 @@ public class UI {
         String konkurrenceSvar = in.nextLine();
         boolean konkurrencesvømmer;
         switch (konkurrenceSvar) {
-            case "ja", "j" -> konkurrencesvømmer = true;
+            case "ja", "j" -> {
+                konkurrencesvømmer = true;
+            }
             case "nej", "n" -> konkurrencesvømmer = false;
             default -> konkurrencesvømmer = false;
         }
@@ -101,7 +102,6 @@ public class UI {
     public void afslut() throws FileNotFoundException {
         System.out.println("Du har afsluttet programmet! Alle ændringer vil blive gemt");
         controller.gem();
-        System.out.println(controller.db.medlemmer.size());
         isRunning = false;
     }
 

@@ -9,7 +9,10 @@ public class Controller {
     }
 
     public void tilføjMedlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
-        db.tilføjMedlem(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance));
+        Medlem medlem = new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance);
+        db.tilføjMedlem(medlem);
+        if(medlem.getKonkurrenceSvømmer())
+            opretKonkurrenceSvømmer(medlem);
     }
 
     public void indlæsMedlemmer() throws FileNotFoundException {
@@ -19,10 +22,9 @@ public class Controller {
         db.seListeAfKonkurrenceSvømmere();
     }
 
-    public void opretKonkurrenceSvømmere(){
-        db.tilføjKonkurrenceSvømmer();
+    public void opretKonkurrenceSvømmer(Medlem medlem){
+        db.tilføjKonkurrenceSvømmer(medlem);
     }
-    public void gemKonkurrenceSvømmere() throws FileNotFoundException {db.skrivKonkurrenceSvømmere();}
 
     public void seKontingent(){
         Økonomi økonomi = new Økonomi(db.medlemmer);
