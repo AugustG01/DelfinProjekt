@@ -14,6 +14,9 @@ public class Controller {
         if(medlem.getKonkurrenceSvømmer())
             opretKonkurrenceSvømmer(medlem);
     }
+    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider){
+        db.tilføjKonkurrence(konkurrenceNavn, dato,  deltagere,tider);
+    }
 
     public void indlæsMedlemmer() throws FileNotFoundException {
         db.indlæs();
@@ -43,6 +46,9 @@ public class Controller {
     public ArrayList<Medlem> findMedlem(String søg){
         return db.findMedlem(søg);
     }
+
+    public ArrayList<KonkurrenceSvømmer> findSvømmer(String søg){return db.findSvømmer(søg);}
+
     public void sletMedlem(Medlem medlem){
         db.slet(medlem);
     }

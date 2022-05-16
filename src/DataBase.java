@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class DataBase {
     ArrayList<Medlem> medlemmer = new ArrayList<>();
     ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere = new ArrayList<>();
+    ArrayList<Konkurrence> konkurrencer = new ArrayList<>();
     String medlemsFil = "medlemmer.csv";
     String konkurrenceSvømmerFil = "svømmere.csv";
 
@@ -17,6 +18,7 @@ public class DataBase {
 
     public void skrivKonkurrenceSvømmere() throws FileNotFoundException {
         CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);
+
         csvKonkurrenceSvømmere.skrivSvømmer(konkurrenceSvømmere);
     }
 
@@ -28,7 +30,9 @@ public class DataBase {
 
                     KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
                     konkurrenceSvømmere.add(svømmer);
-
+    }
+    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider){
+        konkurrencer.add(new Konkurrence(konkurrenceNavn, dato, deltagere, tider));
     }
 
     public void indlæs() throws FileNotFoundException {
@@ -61,5 +65,14 @@ public class DataBase {
                 fundneMedlemmer.add(medlem);
         }
         return fundneMedlemmer;
+    }
+
+    public ArrayList<KonkurrenceSvømmer> findSvømmer(String søg){
+        ArrayList<KonkurrenceSvømmer> fundneSvømmere = new ArrayList<>();
+        for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere){
+            if(konkurrenceSvømmer.matcher(søg))
+                fundneSvømmere.add(konkurrenceSvømmer);
+        }
+        return fundneSvømmere;
     }
 }

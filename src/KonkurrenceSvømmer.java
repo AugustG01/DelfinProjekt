@@ -5,10 +5,10 @@ public class KonkurrenceSvømmer extends Medlem{
     private boolean bryst;
     private boolean butterfly;
     private boolean rygCrawl;
-    private double crawlRekord;
-    private double brystRekord;
-    private double rygCrawlRekord;
-    private double butterflyRekord;
+    private double crawlRekord = 1000;
+    private double brystRekord = 1000;
+    private double rygCrawlRekord = 1000;
+    private double butterflyRekord = 1000;
     ArrayList<Konkurrence> konkurrencer;
 
     public KonkurrenceSvømmer(Medlem medlem){
@@ -36,6 +36,18 @@ public class KonkurrenceSvømmer extends Medlem{
         this.rygCrawlRekord = rygCrawlRekord;
         this.butterflyRekord = butterflyRekord;
         this.konkurrencer = konkurrencer;
+    }
+    public void setCrawlRekord(double crawlRekord){
+        this.crawlRekord = crawlRekord;
+    }
+    public void setBrystRekord(double brystRekord){
+        this.brystRekord = brystRekord;
+    }
+    public void setRygCrawlRekord(double rygCrawlRekord){
+        this.rygCrawlRekord = rygCrawlRekord;
+    }
+    public void setButterflyRekord(double butterflyRekord){
+        this.butterflyRekord = butterflyRekord;
     }
 
     public boolean isCrawl() {
@@ -78,14 +90,14 @@ public class KonkurrenceSvømmer extends Medlem{
     public String toString() {
         return "Navn: " + super.getNavn() + " | " +
                 "Alder: " + super.getAlder() + " | " +
-                "crawl: " + crawl + " | " +
-                "bryst: " + bryst + " | " +
-                "butterfly: " + butterfly + " | " +
-                "rygcrawl: " + rygCrawl + " | " +
-                "crawl rekord: " + crawlRekord + " | " +
-                "bryst rekord: " + brystRekord + " | " +
-                "rygcrawl rekord: " + rygCrawlRekord + " | " +
-                "butterfly rekord: " + butterflyRekord + " | " +
+                "Crawl: " + crawl + " | " +
+                "Bryst: " + bryst + " | " +
+                "Butterfly: " + butterfly + " | " +
+                "Rygcrawl: " + rygCrawl + " | " +
+                "Crawl rekord: " + crawlRekord + " | " +
+                "Bryst rekord: " + brystRekord + " | " +
+                "Rygcrawl rekord: " + rygCrawlRekord + " | " +
+                "Butterfly rekord: " + butterflyRekord + " | " +
                 "Konkurrencer: " + konkurrencer + " | " + "\n";
     }
 }

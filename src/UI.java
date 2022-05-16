@@ -30,6 +30,8 @@ public class UI {
                     - Ændre medlem
                     - Slet medlem
                 (4) Konkurrence menu
+                    - Tilføj konkurrence
+                    - Se top 5
                 (5) Økonomi menu
                     - Se total forventet indkomst
                     - Se liste af medlemmer i restance
@@ -55,8 +57,22 @@ public class UI {
     }
     public void konkurrenceMenu() throws FileNotFoundException {
         System.out.println("IKKE IMPLEMENTERET HELT, MEN VI PRØVER AT GEMME");
+
+        System.out.println("""
+                Hvad vil du gøre?
+                (1) Tilføj en konkurrence
+                (2) Se top 5 inden for en disciplin""");
+        int svar = in.nextInt();
+        switch (svar){
+            case 1 -> tilføjKonkurrence();
+            case 2 -> seTop5();
+        }
+
         //controller.gemKonkurrenceSvømmere();
         controller.seKonkurrenceListe();
+    }
+    public void seTop5(){
+        System.out.println("IKKE IMPLEMENTERET ENDNU");
     }
 
     public void tilføj() throws FileNotFoundException {
@@ -99,6 +115,34 @@ public class UI {
         controller.tilføjMedlem(navn, alder, medlemskab, konkurrencesvømmer, restance);
     }
 
+    public void tilføjKonkurrence() {
+
+        in.nextLine();
+
+        System.out.print("Navn på konkurrence: ");
+        String konkurrenceNavn = in.nextLine();
+        //konkurrence.setKonkurrenceNavn(konkurrenceNavn);
+
+        System.out.print("Disciplin: ");
+        String disciplin = in.nextLine();
+
+        String dato = "16/5";
+
+        System.out.print("Hvor mange svømmere fra klubben er med? ");
+        int antalSvømmere = in.nextInt();
+           double[] tid = new double[antalSvømmere];
+           ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
+        for (int i = 0; i < antalSvømmere; i++) {
+            System.out.println("Vælg svømmer nr. " + (i+1));
+           valgteSvømmere.add(findSvømmere());
+
+            System.out.println("Hvilken tid fik svømmeren: ");
+            tid[i] = in.nextDouble();
+        }
+        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere , tid);
+
+    }
+
     public void afslut() throws FileNotFoundException {
         System.out.println("Du har afsluttet programmet! Alle ændringer vil blive gemt");
         controller.gem();
@@ -126,14 +170,8 @@ public class UI {
 
     public void findMedlem() {
         ArrayList<Medlem> fundneMedlemmer;
-        System.out.println("""
-                Find et medlem
-                --------------
-                Skriv navnet eller dele af navnet for at finde et medlem.""");
-        in.nextLine();
-        System.out.print(": ");
-        String søg = in.nextLine().trim().toLowerCase();
-        fundneMedlemmer = controller.findMedlem(søg);
+
+        fundneMedlemmer = controller.findMedlem(søg());
 
         if (fundneMedlemmer.size() > 0) {
             // TODO: 11/05/2022 flyt sout
@@ -142,11 +180,44 @@ public class UI {
                 System.out.println("#" + i + ". " + medlem);
                 i++;
             }
-            System.out.println("Indtast nummeret på det medlem du vil ændre/fjerne: ");
+            System.out.println("Indtast nummeret på det medlem du vil bruge: ");
             vælgMedlem(fundneMedlemmer);
         } else {
             System.out.println("Fandt ingen medlemmer i systemet! Prøv igen: ");
             findMedlem();
+        }
+    }
+    public String søg(){
+        System.out.println("""
+                Find et medlem
+                --------------
+                Skriv navnet eller dele af navnet for at finde et medlem.""");
+        in.nextLine();
+        System.out.print(": ");
+        String søg = in.nextLine().trim().toLowerCase();
+        return søg;
+    }
+
+    public KonkurrenceSvømmer findSvømmere() {
+        ArrayList<KonkurrenceSvømmer> fundneSvømmere;
+        ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
+        fundneSvømmere = controller.findSvømmer(søg());
+
+        if (fundneSvømmere.size() > 0) {
+            // TODO: 11/05/2022 flyt sout
+            int i = 1;
+            for (Medlem medlem : fundneSvømmere) {
+                System.out.println("#" + i + ". " + medlem);
+                i++;
+            }
+            System.out.println("Indtast nummeret på den svømmer du vil bruge: ");
+            int valg = in.nextInt();
+
+
+            return fundneSvømmere.get(valg - 1);
+        } else {
+            System.out.println("Fandt ingen svømmere i systemet! Prøv igen: ");
+            return findSvømmere();
         }
     }
 
