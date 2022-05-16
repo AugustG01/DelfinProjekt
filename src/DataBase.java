@@ -31,8 +31,8 @@ public class DataBase {
                     KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
                     konkurrenceSvømmere.add(svømmer);
     }
-    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider){
-        konkurrencer.add(new Konkurrence(konkurrenceNavn, dato, deltagere, tider));
+    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
+        konkurrencer.add(new Konkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin));
     }
 
     public void indlæs() throws FileNotFoundException {

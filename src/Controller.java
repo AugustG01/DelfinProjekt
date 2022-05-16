@@ -14,8 +14,8 @@ public class Controller {
         if(medlem.getKonkurrenceSvømmer())
             opretKonkurrenceSvømmer(medlem);
     }
-    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider){
-        db.tilføjKonkurrence(konkurrenceNavn, dato,  deltagere,tider);
+    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
+        db.tilføjKonkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin);
     }
 
     public void indlæsMedlemmer() throws FileNotFoundException {

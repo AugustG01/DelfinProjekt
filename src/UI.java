@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class UI {
     private Controller controller;
@@ -56,8 +56,6 @@ public class UI {
         }
     }
     public void konkurrenceMenu() throws FileNotFoundException {
-        System.out.println("IKKE IMPLEMENTERET HELT, MEN VI PRØVER AT GEMME");
-
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Tilføj en konkurrence
@@ -126,7 +124,9 @@ public class UI {
         System.out.print("Disciplin: ");
         String disciplin = in.nextLine();
 
-        String dato = "16/5";
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dato = dateFormat.format(date);
 
         System.out.print("Hvor mange svømmere fra klubben er med? ");
         int antalSvømmere = in.nextInt();
@@ -139,7 +139,7 @@ public class UI {
             System.out.println("Hvilken tid fik svømmeren: ");
             tid[i] = in.nextDouble();
         }
-        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere , tid);
+        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere , tid, disciplin);
 
     }
 
