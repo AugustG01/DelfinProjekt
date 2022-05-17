@@ -245,7 +245,6 @@ public class UI {
 
         controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere , tid, disciplin);
 
-
     }
 
     public void afslut() throws FileNotFoundException {

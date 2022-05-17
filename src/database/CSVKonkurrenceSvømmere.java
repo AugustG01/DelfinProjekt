@@ -18,7 +18,6 @@ public class CSVKonkurrenceSvømmere {
         }
 
 
-
         public ArrayList<KonkurrenceSvømmer> indlæsKonkurrenceSvømmere() throws FileNotFoundException {
             filScanner = new Scanner(new File(filnavn)).useDelimiter(";");
             ArrayList<KonkurrenceSvømmer> indlæsteKonkurrenceSvømmere = new ArrayList<>();
@@ -91,7 +90,7 @@ public class CSVKonkurrenceSvømmere {
                 return tmp.toString();
             }
             else {
-                return "Ingen konkurrencer endnu" + ";";
+                return "Ingen konkurrencer endnu" + ";" + "ingen dato;" ;
             }
         }
 
