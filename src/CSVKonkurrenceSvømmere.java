@@ -42,7 +42,7 @@ public class CSVKonkurrenceSvømmere {
         public ArrayList<Konkurrence> indlæsKonkurrencer(Scanner linjeScanner){
             ArrayList<Konkurrence> konkurrencer = new ArrayList<>();
             while(linjeScanner.hasNext()){
-                Konkurrence konkurrence = new Konkurrence(linjeScanner.next());
+                Konkurrence konkurrence = new Konkurrence(linjeScanner.next(), linjeScanner.next());
                 konkurrencer.add(konkurrence);
             }
             return konkurrencer;
@@ -83,11 +83,13 @@ public class CSVKonkurrenceSvømmere {
                 for (Konkurrence konkurrence : konkurrencer) {
                     tmp.append(konkurrence.getKonkurrenceNavn());
                     tmp.append(";");
+                    tmp.append(konkurrence.getDato());
+                    tmp.append(";");
                 }
                 return tmp.toString();
             }
             else {
-                return "ingen konkurrencer endnu" + ";";
+                return "Ingen konkurrencer endnu" + ";";
             }
         }
 

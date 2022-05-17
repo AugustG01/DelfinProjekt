@@ -37,6 +37,26 @@ public class KonkurrenceSvømmer extends Medlem{
         this.butterflyRekord = butterflyRekord;
         this.konkurrencer = konkurrencer;
     }
+    public void tilføjKonkurrence(Konkurrence konkurrence){
+        konkurrencer.add(konkurrence);
+    }
+
+    public void setCrawl(boolean crawl) {
+        this.crawl = crawl;
+    }
+
+    public void setBryst(boolean bryst) {
+        this.bryst = bryst;
+    }
+
+    public void setButterfly(boolean butterfly) {
+        this.butterfly = butterfly;
+    }
+
+    public void setRygCrawl(boolean rygCrawl) {
+        this.rygCrawl = rygCrawl;
+    }
+
     public void setCrawlRekord(double crawlRekord){
         this.crawlRekord = crawlRekord;
     }

@@ -55,7 +55,7 @@ public class UI {
             in.next();
         }
     }
-    public void konkurrenceMenu() throws FileNotFoundException {
+    public void konkurrenceMenu() {
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Tilføj en konkurrence
@@ -71,9 +71,11 @@ public class UI {
     }
     public void seTop5(){
         System.out.println("IKKE IMPLEMENTERET ENDNU");
+
+
     }
 
-    public void tilføj() throws FileNotFoundException {
+    public void tilføj() {
         in.nextLine();
         System.out.print("Navn: ");
         String navn = in.nextLine();
@@ -114,15 +116,30 @@ public class UI {
     }
 
     public void tilføjKonkurrence() {
+        boolean korrektInput = false;
 
         in.nextLine();
 
         System.out.print("Navn på konkurrence: ");
         String konkurrenceNavn = in.nextLine();
         //konkurrence.setKonkurrenceNavn(konkurrenceNavn);
-
+        String disciplin = "bryst";
         System.out.print("Disciplin: ");
-        String disciplin = in.nextLine();
+
+        while (!korrektInput) {
+            disciplin = in.nextLine().toLowerCase();
+            korrektInput = true;
+            switch (disciplin) {
+                case "b", "bryst" -> disciplin = "bryst";
+                case "bf", "butterfly", "butter fly", "butter" -> disciplin = "butterfly";
+                case "c", "crawl" -> disciplin = "crawl";
+                case "rc", "rygcrawl", "ryg crawl" -> disciplin = "rygcrawl";
+                default -> {
+                    fejl();
+                    korrektInput = false;
+                }
+            }
+        }
 
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -139,7 +156,9 @@ public class UI {
             System.out.println("Hvilken tid fik svømmeren: ");
             tid[i] = in.nextDouble();
         }
+
         controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere , tid, disciplin);
+
 
     }
 
