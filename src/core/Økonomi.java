@@ -1,5 +1,8 @@
+package core;
+
 import java.beans.MethodDescriptor;
 import java.util.ArrayList;
+import database.*;
 
 public class Økonomi {
     private final int JUNIOR_TAKST = 1000;

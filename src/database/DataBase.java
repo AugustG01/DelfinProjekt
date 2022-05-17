@@ -1,8 +1,11 @@
+package database;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import core.*;
 
 public class DataBase {
-    ArrayList<Medlem> medlemmer = new ArrayList<>();
+    public ArrayList<Medlem> medlemmer = new ArrayList<>();
     ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere = new ArrayList<>();
     ArrayList<Konkurrence> konkurrencer = new ArrayList<>();
     String medlemsFil = "medlemmer.csv";
@@ -42,16 +45,13 @@ public class DataBase {
         konkurrenceSvømmere = csvKonkurrenceSvømmere.indlæsKonkurrenceSvømmere();
     }
 
-    public void seListeAfMedlemmer() {
-        for (Medlem medlem : medlemmer) {
-            // TODO: 11/05/2022 flyt sout 
-            System.out.println(medlem);
-        }
+    public ArrayList<Medlem> seListeAfMedlemmer() {
+        return medlemmer;
     }
-    public void seListeAfKonkurrenceSvømmere(){
-        for(KonkurrenceSvømmer svømmer : konkurrenceSvømmere){
-            System.out.println(svømmer);
-        }
+
+
+    public ArrayList<KonkurrenceSvømmer> seListeAfKonkurrenceSvømmere(){
+            return konkurrenceSvømmere;
     }
 
     public void slet(Medlem medlem) {

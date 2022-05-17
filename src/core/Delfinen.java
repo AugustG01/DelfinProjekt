@@ -1,3 +1,7 @@
+package core;
+
+import ui.UI;
+
 import java.io.FileNotFoundException;
 
 public class Delfinen {

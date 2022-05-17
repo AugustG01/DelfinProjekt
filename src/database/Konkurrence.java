@@ -1,6 +1,6 @@
+package database;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Konkurrence {
     private String konkurrenceNavn;
@@ -10,7 +10,7 @@ public class Konkurrence {
     ArrayList<KonkurrenceSvømmer> deltagere = new ArrayList<>();
 
     public Konkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin) {
-        this.konkurrenceNavn = konkurrenceNavn;
+        setKonkurrenceNavn(konkurrenceNavn);
         this.dato = dato;
         this.deltagere = deltagere;
         this.tider = tider;
@@ -26,7 +26,7 @@ public class Konkurrence {
     }
 
     public Konkurrence(String konkurrenceNavn, String dato) {
-        this.konkurrenceNavn = konkurrenceNavn;
+        setKonkurrenceNavn(konkurrenceNavn);
         this.dato = dato;
     }
 

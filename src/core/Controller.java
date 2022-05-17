@@ -1,11 +1,19 @@
+package core;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import database.*;
+import ui.*;
 
 public class Controller {
     DataBase db = new DataBase();
 
-    public void seMedlemsListe() {
-        db.seListeAfMedlemmer();
+    public ArrayList<KonkurrenceSvømmer> seSvømmerListe(){
+        return db.seListeAfKonkurrenceSvømmere();
+    }
+
+    public ArrayList<Medlem> seMedlemsListe() {
+        return db.seListeAfMedlemmer();
     }
 
     public void tilføjMedlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){

@@ -1,4 +1,15 @@
+package ui;
+
+import core.Controller;
+import database.KonkurrenceSvømmer;
+import database.Medlem;
+import sorter.SorterBryst;
+import sorter.SorterButterfly;
+import sorter.SorterCrawl;
+import sorter.SorterRygCrawl;
+
 import java.io.FileNotFoundException;
+import java.rmi.server.ExportException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -29,7 +40,7 @@ public class UI {
                 (3) Søg efter medlem
                     - Ændre medlem
                     - Slet medlem
-                (4) Konkurrence menu
+                (4) database.Konkurrence menu
                     - Tilføj konkurrence
                     - Se top 5
                 (5) Økonomi menu
@@ -43,7 +54,7 @@ public class UI {
         try {
             int svar = in.nextInt();
             switch (svar) {
-                case 1 -> controller.seMedlemsListe();
+                case 1 -> seMedlemsListe();
                 case 2 -> tilføj();
                 case 3 -> findMedlem();
                 case 4 -> konkurrenceMenu();
@@ -69,11 +80,86 @@ public class UI {
         //controller.gemKonkurrenceSvømmere();
         controller.seKonkurrenceListe();
     }
-    public void seTop5(){
-        System.out.println("IKKE IMPLEMENTERET ENDNU");
-
-
+    public void seMedlemsListe(){
+        ArrayList<Medlem> medlemmer = controller.seMedlemsListe();
+        for(Medlem medlem : medlemmer)
+            System.out.println(medlem);
     }
+    public void seTop5(){
+        try {
+            System.out.println("""
+                    Hvilken Top5
+                    (1) Bryst
+                    (2) Crawl
+                    (3) Butterfly
+                    (4) Rygcrawl""");
+            int svar = in.nextInt();
+            switch (svar) {
+                case 1 -> seBrystTop5();
+                case 2 -> seCrawlTop5();
+                case 3 -> seButterflyTop5();
+                case 4 -> seRygcrawlTop5();
+                default -> fejl();
+            }
+        }
+        catch (Exception e){
+            fejl();
+        }
+    }
+    public void seBrystTop5(){
+        System.out.println("Sorteret efter bryst rekord");
+        SorterBryst sorterBryst= new SorterBryst();
+        Collections.sort(controller.seSvømmerListe(), sorterBryst);
+        int i = 0;
+        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+            if (konkurrenceSvømmer.isBryst()) {
+                i++;
+                System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
+                        konkurrenceSvømmer.getBrystRekord());
+            }
+        }
+    }
+    public void seCrawlTop5(){
+        System.out.println("Sorteret efter crawl rekord");
+        SorterCrawl sorterCrawl = new SorterCrawl();
+        Collections.sort(controller.seSvømmerListe(), sorterCrawl);
+        int i = 0;
+        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+            if (konkurrenceSvømmer.isCrawl()) {
+                i++;
+                System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
+                        konkurrenceSvømmer.getCrawlRekord());
+            }
+        }
+    }
+
+    public void seButterflyTop5(){
+        System.out.println("Sorteret efter butterfly rekord");
+        SorterButterfly sorterButterfly = new SorterButterfly();
+        Collections.sort(controller.seSvømmerListe(), sorterButterfly);
+        int i = 0;
+        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+            if (konkurrenceSvømmer.isButterfly()) {
+                i++;
+                System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
+                        konkurrenceSvømmer.getButterflyRekord());
+            }
+        }
+    }
+    public void seRygcrawlTop5(){
+        System.out.println("Sorteret efter rygcrawl rekord");
+        SorterRygCrawl sorterRygCrawl= new SorterRygCrawl();
+        Collections.sort(controller.seSvømmerListe(), sorterRygCrawl);
+        int i = 0;
+        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+            if (konkurrenceSvømmer.isRygCrawl()) {
+                i++;
+                System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
+                        konkurrenceSvømmer.getRygCrawlRekord());
+            }
+        }
+    }
+
 
     public void tilføj() {
         in.nextLine();
@@ -266,7 +352,7 @@ public class UI {
     public void ændreMedlem(Medlem medlem) {
         System.out.println("""
                 Hvad vil du ændre?
-                (1) Konkurrence status
+                (1) database.Konkurrence status
                 (2) Medlemskab
                 (3) Restance
                 """);
@@ -290,7 +376,7 @@ public class UI {
     public void ændrKonkurrenceStatus(Medlem medlem) {
         in.nextLine();
         boolean rigtigtInput = false;
-        System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+        System.out.println("database.Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
         while (!rigtigtInput) {
             rigtigtInput = true;
             System.out.println("Hvad vil du ændre konkurrence status til? ");

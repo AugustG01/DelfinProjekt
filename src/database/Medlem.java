@@ -1,3 +1,5 @@
+package database;
+
 public class Medlem {
     private int alder;
     private String navn;
@@ -58,7 +60,7 @@ public class Medlem {
         return "Navn: " + navn + " | " +
                 "Alder: " + alder + " | " +
                 "Aktivt medlemskab: " + aktivtMedlemskab + " | " +
-                "Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
+                "database.Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
                 "Restance: " + restance + " | " + "\n";
     }
 }
