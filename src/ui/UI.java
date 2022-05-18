@@ -112,7 +112,7 @@ public class UI {
         Collections.sort(controller.seSvømmerListe(), sorterBryst);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
-            if (konkurrenceSvømmer.isBryst()) {
+            if (konkurrenceSvømmer.isBryst() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getBrystRekord());
@@ -125,7 +125,7 @@ public class UI {
         Collections.sort(controller.seSvømmerListe(), sorterCrawl);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
-            if (konkurrenceSvømmer.isCrawl()) {
+            if (konkurrenceSvømmer.isCrawl() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getCrawlRekord());
@@ -139,7 +139,7 @@ public class UI {
         Collections.sort(controller.seSvømmerListe(), sorterButterfly);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
-            if (konkurrenceSvømmer.isButterfly()) {
+            if (konkurrenceSvømmer.isButterfly() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getButterflyRekord());
@@ -152,7 +152,7 @@ public class UI {
         Collections.sort(controller.seSvømmerListe(), sorterRygCrawl);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
-            if (konkurrenceSvømmer.isRygCrawl()) {
+            if (konkurrenceSvømmer.isRygCrawl() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getRygCrawlRekord());
