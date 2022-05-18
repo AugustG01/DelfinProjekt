@@ -21,7 +21,7 @@ public class DataBase {
         return seniorSvømmere;
     }
 
-    // TODO: 10-05-2022 håndter throw
+
     public void skrivMedlemmer() throws FileNotFoundException {
 
         CSVMedlemmer csvMedlemmer = new CSVMedlemmer(medlemsFil);

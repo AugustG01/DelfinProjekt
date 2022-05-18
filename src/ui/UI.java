@@ -11,6 +11,7 @@ import sorter.SorterRygCrawl;
 import java.io.FileNotFoundException;
 import java.rmi.server.ExportException;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -127,7 +128,7 @@ public class UI {
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isBryst() && i < 5) {
                 i++;
-                System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
+                System.out.printf("#" + i + "|" + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getBrystRekord());
             }
         }
@@ -307,7 +308,7 @@ public class UI {
         try {
             int svar = in.nextInt();
             switch (svar) {
-                case 1 -> controller.seKontingent();
+                case 1 -> økonomiOversigt();
                 case 2 -> controller.seRestanceListe();
                 default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
             }
@@ -317,16 +318,22 @@ public class UI {
         }
     }
 
+    public void økonomiOversigt() {
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        String kontingent = numberFormat.format(controller.seKontingent());
+        System.out.println("Forventede indkomst over tilmeldte medlemmer \n" + kontingent + "\n");
+
+    }
+
     public void findMedlem() {
         ArrayList<Medlem> fundneMedlemmer;
 
         fundneMedlemmer = controller.findMedlem(søg());
 
         if (fundneMedlemmer.size() > 0) {
-            // TODO: 11/05/2022 flyt sout
             int i = 1;
             for (Medlem medlem : fundneMedlemmer) {
-                System.out.println("#" + i + ". " + medlem);
+                System.out.printf("# %d-3 " + medlem, i);
                 i++;
             }
             System.out.println("Indtast nummeret på det medlem du vil bruge: ");
@@ -354,17 +361,19 @@ public class UI {
         fundneSvømmere = controller.findSvømmer(søg());
 
         if (fundneSvømmere.size() > 0) {
-            // TODO: 11/05/2022 flyt sout
             int i = 1;
             for (Medlem medlem : fundneSvømmere) {
-                System.out.println("#" + i + ". " + medlem);
+                System.out.printf("# %-3d " + medlem, i);
                 i++;
             }
             System.out.println("Indtast nummeret på den svømmer du vil bruge: ");
             int valg = in.nextInt();
+            if (valg - 1 > -1 && valg - 1 < fundneSvømmere.size())
+                return fundneSvømmere.get(valg - 1);
+            else {
+                System.out.println("Det er ikke en gyldig svømmer! Prøv igen");
+                return findSvømmere();}
 
-
-            return fundneSvømmere.get(valg - 1);
         } else {
             System.out.println("Fandt ingen svømmere i systemet! Prøv igen: ");
             return findSvømmere();
@@ -375,7 +384,14 @@ public class UI {
         // TODO: 12-05-2022 InputMissMatch håndter 
         int valg = in.nextInt();
         Medlem medlem;
-        medlem = fundneMedlemmer.get(valg - 1);
+        if (valg - 1 > -1 && valg - 1 < fundneMedlemmer.size())
+            medlem = fundneMedlemmer.get(valg - 1);
+        else {
+            System.out.println("Ikke et muligt medlem. Prøv igen");
+            medlem = null;
+            findMedlem();
+        }
+
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Ændre oplysninger på medlem
@@ -443,7 +459,7 @@ public class UI {
         boolean rigtigtInput = false;
         while (!rigtigtInput) {
             rigtigtInput = true;
-            System.out.println("Aktivt medlemskab på " + medlem.getNavn() + " er lige nu : " + medlem.getAktivtMedlemskab());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+            System.out.println("Aktivt medlemskab på " + medlem.getNavn() + " er lige nu : " + medlem.getAktivtMedlemskab());
             System.out.println("Hvad vil du ændre medlemskab til? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {
@@ -463,7 +479,7 @@ public class UI {
         boolean rigtigtInput = false;
         while (!rigtigtInput) {
             rigtigtInput = true;
-            System.out.println("Restance på " + medlem.getNavn() + " er lige nu : " + medlem.getRestance());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+            System.out.println("Restance på " + medlem.getNavn() + " er lige nu : " + medlem.getRestance());
             System.out.println("Hvad vil du ændre konkurrence status til? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {

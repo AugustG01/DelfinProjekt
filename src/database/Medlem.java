@@ -60,7 +60,7 @@ public class Medlem {
         String tmp =  "Navn: " + navn + " | " +
                 "Alder: " + alder + " | " +
                 "Aktivt medlemskab: " + aktivtMedlemskab + " | " +
-                "database.Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
+                "Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
                 "Restance: " + restance + " | " + "\n";
         return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }

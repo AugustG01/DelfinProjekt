@@ -73,8 +73,8 @@ public class Økonomi {
         return PASSIVT_KONTINGENT * passiveMedlemmer.size();
     }
 
-    public void totalKontingent(){
-        System.out.println(udregning() + " KR");
+    public double totalKontingent(){
+        return udregning();
     }
 
     public void udskrivRestanceListe() {

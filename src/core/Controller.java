@@ -44,9 +44,9 @@ public class Controller {
         db.tilføjKonkurrenceSvømmer(medlem);
     }
 
-    public void seKontingent(){
+    public double seKontingent(){
         Økonomi økonomi = new Økonomi(db.medlemmer);
-        økonomi.totalKontingent();
+        return økonomi.totalKontingent();
     }
 
     public void seRestanceListe() {
