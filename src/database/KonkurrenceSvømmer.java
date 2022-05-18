@@ -2,7 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
-public class KonkurrenceSvømmer extends Medlem{
+public class  KonkurrenceSvømmer extends Medlem{
     private boolean crawl;
     private boolean bryst;
     private boolean butterfly;
@@ -110,16 +110,17 @@ public class KonkurrenceSvømmer extends Medlem{
 
     @Override
     public String toString() {
-        return "Navn: " + super.getNavn() + " | " +
-                "Alder: " + super.getAlder() + " | " +
-                "Crawl: " + crawl + " | " +
-                "Bryst: " + bryst + " | " +
-                "Butterfly: " + butterfly + " | " +
-                "Rygcrawl: " + rygCrawl + " | " +
-                "Crawl rekord: " + crawlRekord + " | " +
-                "Bryst rekord: " + brystRekord + " | " +
-                "Rygcrawl rekord: " + rygCrawlRekord + " | " +
-                "Butterfly rekord: " + butterflyRekord + " | " +
-                "Konkurrencer: " + konkurrencer + " | " + "\n";
+        String tmp = String.format("Navn: %-15s | " +
+                "Alder: %-15d | " +
+                "Crawl:  %-10b | " +
+                "Bryst:  %-10b | " +
+                "Butterfly: %-10b | " +
+                "Rygcrawl:  %-10b | " +
+                "Crawl rekord: %-20f | " +
+                "Bryst rekord: %-20f | " +
+                "Rygcrawl rekord: %-20f | " +
+                "Butterfly rekord: %-20f  | " +
+                "Konkurrencer: %-20s | " + "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord, konkurrencer);
+        return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }
 }

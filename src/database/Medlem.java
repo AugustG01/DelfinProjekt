@@ -57,10 +57,11 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return "Navn: " + navn + " | " +
+        String tmp =  "Navn: " + navn + " | " +
                 "Alder: " + alder + " | " +
                 "Aktivt medlemskab: " + aktivtMedlemskab + " | " +
                 "database.Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
                 "Restance: " + restance + " | " + "\n";
+        return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }
 }

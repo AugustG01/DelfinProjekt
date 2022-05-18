@@ -40,7 +40,7 @@ public class UI {
                 (3) Søg efter medlem
                     - Ændre medlem
                     - Slet medlem
-                (4) database.Konkurrence menu
+                (4) Konkurrence menu
                     - Tilføj konkurrence
                     - Se top 5
                 (5) Økonomi menu
@@ -66,13 +66,14 @@ public class UI {
             in.next();
         }
     }
+
     public void konkurrenceMenu() {
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Tilføj en konkurrence
                 (2) Se top 5 inden for en disciplin""");
         int svar = in.nextInt();
-        switch (svar){
+        switch (svar) {
             case 1 -> tilføjKonkurrence();
             case 2 -> seTop5();
         }
@@ -80,12 +81,14 @@ public class UI {
         //controller.gemKonkurrenceSvømmere();
         controller.seKonkurrenceListe();
     }
-    public void seMedlemsListe(){
+
+    public void seMedlemsListe() {
         ArrayList<Medlem> medlemmer = controller.seMedlemsListe();
-        for(Medlem medlem : medlemmer)
+        for (Medlem medlem : medlemmer)
             System.out.println(medlem);
     }
-    public void seTop5(){
+
+    public void seTop5() {
         try {
             System.out.println("""
                     Hvilken Top5
@@ -101,12 +104,12 @@ public class UI {
                 case 4 -> seRygcrawlTop5();
                 default -> fejl();
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             fejl();
         }
     }
-    public void seBrystTop5(){
+
+    public void seBrystTop5() {
         System.out.println("Sorteret efter bryst rekord");
         System.out.println("Top 5 Senior brystsvømmere: ");
         udregnBrystTop5(controller.seSeniorSvømmere());
@@ -116,19 +119,21 @@ public class UI {
         System.out.println();
 
     }
-    public void udregnBrystTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
-        SorterBryst sorterBryst= new SorterBryst();
+
+    public void udregnBrystTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
+        SorterBryst sorterBryst = new SorterBryst();
         Collections.sort(konkurrenceSvømmere, sorterBryst);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
-            if (konkurrenceSvømmer.isBryst() && i<5) {
+            if (konkurrenceSvømmer.isBryst() && i < 5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getBrystRekord());
             }
         }
     }
-    public void seCrawlTop5(){
+
+    public void seCrawlTop5() {
         System.out.println("Sorteret efter crawl rekord");
         System.out.println("Top 5 Senior crawlsvømmere: ");
         udregnCrawlTop5(controller.seSeniorSvømmere());
@@ -138,12 +143,13 @@ public class UI {
         System.out.println();
 
     }
-    public void udregnCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
+
+    public void udregnCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
         SorterCrawl sorterCrawl = new SorterCrawl();
         Collections.sort(konkurrenceSvømmere, sorterCrawl);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
-            if (konkurrenceSvømmer.isCrawl() && i<5) {
+            if (konkurrenceSvømmer.isCrawl() && i < 5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getCrawlRekord());
@@ -152,8 +158,7 @@ public class UI {
     }
 
 
-
-    public void seButterflyTop5(){
+    public void seButterflyTop5() {
         System.out.println("Sorteret efter butterfly rekord");
         System.out.println("Top 5 Senior butterflysvømmere: ");
         udregnButterflyTop5(controller.seSeniorSvømmere());
@@ -163,12 +168,12 @@ public class UI {
         System.out.println();
     }
 
-    public void udregnButterflyTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
-        SorterButterfly sorterButterfly= new SorterButterfly();
+    public void udregnButterflyTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
+        SorterButterfly sorterButterfly = new SorterButterfly();
         Collections.sort(konkurrenceSvømmere, sorterButterfly);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
-            if (konkurrenceSvømmer.isButterfly() && i<5) {
+            if (konkurrenceSvømmer.isButterfly() && i < 5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getButterflyRekord());
@@ -177,8 +182,7 @@ public class UI {
     }
 
 
-
-    public void seRygcrawlTop5(){
+    public void seRygcrawlTop5() {
         System.out.println("Sorteret efter rygcrawl rekord");
         System.out.println("Top 5 Senior rygcrawl svømmere: ");
         udregnRygCrawlTop5(controller.seSeniorSvømmere());
@@ -187,12 +191,13 @@ public class UI {
         udregnRygCrawlTop5(controller.seJuniorSvømmere());
         System.out.println();
     }
-    public void udregnRygCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
+
+    public void udregnRygCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
         SorterRygCrawl sorterRygCrawl = new SorterRygCrawl();
         Collections.sort(konkurrenceSvømmere, sorterRygCrawl);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
-            if (konkurrenceSvømmer.isRygCrawl() && i<5) {
+            if (konkurrenceSvømmer.isRygCrawl() && i < 5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getRygCrawlRekord());
@@ -273,17 +278,17 @@ public class UI {
 
         System.out.print("Hvor mange svømmere fra klubben er med? ");
         int antalSvømmere = in.nextInt();
-           double[] tid = new double[antalSvømmere];
-           ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
+        double[] tid = new double[antalSvømmere];
+        ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
         for (int i = 0; i < antalSvømmere; i++) {
-            System.out.println("Vælg svømmer nr. " + (i+1));
-           valgteSvømmere.add(findSvømmere());
+            System.out.println("Vælg svømmer nr. " + (i + 1));
+            valgteSvømmere.add(findSvømmere());
 
             System.out.println("Hvilken tid fik svømmeren: ");
             tid[i] = in.nextDouble();
         }
 
-        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere , tid, disciplin);
+        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere, tid, disciplin);
 
     }
 
@@ -331,7 +336,8 @@ public class UI {
             findMedlem();
         }
     }
-    public String søg(){
+
+    public String søg() {
         System.out.println("""
                 Find et medlem
                 --------------
@@ -391,7 +397,7 @@ public class UI {
     public void ændreMedlem(Medlem medlem) {
         System.out.println("""
                 Hvad vil du ændre?
-                (1) database.Konkurrence status
+                (1) Konkurrence status
                 (2) Medlemskab
                 (3) Restance
                 """);
@@ -415,7 +421,7 @@ public class UI {
     public void ændrKonkurrenceStatus(Medlem medlem) {
         in.nextLine();
         boolean rigtigtInput = false;
-        System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+        System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());
         while (!rigtigtInput) {
             rigtigtInput = true;
             System.out.println("Hvad vil du ændre konkurrence status til? ");
@@ -473,6 +479,6 @@ public class UI {
     }
 
     public void fejl() {
-        System.err.println("Forkert input. Prøv igen: ");
+        System.err.println("Forkert input. Sender dig tilbage til hovedmenuen.");
     }
 }
