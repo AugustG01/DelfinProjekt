@@ -7,10 +7,19 @@ import core.*;
 public class DataBase {
     public ArrayList<Medlem> medlemmer = new ArrayList<>();
     ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere = new ArrayList<>();
+    ArrayList<KonkurrenceSvømmer> juniorSvømmere = new ArrayList<>();
+    ArrayList<KonkurrenceSvømmer> seniorSvømmere = new ArrayList<>();
     ArrayList<Konkurrence> konkurrencer = new ArrayList<>();
     String medlemsFil = "medlemmer.csv";
     String konkurrenceSvømmerFil = "svømmere.csv";
 
+    public ArrayList<KonkurrenceSvømmer> getJuniorSvømmere() {
+        return juniorSvømmere;
+    }
+
+    public ArrayList<KonkurrenceSvømmer> getSeniorSvømmere() {
+        return seniorSvømmere;
+    }
 
     // TODO: 10-05-2022 håndter throw
     public void skrivMedlemmer() throws FileNotFoundException {
@@ -18,6 +27,19 @@ public class DataBase {
         CSVMedlemmer csvMedlemmer = new CSVMedlemmer(medlemsFil);
         csvMedlemmer.skrivMedlem(medlemmer);
     }
+    public void opdelIJuniorOgSenior(){
+        for(KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere){
+            if(konkurrenceSvømmer.getAlder() < 18){
+                juniorSvømmere.add(konkurrenceSvømmer);
+            }
+            else {
+                seniorSvømmere.add(konkurrenceSvømmer);
+            }
+        }
+    }
+
+
+
 
     public void skrivKonkurrenceSvømmere() throws FileNotFoundException {
         CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);
@@ -43,6 +65,7 @@ public class DataBase {
         CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);
         medlemmer = csvMedlemmer.indlæsMedlemmer();
         konkurrenceSvømmere = csvKonkurrenceSvømmere.indlæsKonkurrenceSvømmere();
+        opdelIJuniorOgSenior();
     }
 
     public ArrayList<Medlem> seListeAfMedlemmer() {

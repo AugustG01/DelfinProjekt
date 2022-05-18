@@ -108,10 +108,19 @@ public class UI {
     }
     public void seBrystTop5(){
         System.out.println("Sorteret efter bryst rekord");
+        System.out.println("Top 5 Senior brystsvømmere: ");
+        udregnBrystTop5(controller.seSeniorSvømmere());
+        System.out.println("-----------------------------");
+        System.out.println("Top 5 Junior brystsvømmere: ");
+        udregnBrystTop5(controller.seJuniorSvømmere());
+        System.out.println();
+
+    }
+    public void udregnBrystTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
         SorterBryst sorterBryst= new SorterBryst();
-        Collections.sort(controller.seSvømmerListe(), sorterBryst);
+        Collections.sort(konkurrenceSvømmere, sorterBryst);
         int i = 0;
-        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+        for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isBryst() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
@@ -121,10 +130,19 @@ public class UI {
     }
     public void seCrawlTop5(){
         System.out.println("Sorteret efter crawl rekord");
+        System.out.println("Top 5 Senior crawlsvømmere: ");
+        udregnCrawlTop5(controller.seSeniorSvømmere());
+        System.out.println("-----------------------------");
+        System.out.println("Top 5 Junior crawlsvømmere: ");
+        udregnCrawlTop5(controller.seJuniorSvømmere());
+        System.out.println();
+
+    }
+    public void udregnCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
         SorterCrawl sorterCrawl = new SorterCrawl();
-        Collections.sort(controller.seSvømmerListe(), sorterCrawl);
+        Collections.sort(konkurrenceSvømmere, sorterCrawl);
         int i = 0;
-        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+        for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isCrawl() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
@@ -133,12 +151,23 @@ public class UI {
         }
     }
 
+
+
     public void seButterflyTop5(){
         System.out.println("Sorteret efter butterfly rekord");
-        SorterButterfly sorterButterfly = new SorterButterfly();
-        Collections.sort(controller.seSvømmerListe(), sorterButterfly);
+        System.out.println("Top 5 Senior butterflysvømmere: ");
+        udregnButterflyTop5(controller.seSeniorSvømmere());
+        System.out.println("-----------------------------");
+        System.out.println("Top 5 Junior butterflysvømmere: ");
+        udregnButterflyTop5(controller.seJuniorSvømmere());
+        System.out.println();
+    }
+
+    public void udregnButterflyTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
+        SorterButterfly sorterButterfly= new SorterButterfly();
+        Collections.sort(konkurrenceSvømmere, sorterButterfly);
         int i = 0;
-        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+        for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isButterfly() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
@@ -146,12 +175,23 @@ public class UI {
             }
         }
     }
+
+
+
     public void seRygcrawlTop5(){
         System.out.println("Sorteret efter rygcrawl rekord");
-        SorterRygCrawl sorterRygCrawl= new SorterRygCrawl();
-        Collections.sort(controller.seSvømmerListe(), sorterRygCrawl);
+        System.out.println("Top 5 Senior rygcrawl svømmere: ");
+        udregnRygCrawlTop5(controller.seSeniorSvømmere());
+        System.out.println("-----------------------------");
+        System.out.println("Top 5 Junior rygcrawl svømmere: ");
+        udregnRygCrawlTop5(controller.seJuniorSvømmere());
+        System.out.println();
+    }
+    public void udregnRygCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere){
+        SorterRygCrawl sorterRygCrawl = new SorterRygCrawl();
+        Collections.sort(konkurrenceSvømmere, sorterRygCrawl);
         int i = 0;
-        for (KonkurrenceSvømmer konkurrenceSvømmer : controller.seSvømmerListe()) {
+        for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isRygCrawl() && i<5) {
                 i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
@@ -375,7 +415,7 @@ public class UI {
     public void ændrKonkurrenceStatus(Medlem medlem) {
         in.nextLine();
         boolean rigtigtInput = false;
-        System.out.println("database.Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
+        System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());// TODO: 12/05/2022 Ændr fra true/false til noget pænere
         while (!rigtigtInput) {
             rigtigtInput = true;
             System.out.println("Hvad vil du ændre konkurrence status til? ");

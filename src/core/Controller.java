@@ -3,7 +3,7 @@ package core;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import database.*;
-import ui.*;
+
 
 public class Controller {
     DataBase db = new DataBase();
@@ -14,6 +14,13 @@ public class Controller {
 
     public ArrayList<Medlem> seMedlemsListe() {
         return db.seListeAfMedlemmer();
+    }
+
+    public ArrayList<KonkurrenceSvømmer> seJuniorSvømmere(){
+        return db.getJuniorSvømmere();
+    }
+    public ArrayList<KonkurrenceSvømmer> seSeniorSvømmere(){
+        return db.getSeniorSvømmere();
     }
 
     public void tilføjMedlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
