@@ -1,11 +1,17 @@
 package database;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Locale;
+import java.util.Random;
+
 public class Medlem {
     private int alder;
     private String navn;
     private boolean aktivtMedlemskab;
     private boolean konkurrenceSvømmer;
     private boolean restance;
+    /*private int id;*/
 
     public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
         setNavn(navn);
@@ -14,18 +20,35 @@ public class Medlem {
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
     }
+    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
+        setNavn(navn);
+        setFødselsdato(fødselsDato);
+        setAktivtMedlemskab(aktivtMedlemskab);
+        setKonkurrenceSvømmer(konkurrenceSvømmer);
+        setRestance(restance);
+    }
 
     public Medlem() {
 
     }
+    /*
+    public void generérId(){
+        Random random = new Random(9999);
+        id = random.nextInt();
+    }*/
 
+    public void setFødselsdato(LocalDate date){
+        this.alder = (int) ChronoUnit.YEARS.between(date, LocalDate.now());
+    }
+
+    public void setAlder(int alder){
+        this.alder = alder;
+    }
 
     public int getAlder(){
         return alder;
     }
-    public void setAlder(int alder){
-        this.alder = alder;
-    }
+
     public String getNavn(){
         return navn;
     }

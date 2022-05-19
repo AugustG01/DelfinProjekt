@@ -1,6 +1,7 @@
 package core;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import database.*;
 
@@ -23,11 +24,10 @@ public class Controller {
         return db.getSeniorSvømmere();
     }
 
-    public void tilføjMedlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
-        Medlem medlem = new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance);
+    public void tilføjMedlem(String navn, LocalDate fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
+        Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, restance);
         db.tilføjMedlem(medlem);
-        if(medlem.getKonkurrenceSvømmer())
-            opretKonkurrenceSvømmer(medlem);
+        opretKonkurrenceSvømmer(medlem);
     }
     public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
         db.tilføjKonkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin);
@@ -66,5 +66,10 @@ public class Controller {
 
     public void sletMedlem(Medlem medlem){
         db.slet(medlem);
+    }
+
+    public void opdaterSvømmere() throws FileNotFoundException {
+        db.skrivKonkurrenceSvømmere();
+        db.indlæs();
     }
 }

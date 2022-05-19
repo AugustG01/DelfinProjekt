@@ -13,6 +13,7 @@ import java.rmi.server.ExportException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class UI {
@@ -212,8 +213,13 @@ public class UI {
         System.out.print("Navn: ");
         String navn = in.nextLine();
 
-        System.out.print("Alder: ");
-        int alder = in.nextInt();
+        System.out.print("Fødselsdato(dd/mm/yyyy): ");
+            int dag = in.nextInt();
+            int måned = in.nextInt();
+            int år = in.nextInt();
+            LocalDate alder = LocalDate.of(år,måned,dag);
+            System.out.println(alder);
+
 
         in.nextLine();
         System.out.print("Aktivt medlemskab? ");
@@ -229,8 +235,7 @@ public class UI {
         String konkurrenceSvar = in.nextLine();
         boolean konkurrencesvømmer;
         switch (konkurrenceSvar) {
-            case "ja", "j" -> {
-                konkurrencesvømmer = true;
+            case "ja", "j" -> {konkurrencesvømmer = true;
             }
             case "nej", "n" -> konkurrencesvømmer = false;
             default -> konkurrencesvømmer = false;
@@ -431,10 +436,13 @@ public class UI {
         } catch (InputMismatchException ime) {
             fejl();
             in.next();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public void ændrKonkurrenceStatus(Medlem medlem) {
+
+    public void ændrKonkurrenceStatus(Medlem medlem) throws FileNotFoundException {
         in.nextLine();
         boolean rigtigtInput = false;
         System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());
@@ -443,14 +451,21 @@ public class UI {
             System.out.println("Hvad vil du ændre konkurrence status til? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {
-                case "ja", "j", "true" -> medlem.setKonkurrenceSvømmer(true);
-                case "nej", "n", "false" -> medlem.setKonkurrenceSvømmer(false);
+                case "ja", "j", "true" -> {
+                    medlem.setKonkurrenceSvømmer(true);
+                    controller.opretKonkurrenceSvømmer(medlem);
+                }
+                case "nej", "n", "false" -> {
+                    medlem.setKonkurrenceSvømmer(false);
+                    //controller.fjernSvømmer(medlem);
+                }
                 default -> {
                     fejl();
                     rigtigtInput = false;
                 }
             }
         }
+        controller.opdaterSvømmere();
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getKonkurrenceSvømmer());
     }
 
