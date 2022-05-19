@@ -333,7 +333,7 @@ public class UI {
         if (fundneMedlemmer.size() > 0) {
             int i = 1;
             for (Medlem medlem : fundneMedlemmer) {
-                System.out.printf("# %d-3 " + medlem, i);
+                System.out.printf("# %-3d " + medlem, i);
                 i++;
             }
             System.out.println("Indtast nummeret på det medlem du vil bruge: ");
