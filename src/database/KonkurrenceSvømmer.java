@@ -12,12 +12,13 @@ public class  KonkurrenceSvømmer extends Medlem{
     private double rygCrawlRekord = 1000;
     private double butterflyRekord = 1000;
     ArrayList<Konkurrence> konkurrencer;
+    private int id;
 
     public KonkurrenceSvømmer(Medlem medlem){
         super.setNavn(medlem.getNavn());
         super.setAlder(medlem.getAlder());
     }
-
+/*
     public KonkurrenceSvømmer(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance,
                               boolean bryst, boolean crawl, boolean rygCrawl, boolean butterfly){
         super(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance);
@@ -25,10 +26,13 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.crawl = crawl;
         this.butterfly = butterfly;
         this.rygCrawl = rygCrawl;
+        super.getId();
     }
-    public KonkurrenceSvømmer(String navn,int alder,boolean crawl,boolean bryst,boolean butterfly,boolean rygCrawl,double crawlRekord,double brystRekord,double rygCrawlRekord,double butterflyRekord, ArrayList<Konkurrence> konkurrencer){
+    */
+    public KonkurrenceSvømmer(String navn,int alder,boolean crawl,boolean bryst,boolean butterfly,boolean rygCrawl,double crawlRekord,double brystRekord,double rygCrawlRekord,double butterflyRekord,int id, ArrayList<Konkurrence> konkurrencer){
         super.setNavn(navn);
         super.setAlder(alder);
+        this.id = super.getId();
         this.crawl = crawl;
         this. bryst = bryst;
         this.butterfly = butterfly;

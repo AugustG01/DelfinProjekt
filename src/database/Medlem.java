@@ -11,76 +11,90 @@ public class Medlem {
     private boolean aktivtMedlemskab;
     private boolean konkurrenceSvømmer;
     private boolean restance;
-    /*private int id;*/
+    private int id;
+    Random random = new Random();
 
-    public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
+    public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance, int id) {
         setNavn(navn);
         setAlder(alder);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
+        this.id = id;
     }
+
     public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
+        generérId();
     }
 
     public Medlem() {
 
     }
-    /*
-    public void generérId(){
-        Random random = new Random(9999);
-        id = random.nextInt();
-    }*/
 
-    public void setFødselsdato(LocalDate date){
+    public int getId() {
+        return id;
+    }
+
+    public void generérId() {
+        id = random.nextInt(999999) + 1;
+    }
+
+    public void setFødselsdato(LocalDate date) {
         this.alder = (int) ChronoUnit.YEARS.between(date, LocalDate.now());
     }
 
-    public void setAlder(int alder){
+    public void setAlder(int alder) {
         this.alder = alder;
     }
 
-    public int getAlder(){
+    public int getAlder() {
         return alder;
     }
 
-    public String getNavn(){
+    public String getNavn() {
         return navn;
     }
-    public void setNavn(String navn){
+
+    public void setNavn(String navn) {
         this.navn = navn;
     }
-    public boolean getAktivtMedlemskab(){
+
+    public boolean getAktivtMedlemskab() {
         return aktivtMedlemskab;
     }
-    public void setAktivtMedlemskab(boolean aktivtMedlemskab){
+
+    public void setAktivtMedlemskab(boolean aktivtMedlemskab) {
         this.aktivtMedlemskab = aktivtMedlemskab;
     }
-    public boolean getKonkurrenceSvømmer(){
+
+    public boolean getKonkurrenceSvømmer() {
         return konkurrenceSvømmer;
     }
-    public void setKonkurrenceSvømmer(boolean konkurrenceSvømmer){
+
+    public void setKonkurrenceSvømmer(boolean konkurrenceSvømmer) {
         this.konkurrenceSvømmer = konkurrenceSvømmer;
     }
-    public boolean getRestance(){
+
+    public boolean getRestance() {
         return restance;
     }
-    public void setRestance(boolean restance){
+
+    public void setRestance(boolean restance) {
         this.restance = restance;
     }
 
-    public boolean matcher(String søg){
+    public boolean matcher(String søg) {
         return navn.toLowerCase().contains(søg);
     }
 
     @Override
     public String toString() {
-        String tmp =  "Navn: " + navn + " | " +
+        String tmp = "Navn: " + navn + " | " +
                 "Alder: " + alder + " | " +
                 "Aktivt medlemskab: " + aktivtMedlemskab + " | " +
                 "Konkurrence svømmer: " + konkurrenceSvømmer + " | " +

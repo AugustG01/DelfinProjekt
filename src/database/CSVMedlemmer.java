@@ -26,9 +26,10 @@ public class CSVMedlemmer {
             boolean aktivtMedlemskab = filScanner.nextBoolean();
             boolean konkurrenceSvømmer = filScanner.nextBoolean();
             boolean restance = filScanner.nextBoolean();
+            int id = filScanner.nextInt();
             filScanner.nextLine();
 
-            indlæsteMedlemmer.add(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance));
+            indlæsteMedlemmer.add(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance, id));
         }
             return indlæsteMedlemmer;
     }
@@ -45,6 +46,8 @@ public class CSVMedlemmer {
             printStream.print(medlem.getKonkurrenceSvømmer());
             printStream.print(";");
             printStream.print(medlem.getRestance());
+            printStream.print(";");
+            printStream.print(medlem.getId());
             printStream.print(";");
             printStream.println();
         }
