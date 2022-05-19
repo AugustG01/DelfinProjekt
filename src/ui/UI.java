@@ -13,6 +13,7 @@ import java.rmi.server.ExportException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class UI {
@@ -212,8 +213,16 @@ public class UI {
         System.out.print("Navn: ");
         String navn = in.nextLine();
 
-        System.out.print("Alder: ");
-        int alder = in.nextInt();
+        //Scanner føds = new Scanner(System.in).useDelimiter("/");
+        System.out.print("Fødselsdato(dd/mm/yyyy): ");
+        int dag = in.nextInt();
+        int måned = in.nextInt();
+        int år = in.nextInt();
+        LocalDate alder = LocalDate.of(år,måned,dag);
+        System.out.println(alder);
+
+
+        int id = 0;
 
         in.nextLine();
         System.out.print("Aktivt medlemskab? ");
@@ -333,7 +342,7 @@ public class UI {
         if (fundneMedlemmer.size() > 0) {
             int i = 1;
             for (Medlem medlem : fundneMedlemmer) {
-                System.out.printf("# %d-3 " + medlem, i);
+                System.out.printf("# %-3d " + medlem, i);
                 i++;
             }
             System.out.println("Indtast nummeret på det medlem du vil bruge: ");
@@ -443,8 +452,14 @@ public class UI {
             System.out.println("Hvad vil du ændre konkurrence status til? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {
-                case "ja", "j", "true" -> medlem.setKonkurrenceSvømmer(true);
-                case "nej", "n", "false" -> medlem.setKonkurrenceSvømmer(false);
+                case "ja", "j", "true" -> {
+                    medlem.setKonkurrenceSvømmer(true);
+                    controller.opretKonkurrenceSvømmer(medlem);
+                }
+                case "nej", "n", "false" -> {
+                    medlem.setKonkurrenceSvømmer(false);
+                    controller.fjernSvømmer(medlem);
+                }
                 default -> {
                     fejl();
                     rigtigtInput = false;

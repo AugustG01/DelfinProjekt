@@ -34,6 +34,7 @@ public class CSVKonkurrenceSvømmere {
                 double brystRekord = linjeScanner.nextDouble();
                 double rygCrawlRekord = linjeScanner.nextDouble();
                 double butterflyRekord = linjeScanner.nextDouble();
+                int id = linjeScanner.nextInt();
                 ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
                 //filScanner.nextLine();
                 indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord,konkurrencer));
@@ -72,7 +73,7 @@ public class CSVKonkurrenceSvømmere {
                 printStream.print(svømmer.getRygCrawlRekord());
                 printStream.print(";");
                 printStream.print(svømmer.getButterflyRekord());
-                printStream.print(";");
+
                 printStream.print(printKonkurrenceListe(svømmer.getKonkurrencer()));
                 printStream.println();
             }

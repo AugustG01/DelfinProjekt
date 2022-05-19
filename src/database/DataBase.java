@@ -40,7 +40,6 @@ public class DataBase {
 
 
 
-
     public void skrivKonkurrenceSvømmere() throws FileNotFoundException {
         CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);
 
@@ -66,6 +65,10 @@ public class DataBase {
         medlemmer = csvMedlemmer.indlæsMedlemmer();
         konkurrenceSvømmere = csvKonkurrenceSvømmere.indlæsKonkurrenceSvømmere();
         opdelIJuniorOgSenior();
+    }
+    public void fjernKonkurrenceSvømmer(Medlem medlem){
+
+        konkurrenceSvømmere.remove(medlem);
     }
 
     public ArrayList<Medlem> seListeAfMedlemmer() {

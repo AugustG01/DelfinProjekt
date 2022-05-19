@@ -46,6 +46,7 @@ public class CSVMedlemmer {
             printStream.print(";");
             printStream.print(medlem.getRestance());
             printStream.print(";");
+
             printStream.println();
         }
     }

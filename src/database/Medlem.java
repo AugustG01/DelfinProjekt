@@ -1,5 +1,8 @@
 package database;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class Medlem {
     private int alder;
     private String navn;
@@ -7,9 +10,17 @@ public class Medlem {
     private boolean konkurrenceSvømmer;
     private boolean restance;
 
+
     public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
         setNavn(navn);
         setAlder(alder);
+        setAktivtMedlemskab(aktivtMedlemskab);
+        setKonkurrenceSvømmer(konkurrenceSvømmer);
+        setRestance(restance);
+    }
+    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
+        setNavn(navn);
+        setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
@@ -19,10 +30,13 @@ public class Medlem {
 
     }
 
-
     public int getAlder(){
         return alder;
     }
+    public void setFødselsdato(LocalDate date){
+        this.alder = (int) ChronoUnit.YEARS.between(date, LocalDate.now());
+    }
+
     public void setAlder(int alder){
         this.alder = alder;
     }
