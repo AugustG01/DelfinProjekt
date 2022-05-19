@@ -11,23 +11,34 @@ public class Medlem {
     private boolean aktivtMedlemskab;
     private boolean konkurrenceSvømmer;
     private boolean restance;
-    private int id;
+    public int id;
     Random random = new Random();
 
+    /*
     public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance, int id) {
         setNavn(navn);
         setAlder(alder);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
-        this.id = id;
+        setId(id);
     }
 
-    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
+     */
+
+    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean restance, int id) {
+        setNavn(navn);
+        setFødselsdato(fødselsDato); //var førhen alder, kan være det skal ændres tilbage
+        setAktivtMedlemskab(aktivtMedlemskab);
+        setRestance(restance);
+        setId(id);
+    }
+
+
+    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean restance) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
-        setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
         generérId();
     }
@@ -38,6 +49,9 @@ public class Medlem {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
     public void generérId() {

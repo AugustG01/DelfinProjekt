@@ -25,9 +25,13 @@ public class Controller {
     }
 
     public void tilføjMedlem(String navn, LocalDate fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
-        Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, restance);
-        db.tilføjMedlem(medlem);
-        opretKonkurrenceSvømmer(medlem);
+        if (!konkurrenceSvømmer) {
+            Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, restance);
+            db.tilføjMedlem(medlem);
+        } else {
+            KonkurrenceSvømmer konkurrenceSvømmer1 = new KonkurrenceSvømmer(navn, fødselsdato, aktivtMedlemskab, restance);
+            db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer1);
+        }
     }
     public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
         db.tilføjKonkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin);
@@ -40,8 +44,8 @@ public class Controller {
         db.seListeAfKonkurrenceSvømmere();
     }
 
-    public void opretKonkurrenceSvømmer(Medlem medlem){
-        db.tilføjKonkurrenceSvømmer(medlem);
+    public void opretKonkurrenceSvømmer(String navn, LocalDate fødselsdato){
+
     }
 
     public double seKontingent(){

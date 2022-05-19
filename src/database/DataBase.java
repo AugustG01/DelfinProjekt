@@ -51,10 +51,9 @@ public class DataBase {
         medlemmer.add(medlem);
     }
 
-    public void tilføjKonkurrenceSvømmer(Medlem medlem) {
-
-                    KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
-                    konkurrenceSvømmere.add(svømmer);
+    public void tilføjKonkurrenceSvømmer(KonkurrenceSvømmer konkurrenceSvømmer) {
+        //KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
+        konkurrenceSvømmere.add(konkurrenceSvømmer);
     }
     public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
         konkurrencer.add(new Konkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin));

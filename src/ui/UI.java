@@ -28,7 +28,7 @@ public class UI {
 
     public void start() throws FileNotFoundException {
         System.out.println("Velkommen til Svømmeklubben Delfinens database");
-        controller.indlæsMedlemmer();
+        //controller.indlæsMedlemmer();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
             valgmulighederHovedmenu();
@@ -453,7 +453,7 @@ public class UI {
             switch (valg) {
                 case "ja", "j", "true" -> {
                     medlem.setKonkurrenceSvømmer(true);
-                    controller.opretKonkurrenceSvømmer(medlem);
+                    //controller.opretKonkurrenceSvømmer(medlem);
                 }
                 case "nej", "n", "false" -> {
                     medlem.setKonkurrenceSvømmer(false);

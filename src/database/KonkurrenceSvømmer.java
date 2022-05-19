@@ -1,5 +1,6 @@
 package database;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class  KonkurrenceSvømmer extends Medlem{
@@ -12,7 +13,7 @@ public class  KonkurrenceSvømmer extends Medlem{
     private double rygCrawlRekord = 1000;
     private double butterflyRekord = 1000;
     ArrayList<Konkurrence> konkurrencer;
-    private int id;
+    //private int id;
 
     public KonkurrenceSvømmer(Medlem medlem){
         super.setNavn(medlem.getNavn());
@@ -29,20 +30,22 @@ public class  KonkurrenceSvømmer extends Medlem{
         super.getId();
     }
     */
-    public KonkurrenceSvømmer(String navn,int alder,boolean crawl,boolean bryst,boolean butterfly,boolean rygCrawl,double crawlRekord,double brystRekord,double rygCrawlRekord,double butterflyRekord,int id, ArrayList<Konkurrence> konkurrencer){
-        super.setNavn(navn);
-        super.setAlder(alder);
-        this.id = super.getId();
-        this.crawl = crawl;
-        this. bryst = bryst;
+    public KonkurrenceSvømmer(String navn, LocalDate fødselsDato, boolean aktivmedlemskab, boolean restance){
+        //super.setNavn(navn);
+       // super.setAlder(alder);
+        //super.setId(id);
+        super(navn, fødselsDato, aktivmedlemskab, restance);
+        /*this.crawl = crawl;
+        this.bryst = bryst;
         this.butterfly = butterfly;
         this.rygCrawl = rygCrawl;
         this.crawlRekord = crawlRekord;
         this.brystRekord = brystRekord;
         this.rygCrawlRekord = rygCrawlRekord;
-        this.butterflyRekord = butterflyRekord;
-        this.konkurrencer = konkurrencer;
+        this.butterflyRekord = butterflyRekord;*/
+        //this.konkurrencer = konkurrencer;
     }
+
     public void tilføjKonkurrence(Konkurrence konkurrence){
         konkurrencer.add(konkurrence);
     }

@@ -37,7 +37,7 @@ public class CSVKonkurrenceSvømmere {
                 int id = linjeScanner.nextInt();
                 ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
                 //filScanner.nextLine();
-                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord,id,konkurrencer));
+                //indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord,id,konkurrencer));
             }
             return indlæsteKonkurrenceSvømmere;
         }
