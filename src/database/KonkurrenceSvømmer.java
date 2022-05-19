@@ -1,5 +1,6 @@
 package database;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class  KonkurrenceSvømmer extends Medlem{
@@ -13,7 +14,7 @@ public class  KonkurrenceSvømmer extends Medlem{
     private double butterflyRekord = 1000;
     ArrayList<Konkurrence> konkurrencer;
 
-
+/*
     public KonkurrenceSvømmer(Medlem medlem){
         super.setNavn(medlem.getNavn());
         super.setAlder(medlem.getAlder());
@@ -28,11 +29,9 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.butterfly = butterfly;
         this.rygCrawl = rygCrawl;
     }
-
-    public KonkurrenceSvømmer(String navn,int alder,boolean crawl,boolean bryst,boolean butterfly,boolean rygCrawl,double crawlRekord,double brystRekord,double rygCrawlRekord,double butterflyRekord, ArrayList<Konkurrence> konkurrencer){
-        super.setNavn(navn);
-        super.setAlder(alder);
-
+ */
+    public KonkurrenceSvømmer(String navn, LocalDate fødselsdato, boolean aktivtMedlemskab, boolean restance, int fastId, boolean crawl, boolean bryst, boolean butterfly, boolean rygCrawl, double crawlRekord, double brystRekord, double rygCrawlRekord, double butterflyRekord){
+        super(navn, fødselsdato, aktivtMedlemskab, restance, fastId);
         this.crawl = crawl;
         this.bryst = bryst;
         this.butterfly = butterfly;
@@ -41,7 +40,7 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.brystRekord = brystRekord;
         this.rygCrawlRekord = rygCrawlRekord;
         this.butterflyRekord = butterflyRekord;
-        this.konkurrencer = konkurrencer;
+        //this.konkurrencer = konkurrencer;
     }
     public void tilføjKonkurrence(Konkurrence konkurrence){
         konkurrencer.add(konkurrence);

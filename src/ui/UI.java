@@ -28,7 +28,7 @@ public class UI {
 
     public void start() throws FileNotFoundException {
         System.out.println("Velkommen til Svømmeklubben Delfinens database");
-        controller.indlæsMedlemmer();
+        //controller.indlæsMedlemmer();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
             valgmulighederHovedmenu();
@@ -214,15 +214,12 @@ public class UI {
         String navn = in.nextLine();
 
         //Scanner føds = new Scanner(System.in).useDelimiter("/");
-        System.out.print("Fødselsdato(dd/mm/yyyy): ");
+        System.out.println("Fødselsdato(dd/mm/yyyy): ");
         int dag = in.nextInt();
         int måned = in.nextInt();
         int år = in.nextInt();
         LocalDate alder = LocalDate.of(år,måned,dag);
         System.out.println(alder);
-
-
-        int id = 0;
 
         in.nextLine();
         System.out.print("Aktivt medlemskab? ");
@@ -454,7 +451,7 @@ public class UI {
             switch (valg) {
                 case "ja", "j", "true" -> {
                     medlem.setKonkurrenceSvømmer(true);
-                    controller.opretKonkurrenceSvømmer(medlem);
+                    //controller.opretKonkurrenceSvømmer();
                 }
                 case "nej", "n", "false" -> {
                     medlem.setKonkurrenceSvømmer(false);

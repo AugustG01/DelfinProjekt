@@ -3,6 +3,7 @@ package database;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -25,7 +26,8 @@ public class CSVKonkurrenceSvømmere {
                 // Bruger Locale.ENGLISH for at undgå Scanneren forstår punktum i stedet for komma i indlæsning af double
                 Scanner linjeScanner = new Scanner(filScanner.nextLine()).useDelimiter(";").useLocale(Locale.ENGLISH);
                 String navn = linjeScanner.next();
-                int alder = linjeScanner.nextInt();
+                String fødselsdato = filScanner.nextLine();
+                LocalDate alder = LocalDate.parse(fødselsdato);
                 boolean crawl = linjeScanner.nextBoolean();
                 boolean bryst = linjeScanner.nextBoolean();
                 boolean butterfly = linjeScanner.nextBoolean();
@@ -34,10 +36,10 @@ public class CSVKonkurrenceSvømmere {
                 double brystRekord = linjeScanner.nextDouble();
                 double rygCrawlRekord = linjeScanner.nextDouble();
                 double butterflyRekord = linjeScanner.nextDouble();
-                int id = linjeScanner.nextInt();
-                ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
+                int fastId = linjeScanner.nextInt();
+                //ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
                 //filScanner.nextLine();
-                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord,konkurrencer));
+                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,true,false,fastId,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord));
             }
             return indlæsteKonkurrenceSvømmere;
         }
@@ -73,8 +75,10 @@ public class CSVKonkurrenceSvømmere {
                 printStream.print(svømmer.getRygCrawlRekord());
                 printStream.print(";");
                 printStream.print(svømmer.getButterflyRekord());
+                printStream.print(";");
+                printStream.print(svømmer.getId());
 
-                printStream.print(printKonkurrenceListe(svømmer.getKonkurrencer()));
+                //printStream.print(printKonkurrenceListe(svømmer.getKonkurrencer()));
                 printStream.println();
             }
         }

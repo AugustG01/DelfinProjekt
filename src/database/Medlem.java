@@ -2,6 +2,7 @@ package database;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Random;
 
 public class Medlem {
     private int alder;
@@ -9,8 +10,10 @@ public class Medlem {
     private boolean aktivtMedlemskab;
     private boolean konkurrenceSvømmer;
     private boolean restance;
+    private int id;
+    Random random = new Random();
 
-
+/*
     public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
         setNavn(navn);
         setAlder(alder);
@@ -18,16 +21,34 @@ public class Medlem {
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
     }
-    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
+
+ */
+
+    //Medlems konstruktør til konkurrencesvømmere
+    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean restance, int fastId) {
+        setNavn(navn);
+        setFødselsdato(fødselsDato);
+        setAktivtMedlemskab(aktivtMedlemskab);
+        setRestance(restance);
+        setId(fastId);
+    }
+
+    //Medlems konstruktør til ikke konkurrencesvømmere
+    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
+        setId(fastId);
     }
 
-    public Medlem() {
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAlder(){
