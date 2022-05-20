@@ -83,7 +83,8 @@ public class Controller {
     public void fjernSvømmer(Medlem medlem) {
 
         //KonkurrenceSvømmer konkurrenceSvømmer = db.findSvømmer(medlem.getNavn());
-        db.fjernKonkurrenceSvømmer(medlem);
+        db.fjernKonkurrenceSvømmer(medlem.getId());
+
     }
 
     public void tilføjSvømmer(Medlem medlem) {
