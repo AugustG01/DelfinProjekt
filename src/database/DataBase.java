@@ -50,7 +50,7 @@ public class DataBase {
         medlemmer.add(medlem);
     }
 
-    public void tilføjKonkurrenceSvømmer(KonkurrenceSvømmer konkurrenceSvømmer) {
+    public void tilføjKonkurrenceSvømmer(KonkurrenceSvømmer konkurrenceSvømmer ) {
         konkurrenceSvømmere.add(konkurrenceSvømmer);
     }
     public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){

@@ -12,7 +12,7 @@ public class  KonkurrenceSvømmer extends Medlem{
     private double brystRekord = 1000;
     private double rygCrawlRekord = 1000;
     private double butterflyRekord = 1000;
-    ArrayList<Konkurrence> konkurrencer;
+    //ArrayList<Konkurrence> konkurrencer;
 
 /*
     public KonkurrenceSvømmer(Medlem medlem){
@@ -42,9 +42,12 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.butterflyRekord = butterflyRekord;
         //this.konkurrencer = konkurrencer;
     }
+    /*
     public void tilføjKonkurrence(Konkurrence konkurrence){
         konkurrencer.add(konkurrence);
     }
+
+     */
 
     public void setCrawl(boolean crawl) {
         this.crawl = crawl;
@@ -106,10 +109,12 @@ public class  KonkurrenceSvømmer extends Medlem{
     public double getButterflyRekord() {
         return butterflyRekord;
     }
-
+/*
     public ArrayList<Konkurrence> getKonkurrencer() {
         return konkurrencer;
     }
+
+ */
 
     @Override
     public String toString() {
@@ -122,8 +127,8 @@ public class  KonkurrenceSvømmer extends Medlem{
                 "Crawl rekord: %-20f | " +
                 "Bryst rekord: %-20f | " +
                 "Rygcrawl rekord: %-20f | " +
-                "Butterfly rekord: %-20f  | " +
-                "Konkurrencer: %-20s | " + "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord, konkurrencer);
+                "Butterfly rekord: %-20f  | "
+                + "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord);
         return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }
 }

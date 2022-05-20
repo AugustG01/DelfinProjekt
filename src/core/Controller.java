@@ -86,6 +86,12 @@ public class Controller {
         db.fjernKonkurrenceSvømmer(medlem);
     }
 
+    public void tilføjSvømmer(Medlem medlem) {
+        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getAktivtMedlemskab(), medlem.getRestance(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000);
+        db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
+
+    }
+
     public void opdaterSvømmere() throws FileNotFoundException {
         db.skrivKonkurrenceSvømmere();
         db.indlæs();

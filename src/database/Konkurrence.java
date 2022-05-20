@@ -15,7 +15,7 @@ public class Konkurrence {
         this.deltagere = deltagere;
         this.tider = tider;
 
-        opdaterNyKonkurrence(konkurrenceNavn);
+        //opdaterNyKonkurrence(konkurrenceNavn);
 
         switch (disciplin) {
             case "bryst" -> opdaterBrystRekorder();
@@ -69,12 +69,14 @@ public class Konkurrence {
             }
         }
     }
-
+/*
     public void opdaterNyKonkurrence(String konkurrenceNavn) {
         for (int i = 0; i < deltagere.size(); i++) {
             deltagere.get(i).tilføjKonkurrence(new Konkurrence(konkurrenceNavn, dato));
         }
     }
+
+ */
 
     public String getKonkurrenceNavn() {
         return konkurrenceNavn;

@@ -217,11 +217,6 @@ public class UI {
         System.out.println("Fødselsdato(dd/mm/yyyy): ");
         String fødselsdato = in.nextLine();
 
-        /*
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fødselsdato = LocalDate.parse(fødselsdatoInput, dateTimeFormatter);
-         */
-
         in.nextLine();
         System.out.print("Aktivt medlemskab? ");
         String medlemskabSvar = in.nextLine();
@@ -452,7 +447,7 @@ public class UI {
             switch (valg) {
                 case "ja", "j", "true" -> {
                     medlem.setKonkurrenceSvømmer(true);
-                    //controller.opretKonkurrenceSvømmer();
+                    controller.tilføjSvømmer(medlem);
                 }
                 case "nej", "n", "false" -> {
                     medlem.setKonkurrenceSvømmer(false);
