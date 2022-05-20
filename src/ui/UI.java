@@ -352,9 +352,9 @@ public class UI {
                 Find et medlem
                 --------------
                 Skriv navnet eller dele af navnet for at finde et medlem.""");
-        in.nextLine();
+        //in.next();
         System.out.print(": ");
-        String søg = in.nextLine().trim().toLowerCase();
+        String søg = in.next().trim().toLowerCase();
         return søg;
     }
 
