@@ -9,8 +9,7 @@ public class Konkurrence {
 
     ArrayList<KonkurrenceSvømmer> deltagere = new ArrayList<>();
 
-    public Konkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin) {
-        setKonkurrenceNavn(konkurrenceNavn);
+    public Konkurrence(String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin) {
         this.dato = dato;
         this.deltagere = deltagere;
         this.tider = tider;

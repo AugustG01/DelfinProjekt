@@ -100,11 +100,12 @@ public class Medlem {
 
     @Override
     public String toString() {
-        String tmp =  "Navn: " + navn + " | " +
-                "Alder: " + alder + " | " +
-                "Aktivt medlemskab: " + aktivtMedlemskab + " | " +
-                "Konkurrence svømmer: " + konkurrenceSvømmer + " | " +
-                "Restance: " + restance + " | " + "\n";
+        String tmp = String.format("Navn: %-15s | " +
+                "Alder: %-15d | " +
+                "Aktivt Medlemskab:  %-10b | " +
+                "Konkurrencesvømmer:  %-10b | " +
+                "ID: %-10d | "
+                + "\n",getNavn(), getAlder(), getAktivtMedlemskab(), getKonkurrenceSvømmer(),  getId());
         return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }
 }

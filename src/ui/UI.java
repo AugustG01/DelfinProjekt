@@ -240,12 +240,12 @@ public class UI {
             System.out.println("Fødselsdato(dd/mm/yyyy): ");
             fødselsdato = in.nextLine();
             fødselsdatoRigtigt = true;
-        try{
-        controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);}
-        catch (Exception e){
-            fødselsdatoRigtigt = false;
-            fejl();
-        }
+            try {
+                controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);
+            } catch (Exception e) {
+                fødselsdatoRigtigt = false;
+                fejl();
+            }
         } while (!fødselsdatoRigtigt);
     }
 
@@ -253,10 +253,11 @@ public class UI {
         boolean korrektInput = false;
 
         in.nextLine();
-
+        /*
         System.out.print("Navn på konkurrence: ");
         String konkurrenceNavn = in.nextLine();
         //konkurrence.setKonkurrenceNavn(konkurrenceNavn);
+         */
         String disciplin = "bryst";
         System.out.print("Disciplin: ");
 
@@ -280,7 +281,7 @@ public class UI {
         String dato = dateFormat.format(date);
 
         System.out.print("Hvor mange svømmere fra klubben er med? ");
-        int antalSvømmere = in.nextInt();
+        int antalSvømmere = in.nextInt(); // TODO: 20/05/2022 Gør så man ikke kan indtaste et større antal svømmere end der findes
         double[] tid = new double[antalSvømmere];
         ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
         for (int i = 0; i < antalSvømmere; i++) {
@@ -291,7 +292,7 @@ public class UI {
             tid[i] = in.nextDouble();
         }
 
-        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere, tid, disciplin);
+        controller.tilføjKonkurrence(dato, valgteSvømmere, tid, disciplin);
         controller.gem();
         controller.indlæsMedlemmer();
     }
@@ -352,7 +353,6 @@ public class UI {
                 Find et medlem
                 --------------
                 Skriv navnet eller dele af navnet for at finde et medlem.""");
-        //in.next();
         System.out.print(": ");
         String søg = in.next().trim().toLowerCase();
         return søg;
@@ -375,7 +375,8 @@ public class UI {
                 return fundneSvømmere.get(valg - 1);
             else {
                 System.out.println("Det er ikke en gyldig svømmer! Prøv igen");
-                return findSvømmere();}
+                return findSvømmere();
+            }
 
         } else {
             System.out.println("Fandt ingen svømmere i systemet! Prøv igen: ");
@@ -492,8 +493,8 @@ public class UI {
         boolean rigtigtInput = false;
         while (!rigtigtInput) {
             rigtigtInput = true;
-            System.out.println("Restance på " + medlem.getNavn() + " er lige nu : " + medlem.getRestance());
-            System.out.println("Hvad vil du ændre konkurrence status til? ");
+            System.out.println("Restance på " + medlem.getNavn() + " er lige nu: " + medlem.getRestance());
+            System.out.println("Har medlemmet betalt? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {
                 case "ja", "j", "true" -> medlem.setRestance(true);

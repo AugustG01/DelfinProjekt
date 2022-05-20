@@ -38,8 +38,8 @@ public class Controller {
             db.tilføjKonkurrenceSvømmer(nyKonkurrenceSvømmer);
         }
     }
-    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
-        db.tilføjKonkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin);
+    public void tilføjKonkurrence(String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
+        db.tilføjKonkurrence(dato, deltagere, tider, disciplin);
     }
 
     public void indlæsMedlemmer() throws FileNotFoundException {
