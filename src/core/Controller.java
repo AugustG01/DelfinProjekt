@@ -28,7 +28,7 @@ public class Controller {
         return db.getSeniorSvømmere();
     }
 
-    public void tilføjMedlem(String navn, LocalDate fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
+    public void tilføjMedlem(String navn, String fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
         int fastId = genererId();
         Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, restance, fastId);
         db.tilføjMedlem(medlem);

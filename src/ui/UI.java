@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class UI {
@@ -215,11 +216,12 @@ public class UI {
 
         //Scanner føds = new Scanner(System.in).useDelimiter("/");
         System.out.println("Fødselsdato(dd/mm/yyyy): ");
-        int dag = in.nextInt();
-        int måned = in.nextInt();
-        int år = in.nextInt();
-        LocalDate alder = LocalDate.of(år,måned,dag);
-        System.out.println(alder);
+        String fødselsdatoInput = in.nextLine();
+        /*
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fødselsdato = LocalDate.parse(fødselsdatoInput, dateTimeFormatter);
+
+         */
 
         in.nextLine();
         System.out.print("Aktivt medlemskab? ");
@@ -250,7 +252,7 @@ public class UI {
             case "nej", "n" -> restance = true;
             default -> restance = false;
         }
-        controller.tilføjMedlem(navn, alder, medlemskab, konkurrencesvømmer, restance);
+        controller.tilføjMedlem(navn, fødselsdatoInput, medlemskab, konkurrencesvømmer, restance);
     }
 
     public void tilføjKonkurrence() {

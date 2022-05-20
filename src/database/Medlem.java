@@ -25,7 +25,7 @@ public class Medlem {
  */
 
     //Medlems konstruktør til konkurrencesvømmere
-    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean restance, int fastId) {
+    public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean restance, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
@@ -34,7 +34,7 @@ public class Medlem {
     }
 
     //Medlems konstruktør til ikke konkurrencesvømmere
-    public Medlem(String navn, LocalDate fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance, int fastId) {
+    public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
@@ -54,13 +54,14 @@ public class Medlem {
     public int getAlder(){
         return alder;
     }
-    public void setFødselsdato(LocalDate date){
+    public void setAlder(LocalDate date){
         this.alder = (int) ChronoUnit.YEARS.between(date, LocalDate.now());
     }
 
-    public void setAlder(int alder){
-        this.alder = alder;
+    public void setFødselsdato(String fødselsdato) {
+        this.fødselsdato = fødselsdato;
     }
+
     public String getNavn(){
         return navn;
     }

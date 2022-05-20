@@ -31,7 +31,7 @@ public class CSVMedlemmer {
             int fastId = filScanner.nextInt();
             filScanner.nextLine();
 
-            indlæsteMedlemmer.add(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance, fastId));
+            indlæsteMedlemmer.add(new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, restance, fastId));
         }
             return indlæsteMedlemmer;
     }

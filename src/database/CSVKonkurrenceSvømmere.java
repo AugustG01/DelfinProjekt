@@ -39,7 +39,7 @@ public class CSVKonkurrenceSvømmere {
                 int fastId = linjeScanner.nextInt();
                 //ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
                 //filScanner.nextLine();
-                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,alder,true,false,fastId,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord));
+                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,fødselsdato,true,false,fastId,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord));
             }
             return indlæsteKonkurrenceSvømmere;
         }
