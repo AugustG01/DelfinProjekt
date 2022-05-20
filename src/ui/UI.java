@@ -238,15 +238,10 @@ public class UI {
             default -> konkurrencesvømmer = false;
         }
 
-        System.out.print("Betalt? ");
-        String betalt = in.nextLine();
-        boolean restance;
-        switch (betalt) {
-            case "ja", "j" -> restance = false;
-            case "nej", "n" -> restance = true;
-            default -> restance = false;
-        }
-        controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer, restance);
+
+        boolean restance = false;
+
+        controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);
     }
 
     public void tilføjKonkurrence() {

@@ -30,8 +30,8 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.rygCrawl = rygCrawl;
     }
  */
-    public KonkurrenceSvømmer(String navn, String fødselsdato, boolean aktivtMedlemskab, boolean restance, int fastId, boolean crawl, boolean bryst, boolean butterfly, boolean rygCrawl, double crawlRekord, double brystRekord, double rygCrawlRekord, double butterflyRekord){
-        super(navn, fødselsdato, aktivtMedlemskab, restance, fastId);
+    public KonkurrenceSvømmer(String navn, String fødselsdato, int fastId, boolean crawl, boolean bryst, boolean butterfly, boolean rygCrawl, double crawlRekord, double brystRekord, double rygCrawlRekord, double butterflyRekord){
+        super(navn, fødselsdato, fastId);
         this.crawl = crawl;
         this.bryst = bryst;
         this.butterfly = butterfly;

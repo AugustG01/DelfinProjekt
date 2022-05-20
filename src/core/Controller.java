@@ -28,13 +28,13 @@ public class Controller {
         return db.getSeniorSvømmere();
     }
 
-    public void tilføjMedlem(String navn, String fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
+    public void tilføjMedlem(String navn, String fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer){
         int fastId = genererId();
-        Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, restance, fastId);
+        Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, fastId);
         db.tilføjMedlem(medlem);
 
         if (konkurrenceSvømmer) {
-            KonkurrenceSvømmer nyKonkurrenceSvømmer = new KonkurrenceSvømmer(navn, fødselsdato, aktivtMedlemskab, restance, fastId, false, false, false, false, 1000, 1000, 1000, 1000);
+            KonkurrenceSvømmer nyKonkurrenceSvømmer = new KonkurrenceSvømmer(navn, fødselsdato, fastId, false, false, false, false, 1000, 1000, 1000, 1000);
             db.tilføjKonkurrenceSvømmer(nyKonkurrenceSvømmer);
         }
     }
@@ -88,7 +88,7 @@ public class Controller {
     }
 
     public void tilføjSvømmer(Medlem medlem) {
-        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getAktivtMedlemskab(), medlem.getRestance(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000);
+        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000);
         db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
 
     }

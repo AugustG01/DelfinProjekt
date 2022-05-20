@@ -10,7 +10,7 @@ public class Medlem {
     private String navn;
     private boolean aktivtMedlemskab;
     private boolean konkurrenceSvømmer;
-    private boolean restance;
+    private boolean restance = false;
     private int id;
     private String fødselsdato;
 
@@ -26,22 +26,19 @@ public class Medlem {
 
 
     //Medlems konstruktør til konkurrencesvømmere
-    public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean restance, int fastId) {
+    public Medlem(String navn, String fødselsDato, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
-        setAktivtMedlemskab(aktivtMedlemskab);
-        setRestance(restance);
         setId(fastId);
         setAlder(fødselsDato);
     }
 
     //Medlems konstruktør til ikke konkurrencesvømmere
-    public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance, int fastId) {
+    public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
         setAktivtMedlemskab(aktivtMedlemskab);
         setKonkurrenceSvømmer(konkurrenceSvømmer);
-        setRestance(restance);
         setId(fastId);
         setAlder(fødselsDato);
     }
