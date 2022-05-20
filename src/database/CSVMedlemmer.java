@@ -36,6 +36,9 @@ public class CSVMedlemmer {
             return indlæsteMedlemmer;
     }
 
+
+
+
     public void skrivMedlem(ArrayList<Medlem> medlemmer) throws FileNotFoundException {
         printStream = new PrintStream(filnavn);
         for(Medlem medlem : medlemmer) {

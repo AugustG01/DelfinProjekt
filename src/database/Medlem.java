@@ -23,6 +23,7 @@ public class Medlem {
     }
  */
 
+
     //Medlems konstruktør til konkurrencesvømmere
     public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean restance, int fastId) {
         setNavn(navn);
