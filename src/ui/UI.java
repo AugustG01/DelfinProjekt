@@ -214,10 +214,6 @@ public class UI {
         System.out.print("Navn: ");
         String navn = in.nextLine();
 
-        System.out.println("Fødselsdato(dd/mm/yyyy): ");
-        String fødselsdato = in.nextLine();
-
-        in.nextLine();
         System.out.print("Aktivt medlemskab? ");
         String medlemskabSvar = in.nextLine();
         boolean medlemskab;
@@ -238,10 +234,21 @@ public class UI {
             default -> konkurrencesvømmer = false;
         }
 
-
         boolean restance = false;
+        boolean fødselsdatoRigtigt;
 
-        controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);
+        String fødselsdato = "";
+        do {
+            System.out.println("Fødselsdato(dd/mm/yyyy): ");
+            fødselsdato = in.nextLine();
+            fødselsdatoRigtigt = true;
+        try{
+        controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);}
+        catch (Exception e){
+            fødselsdatoRigtigt = false;
+            fejl();
+        }
+        } while (!fødselsdatoRigtigt);
     }
 
     public void tilføjKonkurrence() {
@@ -498,6 +505,6 @@ public class UI {
     }
 
     public void fejl() {
-        System.err.println("Forkert input. Sender dig tilbage til hovedmenuen.");
+        System.err.println("Forkert input.");
     }
 }
