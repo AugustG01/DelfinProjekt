@@ -29,7 +29,7 @@ public class UI {
 
     public void start() throws FileNotFoundException {
         System.out.println("Velkommen til Svømmeklubben Delfinens database");
-        //controller.indlæsMedlemmer();
+        controller.indlæsMedlemmer();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
             valgmulighederHovedmenu();
@@ -214,13 +214,12 @@ public class UI {
         System.out.print("Navn: ");
         String navn = in.nextLine();
 
-        //Scanner føds = new Scanner(System.in).useDelimiter("/");
         System.out.println("Fødselsdato(dd/mm/yyyy): ");
-        String fødselsdatoInput = in.nextLine();
+        String fødselsdato = in.nextLine();
+
         /*
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fødselsdato = LocalDate.parse(fødselsdatoInput, dateTimeFormatter);
-
          */
 
         in.nextLine();
@@ -252,7 +251,7 @@ public class UI {
             case "nej", "n" -> restance = true;
             default -> restance = false;
         }
-        controller.tilføjMedlem(navn, fødselsdatoInput, medlemskab, konkurrencesvømmer, restance);
+        controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer, restance);
     }
 
     public void tilføjKonkurrence() {

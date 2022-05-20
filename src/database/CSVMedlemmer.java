@@ -23,8 +23,7 @@ public class CSVMedlemmer {
         ArrayList<Medlem> indlæsteMedlemmer = new ArrayList<>();
         while (filScanner.hasNextLine()) {
             String navn = filScanner.next();
-            String fødselsdato = filScanner.nextLine();
-            LocalDate alder = LocalDate.parse(fødselsdato);
+            String fødselsdato = filScanner.next();
             boolean aktivtMedlemskab = filScanner.nextBoolean();
             boolean konkurrenceSvømmer = filScanner.nextBoolean();
             boolean restance = filScanner.nextBoolean();
@@ -44,7 +43,7 @@ public class CSVMedlemmer {
         for(Medlem medlem : medlemmer) {
             printStream.print(medlem.getNavn());
             printStream.print(";");
-            printStream.print(medlem.getAlder());
+            printStream.print(medlem.getFødselsdato());
             printStream.print(";");
             printStream.print(medlem.getAktivtMedlemskab());
             printStream.print(";");
@@ -54,7 +53,6 @@ public class CSVMedlemmer {
             printStream.print(";");
             printStream.print(medlem.getId());
             printStream.print(";");
-
             printStream.println();
         }
     }

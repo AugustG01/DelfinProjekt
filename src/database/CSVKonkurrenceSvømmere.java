@@ -26,8 +26,7 @@ public class CSVKonkurrenceSvømmere {
                 // Bruger Locale.ENGLISH for at undgå Scanneren forstår punktum i stedet for komma i indlæsning af double
                 Scanner linjeScanner = new Scanner(filScanner.nextLine()).useDelimiter(";").useLocale(Locale.ENGLISH);
                 String navn = linjeScanner.next();
-                String fødselsdato = filScanner.nextLine();
-                LocalDate alder = LocalDate.parse(fødselsdato);
+                String fødselsdato = linjeScanner.next();
                 boolean crawl = linjeScanner.nextBoolean();
                 boolean bryst = linjeScanner.nextBoolean();
                 boolean butterfly = linjeScanner.nextBoolean();
@@ -58,7 +57,7 @@ public class CSVKonkurrenceSvømmere {
             for(KonkurrenceSvømmer svømmer : svømmere) {
                 printStream.print(svømmer.getNavn());
                 printStream.print(";");
-                printStream.print(svømmer.getAlder());
+                printStream.print(svømmer.getFødselsdato());
                 printStream.print(";");
                 printStream.print(svømmer.isCrawl());
                 printStream.print(";");

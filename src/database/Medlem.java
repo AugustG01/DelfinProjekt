@@ -1,6 +1,7 @@
 package database;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
 
@@ -31,6 +32,7 @@ public class Medlem {
         setAktivtMedlemskab(aktivtMedlemskab);
         setRestance(restance);
         setId(fastId);
+        setAlder(fødselsDato);
     }
 
     //Medlems konstruktør til ikke konkurrencesvømmere
@@ -41,6 +43,7 @@ public class Medlem {
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
         setId(fastId);
+        setAlder(fødselsDato);
     }
 
     public int getId() {
@@ -54,12 +57,19 @@ public class Medlem {
     public int getAlder(){
         return alder;
     }
-    public void setAlder(LocalDate date){
-        this.alder = (int) ChronoUnit.YEARS.between(date, LocalDate.now());
+
+    public void setAlder(String fødselsdato){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localdate = LocalDate.parse(fødselsdato, dateTimeFormatter);
+        this.alder = (int) ChronoUnit.YEARS.between(localdate, LocalDate.now());
     }
 
     public void setFødselsdato(String fødselsdato) {
         this.fødselsdato = fødselsdato;
+    }
+
+    public String getFødselsdato() {
+        return fødselsdato;
     }
 
     public String getNavn(){
