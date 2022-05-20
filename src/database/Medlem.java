@@ -11,7 +11,7 @@ public class Medlem {
     private boolean konkurrenceSvømmer;
     private boolean restance;
     private int id;
-    Random random = new Random();
+    private String fødselsdato;
 
 /*
     public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
@@ -21,7 +21,6 @@ public class Medlem {
         setKonkurrenceSvømmer(konkurrenceSvømmer);
         setRestance(restance);
     }
-
  */
 
     //Medlems konstruktør til konkurrencesvømmere
