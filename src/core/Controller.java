@@ -77,6 +77,7 @@ public class Controller {
     public ArrayList<KonkurrenceSvømmer> findSvømmer(String søg){return db.findSvømmer(søg);}
 
     public void sletMedlem(Medlem medlem){
+        fjernSvømmer(medlem);
         db.slet(medlem);
     }
 

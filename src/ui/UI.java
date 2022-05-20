@@ -70,7 +70,7 @@ public class UI {
         }
     }
 
-    public void konkurrenceMenu() {
+    public void konkurrenceMenu() throws FileNotFoundException {
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Tilføj en konkurrence
@@ -233,8 +233,6 @@ public class UI {
             case "nej", "n" -> konkurrencesvømmer = false;
             default -> konkurrencesvømmer = false;
         }
-
-        boolean restance = false;
         boolean fødselsdatoRigtigt;
 
         String fødselsdato = "";
@@ -251,7 +249,7 @@ public class UI {
         } while (!fødselsdatoRigtigt);
     }
 
-    public void tilføjKonkurrence() {
+    public void tilføjKonkurrence() throws FileNotFoundException {
         boolean korrektInput = false;
 
         in.nextLine();
@@ -294,7 +292,8 @@ public class UI {
         }
 
         controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere, tid, disciplin);
-
+        controller.gem();
+        controller.indlæsMedlemmer();
     }
 
     public void afslut() throws FileNotFoundException {
@@ -435,10 +434,12 @@ public class UI {
         } catch (InputMismatchException ime) {
             fejl();
             in.next();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public void ændrKonkurrenceStatus(Medlem medlem) {
+    public void ændrKonkurrenceStatus(Medlem medlem) throws FileNotFoundException {
         in.nextLine();
         boolean rigtigtInput = false;
         System.out.println("Konkurrence status på " + medlem.getNavn() + " er lige nu : " + medlem.getKonkurrenceSvømmer());
@@ -462,6 +463,8 @@ public class UI {
             }
         }
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getKonkurrenceSvømmer());
+        controller.gem();
+        controller.indlæsMedlemmer();
     }
 
     public void ændrAktivMedlem(Medlem medlem) {
