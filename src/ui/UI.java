@@ -3,6 +3,10 @@ package ui;
 import core.Controller;
 import database.KonkurrenceSvømmer;
 import database.Medlem;
+import sorter.SortérBryst;
+import sorter.SortérButterfly;
+import sorter.SortérCrawl;
+import sorter.SortérRygcrawl;
 
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
@@ -108,15 +112,15 @@ public class UI {
     public void seBrystTop5() {
         System.out.println("Sorteret efter bryst rekord");
         System.out.println("Top 5 Senior brystsvømmere: ");
-        udskrivBrystTop5(controller.udregnBrystSenior());
+        udregnBrystTop5(controller.seSeniorSvømmere());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior brystsvømmere: ");
-        udskrivBrystTop5(controller.udregnBrystJunior());
+        udregnBrystTop5(controller.seJuniorSvømmere());
         System.out.println();
 
     }
 
-    public void udskrivBrystTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
+    public void udregnBrystTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isBryst() && i < 5) {
@@ -130,15 +134,15 @@ public class UI {
     public void seCrawlTop5() {
         System.out.println("Sorteret efter crawl rekord");
         System.out.println("Top 5 Senior crawlsvømmere: ");
-        udskrivCrawlTop5(controller.udregnCrawlSenior());
+        udregnCrawlTop5(controller.udregnCrawlSenior());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior crawlsvømmere: ");
-        udskrivCrawlTop5(controller.udregnCrawlJunior());
+        udregnCrawlTop5(controller.udregnCrawlJunior());
         System.out.println();
 
     }
 
-    public void udskrivCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
+    public void udregnCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isCrawl() && i < 5) {
@@ -153,14 +157,14 @@ public class UI {
     public void seButterflyTop5() {
         System.out.println("Sorteret efter butterfly rekord");
         System.out.println("Top 5 Senior butterflysvømmere: ");
-        udskrivButterflyTop5(controller.udregnButterflySenior());
+        udregnButterflyTop5(controller.seSeniorSvømmere());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior butterflysvømmere: ");
-        udskrivButterflyTop5(controller.udregnButterflyJunior());
+        udregnButterflyTop5(controller.seJuniorSvømmere());
         System.out.println();
     }
 
-    public void udskrivButterflyTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
+    public void udregnButterflyTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isButterfly() && i < 5) {
@@ -175,14 +179,14 @@ public class UI {
     public void seRygcrawlTop5() {
         System.out.println("Sorteret efter rygcrawl rekord");
         System.out.println("Top 5 Senior rygcrawl svømmere: ");
-        udskrivRygcrawlTop5(controller.udregnRygcrawlSenior());
+        udregnRygCrawlTop5(controller.seSeniorSvømmere());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior rygcrawl svømmere: ");
-        udskrivRygcrawlTop5(controller.udregnRygcrawlJunior());
+        udregnRygCrawlTop5(controller.seJuniorSvømmere());
         System.out.println();
     }
 
-    public void udskrivRygcrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
+    public void udregnRygCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isRygCrawl() && i < 5) {
@@ -298,19 +302,13 @@ public class UI {
             int svar = in.nextInt();
             switch (svar) {
                 case 1 -> økonomiOversigt();
-                case 2 -> seRestanceListe();
+                case 2 -> controller.seRestanceListe();
                 default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
             }
         } catch (InputMismatchException ime) {
             fejl();
             in.next();
         }
-    }
-    public void seRestanceListe(){
-        ArrayList<Medlem> restanceMedlemmer = controller.seRestanceListe();
-        System.err.println("Medlemmer i restance: ");
-        for (Medlem medlem : restanceMedlemmer)
-            System.err.println(medlem);
     }
 
     public void økonomiOversigt() {
