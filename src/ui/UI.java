@@ -112,10 +112,10 @@ public class UI {
     public void seBrystTop5() {
         System.out.println("Sorteret efter bryst rekord");
         System.out.println("Top 5 Senior brystsvømmere: ");
-        udregnBrystTop5(controller.seSeniorSvømmere());
+        udregnBrystTop5(controller.udregnBrystSenior());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior brystsvømmere: ");
-        udregnBrystTop5(controller.seJuniorSvømmere());
+        udregnBrystTop5(controller.udregnBrystJunior());
         System.out.println();
 
     }
@@ -157,10 +157,10 @@ public class UI {
     public void seButterflyTop5() {
         System.out.println("Sorteret efter butterfly rekord");
         System.out.println("Top 5 Senior butterflysvømmere: ");
-        udregnButterflyTop5(controller.seSeniorSvømmere());
+        udregnButterflyTop5(controller.udregnButterflySenior());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior butterflysvømmere: ");
-        udregnButterflyTop5(controller.seJuniorSvømmere());
+        udregnButterflyTop5(controller.udregnButterflyJunior());
         System.out.println();
     }
 
@@ -179,10 +179,10 @@ public class UI {
     public void seRygcrawlTop5() {
         System.out.println("Sorteret efter rygcrawl rekord");
         System.out.println("Top 5 Senior rygcrawl svømmere: ");
-        udregnRygCrawlTop5(controller.seSeniorSvømmere());
+        udregnRygCrawlTop5(controller.udregnRygcrawlSenior());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior rygcrawl svømmere: ");
-        udregnRygCrawlTop5(controller.seJuniorSvømmere());
+        udregnRygCrawlTop5(controller.udregnRygcrawlJunior());
         System.out.println();
     }
 
