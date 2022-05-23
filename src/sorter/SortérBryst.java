@@ -4,7 +4,7 @@ import java.util.Comparator;
 import database.*;
 
 
-public class SorterBryst implements Comparator<KonkurrenceSvømmer> {
+public class SortérBryst implements Comparator<KonkurrenceSvømmer> {
 
 
     @Override

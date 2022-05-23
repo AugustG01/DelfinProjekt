@@ -4,7 +4,7 @@ import java.util.Comparator;
 import database.*;
 
 
-public class SorterRygCrawl
+public class SortérRygcrawl
         implements Comparator<KonkurrenceSvømmer> {
 
 

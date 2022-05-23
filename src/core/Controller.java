@@ -3,9 +3,14 @@ package core;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import database.*;
+import sorter.SortérBryst;
+import sorter.SortérButterfly;
+import sorter.SortérCrawl;
+import sorter.SortérRygcrawl;
 
 
 public class Controller {
@@ -40,6 +45,58 @@ public class Controller {
     }
     public void tilføjKonkurrence(String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
         db.tilføjKonkurrence(dato, deltagere, tider, disciplin);
+    }
+    public ArrayList<KonkurrenceSvømmer>  udregnBrystJunior(){
+        ArrayList <KonkurrenceSvømmer> juniorSvømmere = seJuniorSvømmere();
+        SortérBryst sorterBryst = new SortérBryst();
+        Collections.sort(juniorSvømmere, sorterBryst);
+        return juniorSvømmere;
+    }
+    public ArrayList<KonkurrenceSvømmer>  udregnBrystSenior(){
+        ArrayList <KonkurrenceSvømmer> seniorSvømmere = seSeniorSvømmere();
+        SortérBryst sorterBryst = new SortérBryst();
+        Collections.sort(seniorSvømmere, sorterBryst);
+        return seniorSvømmere;
+    }
+
+    public ArrayList<KonkurrenceSvømmer>  udregnCrawlJunior(){
+        ArrayList <KonkurrenceSvømmer> juniorSvømmere = seJuniorSvømmere();
+        SortérCrawl sorterCrawl = new SortérCrawl();
+        Collections.sort(juniorSvømmere, sorterCrawl);
+        return juniorSvømmere;
+    }
+
+    public ArrayList<KonkurrenceSvømmer>  udregnCrawlSenior(){
+        ArrayList <KonkurrenceSvømmer> seniorSvømmere = seSeniorSvømmere();
+        SortérCrawl sorterCrawl = new SortérCrawl();
+        Collections.sort(seniorSvømmere, sorterCrawl);
+        return seniorSvømmere;
+    }
+
+    public ArrayList<KonkurrenceSvømmer>  udregnRygcrawlSenior(){
+        ArrayList <KonkurrenceSvømmer> seniorSvømmere = seSeniorSvømmere();
+        SortérRygcrawl sorterRygcrawl = new SortérRygcrawl();
+        Collections.sort(seniorSvømmere, sorterRygcrawl);
+        return seniorSvømmere;
+    }
+    public ArrayList<KonkurrenceSvømmer>  udregnRygcrawlJunior(){
+        ArrayList <KonkurrenceSvømmer> juniorSvømmere = seJuniorSvømmere();
+        SortérRygcrawl sorterRygcrawl = new SortérRygcrawl();
+        Collections.sort(juniorSvømmere, sorterRygcrawl);
+        return juniorSvømmere;
+    }
+
+    public ArrayList<KonkurrenceSvømmer>  udregnButterflyJunior(){
+        ArrayList <KonkurrenceSvømmer> juniorSvømmere = seJuniorSvømmere();
+        SortérButterfly sorterButterfly = new SortérButterfly();
+        Collections.sort(juniorSvømmere, sorterButterfly);
+        return juniorSvømmere;
+    }
+    public ArrayList<KonkurrenceSvømmer>  udregnButterflySenior(){
+        ArrayList <KonkurrenceSvømmer> seniorSvømmere = seSeniorSvømmere();
+        SortérButterfly sortérButterfly = new SortérButterfly();
+        Collections.sort(seniorSvømmere, sortérButterfly);
+        return seniorSvømmere;
     }
 
     public void indlæsMedlemmer() throws FileNotFoundException {

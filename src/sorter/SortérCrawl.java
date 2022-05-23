@@ -4,7 +4,7 @@ import database.KonkurrenceSvømmer;
 
 import java.util.Comparator;
 
-public class SorterCrawl implements Comparator<KonkurrenceSvømmer> {
+public class SortérCrawl implements Comparator<KonkurrenceSvømmer> {
 
     @Override
     public int compare(KonkurrenceSvømmer svømmer1, KonkurrenceSvømmer svømmer2) {

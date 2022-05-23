@@ -4,7 +4,7 @@ import database.KonkurrenceSvømmer;
 
 import java.util.Comparator;
 
-public class SorterButterfly implements Comparator<KonkurrenceSvømmer> {
+public class SortérButterfly implements Comparator<KonkurrenceSvømmer> {
 
 
     @Override

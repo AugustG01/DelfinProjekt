@@ -3,18 +3,15 @@ package ui;
 import core.Controller;
 import database.KonkurrenceSvømmer;
 import database.Medlem;
-import sorter.SorterBryst;
-import sorter.SorterButterfly;
-import sorter.SorterCrawl;
-import sorter.SorterRygCrawl;
+import sorter.SortérBryst;
+import sorter.SortérButterfly;
+import sorter.SortérCrawl;
+import sorter.SortérRygcrawl;
 
 import java.io.FileNotFoundException;
-import java.rmi.server.ExportException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class UI {
@@ -124,8 +121,6 @@ public class UI {
     }
 
     public void udregnBrystTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
-        SorterBryst sorterBryst = new SorterBryst();
-        Collections.sort(konkurrenceSvømmere, sorterBryst);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isBryst() && i < 5) {
@@ -139,17 +134,15 @@ public class UI {
     public void seCrawlTop5() {
         System.out.println("Sorteret efter crawl rekord");
         System.out.println("Top 5 Senior crawlsvømmere: ");
-        udregnCrawlTop5(controller.seSeniorSvømmere());
+        udregnCrawlTop5(controller.udregnCrawlSenior());
         System.out.println("-----------------------------");
         System.out.println("Top 5 Junior crawlsvømmere: ");
-        udregnCrawlTop5(controller.seJuniorSvømmere());
+        udregnCrawlTop5(controller.udregnCrawlJunior());
         System.out.println();
 
     }
 
     public void udregnCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
-        SorterCrawl sorterCrawl = new SorterCrawl();
-        Collections.sort(konkurrenceSvømmere, sorterCrawl);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isCrawl() && i < 5) {
@@ -172,8 +165,6 @@ public class UI {
     }
 
     public void udregnButterflyTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
-        SorterButterfly sorterButterfly = new SorterButterfly();
-        Collections.sort(konkurrenceSvømmere, sorterButterfly);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isButterfly() && i < 5) {
@@ -196,8 +187,6 @@ public class UI {
     }
 
     public void udregnRygCrawlTop5(ArrayList<KonkurrenceSvømmer> konkurrenceSvømmere) {
-        SorterRygCrawl sorterRygCrawl = new SorterRygCrawl();
-        Collections.sort(konkurrenceSvømmere, sorterRygCrawl);
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isRygCrawl() && i < 5) {
