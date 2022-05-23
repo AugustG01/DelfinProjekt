@@ -1,7 +1,6 @@
 package core;
 
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -115,12 +114,12 @@ public class Controller {
 
     public double seKontingent(){
         Økonomi økonomi = new Økonomi(db.medlemmer);
-        return økonomi.totalKontingent();
+        return økonomi.udregnTotalKontingent();
     }
 
-    public void seRestanceListe() {
+    public ArrayList<Medlem> seRestanceListe() {
         Økonomi økonomi = new Økonomi(db.medlemmer);
-        økonomi.udskrivRestanceListe();
+        return økonomi.getRestanceListe();
     }
 
     public void gem() throws FileNotFoundException {

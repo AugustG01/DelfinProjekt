@@ -1,6 +1,5 @@
 package core;
 
-import java.beans.MethodDescriptor;
 import java.util.ArrayList;
 import database.*;
 
@@ -73,14 +72,13 @@ public class Økonomi {
         return PASSIVT_KONTINGENT * passiveMedlemmer.size();
     }
 
-    public double totalKontingent(){
+    public double udregnTotalKontingent(){
         return udregning();
     }
 
-    public void udskrivRestanceListe() {
-        System.err.println("Medlemmer i restance: ");
-        for (Medlem medlem : restanceMedlemmer)
-            System.err.println(medlem);
+    public ArrayList<Medlem> getRestanceListe() {
+        return restanceMedlemmer;
+
     }
 
 }
