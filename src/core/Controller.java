@@ -3,11 +3,15 @@ package core;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
+
 import database.*;
 
 
 public class Controller {
     DataBase db = new DataBase();
+    Random random = new Random();
+    private int id;
 
     public ArrayList<KonkurrenceSvømmer> seSvømmerListe(){
         return db.seListeAfKonkurrenceSvømmere();
@@ -24,13 +28,18 @@ public class Controller {
         return db.getSeniorSvømmere();
     }
 
-    public void tilføjMedlem(String navn, LocalDate fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance){
-        Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, restance);
+    public void tilføjMedlem(String navn, String fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer){
+        int fastId = genererId();
+        Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, fastId);
         db.tilføjMedlem(medlem);
-        opretKonkurrenceSvømmer(medlem);
+
+        if (konkurrenceSvømmer) {
+            KonkurrenceSvømmer nyKonkurrenceSvømmer = new KonkurrenceSvømmer(navn, fødselsdato, fastId, false, false, false, false, 1000, 1000, 1000, 1000);
+            db.tilføjKonkurrenceSvømmer(nyKonkurrenceSvømmer);
+        }
     }
-    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
-        db.tilføjKonkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin);
+    public void tilføjKonkurrence(String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
+        db.tilføjKonkurrence(dato, deltagere, tider, disciplin);
     }
 
     public void indlæsMedlemmer() throws FileNotFoundException {
@@ -39,10 +48,13 @@ public class Controller {
     public void seKonkurrenceListe(){
         db.seListeAfKonkurrenceSvømmere();
     }
+/*
+    public void opretKonkurrenceSvømmer(KonkurrenceSvømmer konkurrenceSvømmer){
+        db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
 
-    public void opretKonkurrenceSvømmer(Medlem medlem){
-        db.tilføjKonkurrenceSvømmer(medlem);
     }
+
+ */
 
     public double seKontingent(){
         Økonomi økonomi = new Økonomi(db.medlemmer);
@@ -65,11 +77,27 @@ public class Controller {
     public ArrayList<KonkurrenceSvømmer> findSvømmer(String søg){return db.findSvømmer(søg);}
 
     public void sletMedlem(Medlem medlem){
+        fjernSvømmer(medlem);
         db.slet(medlem);
+    }
+
+    public void fjernSvømmer(Medlem medlem) {
+
+        //KonkurrenceSvømmer konkurrenceSvømmer = db.findSvømmer(medlem.getNavn());
+        db.fjernKonkurrenceSvømmer(medlem.getId());
+
+    }
+
+    public void tilføjSvømmer(Medlem medlem) {
+        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000);
+        db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
+
     }
 
     public void opdaterSvømmere() throws FileNotFoundException {
         db.skrivKonkurrenceSvømmere();
         db.indlæs();
     }
+
+    public int genererId() {return id = random.nextInt(999999) + 1;}
 }

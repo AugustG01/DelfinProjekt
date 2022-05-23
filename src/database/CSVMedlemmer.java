@@ -3,6 +3,7 @@ package database;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,24 +23,27 @@ public class CSVMedlemmer {
         ArrayList<Medlem> indlæsteMedlemmer = new ArrayList<>();
         while (filScanner.hasNextLine()) {
             String navn = filScanner.next();
-            int alder = filScanner.nextInt();
+            String fødselsdato = filScanner.next();
             boolean aktivtMedlemskab = filScanner.nextBoolean();
             boolean konkurrenceSvømmer = filScanner.nextBoolean();
             boolean restance = filScanner.nextBoolean();
-            int id = filScanner.nextInt();
+            int fastId = filScanner.nextInt();
             filScanner.nextLine();
 
-            indlæsteMedlemmer.add(new Medlem(navn, alder, aktivtMedlemskab, konkurrenceSvømmer, restance, id));
+            indlæsteMedlemmer.add(new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer,fastId));
         }
             return indlæsteMedlemmer;
     }
+
+
+
 
     public void skrivMedlem(ArrayList<Medlem> medlemmer) throws FileNotFoundException {
         printStream = new PrintStream(filnavn);
         for(Medlem medlem : medlemmer) {
             printStream.print(medlem.getNavn());
             printStream.print(";");
-            printStream.print(medlem.getAlder());
+            printStream.print(medlem.getFødselsdato());
             printStream.print(";");
             printStream.print(medlem.getAktivtMedlemskab());
             printStream.print(";");

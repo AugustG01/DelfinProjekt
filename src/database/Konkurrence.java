@@ -9,13 +9,12 @@ public class Konkurrence {
 
     ArrayList<KonkurrenceSvømmer> deltagere = new ArrayList<>();
 
-    public Konkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin) {
-        setKonkurrenceNavn(konkurrenceNavn);
+    public Konkurrence(String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin) {
         this.dato = dato;
         this.deltagere = deltagere;
         this.tider = tider;
 
-        opdaterNyKonkurrence(konkurrenceNavn);
+        //opdaterNyKonkurrence(konkurrenceNavn);
 
         switch (disciplin) {
             case "bryst" -> opdaterBrystRekorder();
@@ -69,12 +68,14 @@ public class Konkurrence {
             }
         }
     }
-
+/*
     public void opdaterNyKonkurrence(String konkurrenceNavn) {
         for (int i = 0; i < deltagere.size(); i++) {
             deltagere.get(i).tilføjKonkurrence(new Konkurrence(konkurrenceNavn, dato));
         }
     }
+
+ */
 
     public String getKonkurrenceNavn() {
         return konkurrenceNavn;

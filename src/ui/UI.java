@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class UI {
@@ -69,7 +70,7 @@ public class UI {
         }
     }
 
-    public void konkurrenceMenu() {
+    public void konkurrenceMenu() throws FileNotFoundException {
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Tilføj en konkurrence
@@ -213,15 +214,6 @@ public class UI {
         System.out.print("Navn: ");
         String navn = in.nextLine();
 
-        System.out.print("Fødselsdato(dd/mm/yyyy): ");
-            int dag = in.nextInt();
-            int måned = in.nextInt();
-            int år = in.nextInt();
-            LocalDate alder = LocalDate.of(år,måned,dag);
-            System.out.println(alder);
-
-
-        in.nextLine();
         System.out.print("Aktivt medlemskab? ");
         String medlemskabSvar = in.nextLine();
         boolean medlemskab;
@@ -235,31 +227,37 @@ public class UI {
         String konkurrenceSvar = in.nextLine();
         boolean konkurrencesvømmer;
         switch (konkurrenceSvar) {
-            case "ja", "j" -> {konkurrencesvømmer = true;
+            case "ja", "j" -> {
+                konkurrencesvømmer = true;
             }
             case "nej", "n" -> konkurrencesvømmer = false;
             default -> konkurrencesvømmer = false;
         }
+        boolean fødselsdatoRigtigt;
 
-        System.out.print("Betalt? ");
-        String betalt = in.nextLine();
-        boolean restance;
-        switch (betalt) {
-            case "ja", "j" -> restance = false;
-            case "nej", "n" -> restance = true;
-            default -> restance = false;
-        }
-        controller.tilføjMedlem(navn, alder, medlemskab, konkurrencesvømmer, restance);
+        String fødselsdato = "";
+        do {
+            System.out.println("Fødselsdato(dd/mm/yyyy): ");
+            fødselsdato = in.nextLine();
+            fødselsdatoRigtigt = true;
+            try {
+                controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);
+            } catch (Exception e) {
+                fødselsdatoRigtigt = false;
+                fejl();
+            }
+        } while (!fødselsdatoRigtigt);
     }
 
-    public void tilføjKonkurrence() {
+    public void tilføjKonkurrence() throws FileNotFoundException {
         boolean korrektInput = false;
 
         in.nextLine();
-
+        /*
         System.out.print("Navn på konkurrence: ");
         String konkurrenceNavn = in.nextLine();
         //konkurrence.setKonkurrenceNavn(konkurrenceNavn);
+         */
         String disciplin = "bryst";
         System.out.print("Disciplin: ");
 
@@ -283,7 +281,7 @@ public class UI {
         String dato = dateFormat.format(date);
 
         System.out.print("Hvor mange svømmere fra klubben er med? ");
-        int antalSvømmere = in.nextInt();
+        int antalSvømmere = in.nextInt(); // TODO: 20/05/2022 Gør så man ikke kan indtaste et større antal svømmere end der findes
         double[] tid = new double[antalSvømmere];
         ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
         for (int i = 0; i < antalSvømmere; i++) {
@@ -294,8 +292,9 @@ public class UI {
             tid[i] = in.nextDouble();
         }
 
-        controller.tilføjKonkurrence(konkurrenceNavn, dato, valgteSvømmere, tid, disciplin);
-
+        controller.tilføjKonkurrence(dato, valgteSvømmere, tid, disciplin);
+        controller.gem();
+        controller.indlæsMedlemmer();
     }
 
     public void afslut() throws FileNotFoundException {
@@ -354,9 +353,8 @@ public class UI {
                 Find et medlem
                 --------------
                 Skriv navnet eller dele af navnet for at finde et medlem.""");
-        in.nextLine();
         System.out.print(": ");
-        String søg = in.nextLine().trim().toLowerCase();
+        String søg = in.next().trim().toLowerCase();
         return søg;
     }
 
@@ -377,7 +375,8 @@ public class UI {
                 return fundneSvømmere.get(valg - 1);
             else {
                 System.out.println("Det er ikke en gyldig svømmer! Prøv igen");
-                return findSvømmere();}
+                return findSvømmere();
+            }
 
         } else {
             System.out.println("Fandt ingen svømmere i systemet! Prøv igen: ");
@@ -441,7 +440,6 @@ public class UI {
         }
     }
 
-
     public void ændrKonkurrenceStatus(Medlem medlem) throws FileNotFoundException {
         in.nextLine();
         boolean rigtigtInput = false;
@@ -453,11 +451,11 @@ public class UI {
             switch (valg) {
                 case "ja", "j", "true" -> {
                     medlem.setKonkurrenceSvømmer(true);
-                    controller.opretKonkurrenceSvømmer(medlem);
+                    controller.tilføjSvømmer(medlem);
                 }
                 case "nej", "n", "false" -> {
                     medlem.setKonkurrenceSvømmer(false);
-                    //controller.fjernSvømmer(medlem);
+                    controller.fjernSvømmer(medlem);
                 }
                 default -> {
                     fejl();
@@ -465,8 +463,9 @@ public class UI {
                 }
             }
         }
-        controller.opdaterSvømmere();
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getKonkurrenceSvømmer());
+        controller.gem();
+        controller.indlæsMedlemmer();
     }
 
     public void ændrAktivMedlem(Medlem medlem) {
@@ -494,8 +493,8 @@ public class UI {
         boolean rigtigtInput = false;
         while (!rigtigtInput) {
             rigtigtInput = true;
-            System.out.println("Restance på " + medlem.getNavn() + " er lige nu : " + medlem.getRestance());
-            System.out.println("Hvad vil du ændre konkurrence status til? ");
+            System.out.println("Restance på " + medlem.getNavn() + " er lige nu: " + medlem.getRestance());
+            System.out.println("Har medlemmet betalt? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {
                 case "ja", "j", "true" -> medlem.setRestance(true);
@@ -510,6 +509,6 @@ public class UI {
     }
 
     public void fejl() {
-        System.err.println("Forkert input. Sender dig tilbage til hovedmenuen.");
+        System.err.println("Forkert input.");
     }
 }

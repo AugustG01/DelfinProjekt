@@ -40,7 +40,6 @@ public class DataBase {
 
 
 
-
     public void skrivKonkurrenceSvømmere() throws FileNotFoundException {
         CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);
 
@@ -51,13 +50,11 @@ public class DataBase {
         medlemmer.add(medlem);
     }
 
-    public void tilføjKonkurrenceSvømmer(Medlem medlem) {
-
-                    KonkurrenceSvømmer svømmer = new KonkurrenceSvømmer(medlem);
-                    konkurrenceSvømmere.add(svømmer);
+    public void tilføjKonkurrenceSvømmer(KonkurrenceSvømmer konkurrenceSvømmer ) {
+        konkurrenceSvømmere.add(konkurrenceSvømmer);
     }
-    public void tilføjKonkurrence(String konkurrenceNavn, String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
-        konkurrencer.add(new Konkurrence(konkurrenceNavn, dato, deltagere, tider, disciplin));
+    public void tilføjKonkurrence( String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
+        konkurrencer.add(new Konkurrence(dato, deltagere, tider, disciplin));
     }
 
     public void indlæs() throws FileNotFoundException {
@@ -66,6 +63,9 @@ public class DataBase {
         medlemmer = csvMedlemmer.indlæsMedlemmer();
         konkurrenceSvømmere = csvKonkurrenceSvømmere.indlæsKonkurrenceSvømmere();
         opdelIJuniorOgSenior();
+    }
+    public void fjernKonkurrenceSvømmer(int id){
+        konkurrenceSvømmere.removeIf(konkurrenceSvømmer -> konkurrenceSvømmer.getId() == id);
     }
 
     public ArrayList<Medlem> seListeAfMedlemmer() {
