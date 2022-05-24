@@ -38,7 +38,7 @@ public class Controller {
         db.tilføjMedlem(medlem);
 
         if (konkurrenceSvømmer) {
-            KonkurrenceSvømmer nyKonkurrenceSvømmer = new KonkurrenceSvømmer(navn, fødselsdato, fastId, false, false, false, false, 1000, 1000, 1000, 1000);
+            KonkurrenceSvømmer nyKonkurrenceSvømmer = new KonkurrenceSvømmer(navn, fødselsdato, fastId, false, false, false, false, 1000, 1000, 1000, 1000, "");
             db.tilføjKonkurrenceSvømmer(nyKonkurrenceSvømmer);
         }
     }
@@ -145,9 +145,12 @@ public class Controller {
     }
 
     public void tilføjSvømmer(Medlem medlem) {
-        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000);
+        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000, "");
         db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
 
+    }
+    public void tilføjTræner(KonkurrenceSvømmer konkurrenceSvømmer, String træner){
+        konkurrenceSvømmer.setTræner(træner);
     }
 
     public void opdaterSvømmere() throws FileNotFoundException {
@@ -156,4 +159,8 @@ public class Controller {
     }
 
     public int genererId() {return id = random.nextInt(999999) + 1;}
+
+    public void opdelSvømmere() {
+        db.opdelIJuniorOgSenior();
+    }
 }

@@ -36,12 +36,15 @@ public class CSVKonkurrenceSvømmere {
                 double rygCrawlRekord = linjeScanner.nextDouble();
                 double butterflyRekord = linjeScanner.nextDouble();
                 int fastId = linjeScanner.nextInt();
+                String træner = linjeScanner.next();
                 //ArrayList<Konkurrence> konkurrencer = indlæsKonkurrencer(linjeScanner);
                 //filScanner.nextLine();
-                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,fødselsdato,fastId,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord));
+                indlæsteKonkurrenceSvømmere.add(new KonkurrenceSvømmer(navn,fødselsdato,fastId,crawl,bryst,butterfly,rygCrawl,crawlRekord,brystRekord,rygCrawlRekord,butterflyRekord, træner));
+
             }
             return indlæsteKonkurrenceSvømmere;
         }
+        /*
         public ArrayList<Konkurrence> indlæsKonkurrencer(Scanner linjeScanner){
             ArrayList<Konkurrence> konkurrencer = new ArrayList<>();
             while(linjeScanner.hasNext()){
@@ -50,6 +53,7 @@ public class CSVKonkurrenceSvømmere {
             }
             return konkurrencer;
         }
+        */
 
 
         public void skrivSvømmer(ArrayList<KonkurrenceSvømmer> svømmere) throws FileNotFoundException {
@@ -76,6 +80,9 @@ public class CSVKonkurrenceSvømmere {
                 printStream.print(svømmer.getButterflyRekord());
                 printStream.print(";");
                 printStream.print(svømmer.getId());
+                printStream.print(";");
+                printStream.print(svømmer.getTræner());
+                printStream.print(";");
 
                 //printStream.print(printKonkurrenceListe(svømmer.getKonkurrencer()));
                 printStream.println();

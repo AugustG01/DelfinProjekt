@@ -4,15 +4,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class  KonkurrenceSvømmer extends Medlem{
+    private String træner = "";
     private boolean crawl;
     private boolean bryst;
     private boolean butterfly;
     private boolean rygCrawl;
-    private double crawlRekord = 1000;
-    private double brystRekord = 1000;
-    private double rygCrawlRekord = 1000;
-    private double butterflyRekord = 1000;
-    //ArrayList<Konkurrence> konkurrencer;
+    private double crawlRekord;
+    private double brystRekord;
+    private double rygCrawlRekord;
+    private double butterflyRekord;
 
 /*
     public KonkurrenceSvømmer(Medlem medlem){
@@ -30,7 +30,16 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.rygCrawl = rygCrawl;
     }
  */
-    public KonkurrenceSvømmer(String navn, String fødselsdato, int fastId, boolean crawl, boolean bryst, boolean butterfly, boolean rygCrawl, double crawlRekord, double brystRekord, double rygCrawlRekord, double butterflyRekord){
+
+    public void setTræner(String træner) {
+        this.træner = træner;
+    }
+
+    public String getTræner() {
+        return træner;
+    }
+
+    public KonkurrenceSvømmer(String navn, String fødselsdato, int fastId, boolean crawl, boolean bryst, boolean butterfly, boolean rygCrawl, double crawlRekord, double brystRekord, double rygCrawlRekord, double butterflyRekord, String træner){
         super(navn, fødselsdato, fastId);
         this.crawl = crawl;
         this.bryst = bryst;
@@ -40,7 +49,7 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.brystRekord = brystRekord;
         this.rygCrawlRekord = rygCrawlRekord;
         this.butterflyRekord = butterflyRekord;
-        //this.konkurrencer = konkurrencer;
+        this.træner = træner;
     }
     /*
     public void tilføjKonkurrence(Konkurrence konkurrence){
@@ -128,7 +137,7 @@ public class  KonkurrenceSvømmer extends Medlem{
                 "Bryst rekord: %-20f | " +
                 "Rygcrawl rekord: %-20f | " +
                 "Butterfly rekord: %-20f  | "
-                + "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord);
+                + "Træner: %-20s"+ "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord, træner);
         return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }
 }

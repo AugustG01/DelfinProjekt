@@ -63,6 +63,7 @@ public class DataBase {
         medlemmer = csvMedlemmer.indlæsMedlemmer();
         konkurrenceSvømmere = csvKonkurrenceSvømmere.indlæsKonkurrenceSvømmere();
         opdelIJuniorOgSenior();
+
     }
     public void fjernKonkurrenceSvømmer(int id){
         konkurrenceSvømmere.removeIf(konkurrenceSvømmer -> konkurrenceSvømmer.getId() == id);

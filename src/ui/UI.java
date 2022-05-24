@@ -23,6 +23,7 @@ public class UI {
     public void start() throws FileNotFoundException {
         System.out.println("Velkommen til Svømmeklubben Delfinens database");
         controller.indlæsMedlemmer();
+        //controller.opdelSvømmere();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
             valgmulighederHovedmenu();
@@ -39,6 +40,7 @@ public class UI {
                 (4) Konkurrence menu
                     - Tilføj konkurrence
                     - Se top 5
+                    - Tilføj træner
                 (5) Økonomi menu
                     - Se total forventet indkomst
                     - Se liste af medlemmer i restance
@@ -67,11 +69,15 @@ public class UI {
         System.out.println("""
                 Hvad vil du gøre?
                 (1) Tilføj en konkurrence
-                (2) Se top 5 inden for en disciplin""");
+                (2) Se top 5 inden for en disciplin
+                (3) Tilføj Træner
+                (4) Annuller""");
         int svar = in.nextInt();
         switch (svar) {
             case 1 -> tilføjKonkurrence();
             case 2 -> seTop5();
+            case 3 -> tilføjTræner(findSvømmere());
+            case 4 -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
         }
 
         //controller.gemKonkurrenceSvømmere();
@@ -186,7 +192,7 @@ public class UI {
         int i = 0;
         for (KonkurrenceSvømmer konkurrenceSvømmer : konkurrenceSvømmere) {
             if (konkurrenceSvømmer.isRygCrawl() && i < 5) {
-            i++;
+                i++;
                 System.out.println("#" + (i) + " | " + konkurrenceSvømmer.getNavn() + " | " +
                         konkurrenceSvømmer.getRygCrawlRekord());
             }
@@ -231,6 +237,7 @@ public class UI {
                 fødselsdatoRigtigt = false;
                 fejl();
             }
+
         } while (!fødselsdatoRigtigt);
     }
 
@@ -279,7 +286,7 @@ public class UI {
 
         controller.tilføjKonkurrence(dato, valgteSvømmere, tid, disciplin);
         controller.gem();
-        controller.indlæsMedlemmer();
+        //controller.indlæsMedlemmer();
     }
 
     public void afslut() throws FileNotFoundException {
@@ -405,6 +412,7 @@ public class UI {
                 (1) Konkurrence status
                 (2) Medlemskab
                 (3) Restance
+                (4) Annuller
                 """);
         try {
             int valg = in.nextInt();
@@ -412,6 +420,7 @@ public class UI {
                 case 1 -> ændrKonkurrenceStatus(medlem);
                 case 2 -> ændrAktivMedlem(medlem);
                 case 3 -> ændrRestance(medlem);
+                case 4 -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen!");
                 default -> {
                     fejl();
                     ændreMedlem(medlem);
@@ -491,6 +500,13 @@ public class UI {
             }
         }
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getRestance());
+    }
+
+    public void tilføjTræner(KonkurrenceSvømmer konkurrenceSvømmer) {
+        in.nextLine();
+        System.out.println("Hvilken træner skal " + konkurrenceSvømmer.getNavn() + " have?");
+        String træner = in.nextLine();
+        controller.tilføjTræner(konkurrenceSvømmer, træner);
     }
 
     public void fejl() {

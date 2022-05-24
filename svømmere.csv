@@ -1,5 +1,5 @@
-Preben;02/11/2009;false;true;false;true;1000.0;98.0;33.9;1000.0;471630
-Fritz;01/02/1981;true;false;false;true;54.0;1000.0;334.0;1000.0;491163
-Esmeralda;04/05/1974;true;true;false;false;44.9;97.0;1000.0;1000.0;859053
-Gulli;02/09/1956;false;true;false;true;1000.0;99.0;434.0;1000.0;561423
-bo;08/10/1945;true;true;true;true;666.0;99.0;360.0;222.0;506754
+Preben;02/11/2009;false;true;false;true;1000.0;98.0;33.9;1000.0;471630;;
+Fritz;01/02/1981;true;false;true;true;54.0;1000.0;334.0;300.0;491163;Flemming;
+Esmeralda;04/05/1974;true;true;false;true;44.9;97.0;56.0;1000.0;859053;;
+Gulli;02/09/1956;false;true;false;true;1000.0;99.0;434.0;1000.0;561423;;
+bo;08/10/1945;true;true;true;true;666.0;99.0;360.0;222.0;506754;;
