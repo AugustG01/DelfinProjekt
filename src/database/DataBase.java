@@ -2,7 +2,6 @@ package database;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import core.*;
 
 public class DataBase {
     public ArrayList<Medlem> medlemmer = new ArrayList<>();
@@ -37,8 +36,6 @@ public class DataBase {
             }
         }
     }
-
-
 
     public void skrivKonkurrenceSvømmere() throws FileNotFoundException {
         CSVKonkurrenceSvømmere csvKonkurrenceSvømmere = new CSVKonkurrenceSvømmere(konkurrenceSvømmerFil);

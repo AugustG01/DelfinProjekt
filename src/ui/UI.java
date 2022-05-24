@@ -23,7 +23,6 @@ public class UI {
     public void start() throws FileNotFoundException {
         System.out.println("Velkommen til Svømmeklubben Delfinens database");
         controller.indlæsMedlemmer();
-        //controller.opdelSvømmere();
         while (isRunning) {
             System.out.println("Hvad vil du gøre?");
             valgmulighederHovedmenu();
@@ -65,6 +64,71 @@ public class UI {
         }
     }
 
+    public void seMedlemsListe() {
+        ArrayList<Medlem> medlemmer = controller.seMedlemsListe();
+        for (Medlem medlem : medlemmer)
+            System.out.println(medlem);
+    }
+
+    public void tilføj() {
+        in.nextLine();
+        System.out.print("Navn: ");
+        String navn = in.nextLine();
+
+        System.out.print("Aktivt medlemskab? ");
+        String medlemskabSvar = in.nextLine();
+        boolean medlemskab;
+        switch (medlemskabSvar) {
+            case "ja", "j" -> medlemskab = true;
+            case "nej", "n" -> medlemskab = false;
+            default -> medlemskab = false;
+        }
+
+        System.out.print("Konkurrencesvømmer? ");
+        String konkurrenceSvar = in.nextLine();
+        boolean konkurrencesvømmer;
+        switch (konkurrenceSvar) {
+            case "ja", "j" -> {
+                konkurrencesvømmer = true;
+            }
+            case "nej", "n" -> konkurrencesvømmer = false;
+            default -> konkurrencesvømmer = false;
+        }
+        boolean fødselsdatoRigtigt;
+
+        String fødselsdato = "";
+        do {
+            System.out.println("Fødselsdato(dd/mm/yyyy): ");
+            fødselsdato = in.nextLine();
+            fødselsdatoRigtigt = true;
+            try {
+                controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);
+            } catch (Exception e) {
+                fødselsdatoRigtigt = false;
+                fejl();
+            }
+
+        } while (!fødselsdatoRigtigt);
+    }
+    public void findMedlem() {
+        ArrayList<Medlem> fundneMedlemmer;
+
+        fundneMedlemmer = controller.findMedlem(søg());
+
+        if (fundneMedlemmer.size() > 0) {
+            int i = 1;
+            for (Medlem medlem : fundneMedlemmer) {
+                System.out.printf("# %-3d " + medlem, i);
+                i++;
+            }
+            System.out.println("Indtast nummeret på det medlem du vil bruge: ");
+            vælgMedlem(fundneMedlemmer);
+        } else {
+            System.out.println("Fandt ingen medlemmer i systemet! Prøv igen: ");
+            findMedlem();
+        }
+    }
+
     public void konkurrenceMenu() throws FileNotFoundException {
         System.out.println("""
                 Hvad vil du gøre?
@@ -79,15 +143,49 @@ public class UI {
             case 3 -> tilføjTræner(findSvømmere());
             case 4 -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
         }
-
-        //controller.gemKonkurrenceSvømmere();
         controller.seKonkurrenceListe();
     }
 
-    public void seMedlemsListe() {
-        ArrayList<Medlem> medlemmer = controller.seMedlemsListe();
-        for (Medlem medlem : medlemmer)
-            System.out.println(medlem);
+    public void tilføjKonkurrence() throws FileNotFoundException {
+        boolean korrektInput = false;
+
+        in.nextLine();
+        String disciplin = "bryst";
+        System.out.print("Disciplin: ");
+
+        while (!korrektInput) {
+            disciplin = in.nextLine().toLowerCase();
+            korrektInput = true;
+            switch (disciplin) {
+                case "b", "bryst" -> disciplin = "bryst";
+                case "bf", "butterfly", "butter fly", "butter" -> disciplin = "butterfly";
+                case "c", "crawl" -> disciplin = "crawl";
+                case "rc", "rygcrawl", "ryg crawl" -> disciplin = "rygcrawl";
+                default -> {
+                    fejl();
+                    korrektInput = false;
+                }
+            }
+        }
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dato = dateFormat.format(date);
+
+        System.out.print("Hvor mange svømmere fra klubben er med? ");
+        int antalSvømmere = in.nextInt(); // TODO: 20/05/2022 Gør så man ikke kan indtaste et større antal svømmere end der findes
+        double[] tid = new double[antalSvømmere];
+        ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
+        for (int i = 0; i < antalSvømmere; i++) {
+            System.out.println("Vælg svømmer nr. " + (i + 1));
+            valgteSvømmere.add(findSvømmere());
+
+            System.out.println("Hvilken tid fik svømmeren: ");
+            tid[i] = in.nextDouble();
+        }
+
+        controller.tilføjKonkurrence(dato, valgteSvømmere, tid, disciplin);
+        controller.gem();
     }
 
     public void seTop5() {
@@ -110,6 +208,7 @@ public class UI {
             fejl();
         }
     }
+
 
     public void seBrystTop5() {
         System.out.println("Sorteret efter bryst rekord");
@@ -199,100 +298,11 @@ public class UI {
         }
     }
 
-
-    public void tilføj() {
+    public void tilføjTræner(KonkurrenceSvømmer konkurrenceSvømmer) {
         in.nextLine();
-        System.out.print("Navn: ");
-        String navn = in.nextLine();
-
-        System.out.print("Aktivt medlemskab? ");
-        String medlemskabSvar = in.nextLine();
-        boolean medlemskab;
-        switch (medlemskabSvar) {
-            case "ja", "j" -> medlemskab = true;
-            case "nej", "n" -> medlemskab = false;
-            default -> medlemskab = false;
-        }
-
-        System.out.print("Konkurrencesvømmer? ");
-        String konkurrenceSvar = in.nextLine();
-        boolean konkurrencesvømmer;
-        switch (konkurrenceSvar) {
-            case "ja", "j" -> {
-                konkurrencesvømmer = true;
-            }
-            case "nej", "n" -> konkurrencesvømmer = false;
-            default -> konkurrencesvømmer = false;
-        }
-        boolean fødselsdatoRigtigt;
-
-        String fødselsdato = "";
-        do {
-            System.out.println("Fødselsdato(dd/mm/yyyy): ");
-            fødselsdato = in.nextLine();
-            fødselsdatoRigtigt = true;
-            try {
-                controller.tilføjMedlem(navn, fødselsdato, medlemskab, konkurrencesvømmer);
-            } catch (Exception e) {
-                fødselsdatoRigtigt = false;
-                fejl();
-            }
-
-        } while (!fødselsdatoRigtigt);
-    }
-
-    public void tilføjKonkurrence() throws FileNotFoundException {
-        boolean korrektInput = false;
-
-        in.nextLine();
-        /*
-        System.out.print("Navn på konkurrence: ");
-        String konkurrenceNavn = in.nextLine();
-        //konkurrence.setKonkurrenceNavn(konkurrenceNavn);
-         */
-        String disciplin = "bryst";
-        System.out.print("Disciplin: ");
-
-        while (!korrektInput) {
-            disciplin = in.nextLine().toLowerCase();
-            korrektInput = true;
-            switch (disciplin) {
-                case "b", "bryst" -> disciplin = "bryst";
-                case "bf", "butterfly", "butter fly", "butter" -> disciplin = "butterfly";
-                case "c", "crawl" -> disciplin = "crawl";
-                case "rc", "rygcrawl", "ryg crawl" -> disciplin = "rygcrawl";
-                default -> {
-                    fejl();
-                    korrektInput = false;
-                }
-            }
-        }
-
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String dato = dateFormat.format(date);
-
-        System.out.print("Hvor mange svømmere fra klubben er med? ");
-        int antalSvømmere = in.nextInt(); // TODO: 20/05/2022 Gør så man ikke kan indtaste et større antal svømmere end der findes
-        double[] tid = new double[antalSvømmere];
-        ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
-        for (int i = 0; i < antalSvømmere; i++) {
-            System.out.println("Vælg svømmer nr. " + (i + 1));
-            valgteSvømmere.add(findSvømmere());
-
-            System.out.println("Hvilken tid fik svømmeren: ");
-            tid[i] = in.nextDouble();
-        }
-
-        controller.tilføjKonkurrence(dato, valgteSvømmere, tid, disciplin);
-        controller.gem();
-        //controller.indlæsMedlemmer();
-    }
-
-    public void afslut() throws FileNotFoundException {
-        System.out.println("Du har afsluttet programmet! Alle ændringer vil blive gemt");
-        controller.gem();
-        isRunning = false;
+        System.out.println("Hvilken træner skal " + konkurrenceSvømmer.getNavn() + " have?");
+        String træner = in.nextLine();
+        controller.tilføjTræner(konkurrenceSvømmer, træner);
     }
 
     public void økonomiMenu() {
@@ -305,12 +315,17 @@ public class UI {
             int svar = in.nextInt();
             switch (svar) {
                 case 1 -> økonomiOversigt();
-                case 2 -> controller.seRestanceListe();
+                case 2 -> udskrivRestanceliste(controller.seRestanceListe());
                 default -> System.out.println("Du bliver nu sendt tilbage til hovedmenuen");
             }
         } catch (InputMismatchException ime) {
             fejl();
             in.next();
+        }
+    }
+    public void udskrivRestanceliste(ArrayList<Medlem> restanceMedlemmer){
+        for(Medlem medlem : restanceMedlemmer){
+            System.err.println(medlem);
         }
     }
 
@@ -319,25 +334,6 @@ public class UI {
         String kontingent = numberFormat.format(controller.seKontingent());
         System.out.println("Forventede indkomst over tilmeldte medlemmer \n" + kontingent + "\n");
 
-    }
-
-    public void findMedlem() {
-        ArrayList<Medlem> fundneMedlemmer;
-
-        fundneMedlemmer = controller.findMedlem(søg());
-
-        if (fundneMedlemmer.size() > 0) {
-            int i = 1;
-            for (Medlem medlem : fundneMedlemmer) {
-                System.out.printf("# %-3d " + medlem, i);
-                i++;
-            }
-            System.out.println("Indtast nummeret på det medlem du vil bruge: ");
-            vælgMedlem(fundneMedlemmer);
-        } else {
-            System.out.println("Fandt ingen medlemmer i systemet! Prøv igen: ");
-            findMedlem();
-        }
     }
 
     public String søg() {
@@ -352,7 +348,6 @@ public class UI {
 
     public KonkurrenceSvømmer findSvømmere() {
         ArrayList<KonkurrenceSvømmer> fundneSvømmere;
-        ArrayList<KonkurrenceSvømmer> valgteSvømmere = new ArrayList<>();
         fundneSvømmere = controller.findSvømmer(søg());
 
         if (fundneSvømmere.size() > 0) {
@@ -491,8 +486,8 @@ public class UI {
             System.out.println("Har medlemmet betalt? ");
             String valg = in.nextLine().toLowerCase();
             switch (valg) {
-                case "ja", "j", "true" -> medlem.setRestance(true);
-                case "nej", "n", "false" -> medlem.setRestance(false);
+                case "ja", "j", "true" -> medlem.setRestance(false);
+                case "nej", "n", "false" -> medlem.setRestance(true);
                 default -> {
                     fejl();
                     rigtigtInput = false;
@@ -502,14 +497,13 @@ public class UI {
         System.out.println(medlem.getNavn() + " er nu ændret til " + medlem.getRestance());
     }
 
-    public void tilføjTræner(KonkurrenceSvømmer konkurrenceSvømmer) {
-        in.nextLine();
-        System.out.println("Hvilken træner skal " + konkurrenceSvømmer.getNavn() + " have?");
-        String træner = in.nextLine();
-        controller.tilføjTræner(konkurrenceSvømmer, træner);
-    }
-
     public void fejl() {
         System.err.println("Forkert input.");
+    }
+
+    public void afslut() throws FileNotFoundException {
+        System.out.println("Du har afsluttet programmet! Alle ændringer vil blive gemt");
+        controller.gem();
+        isRunning = false;
     }
 }

@@ -15,11 +15,9 @@ import sorter.SortérRygcrawl;
 public class Controller {
     DataBase db = new DataBase();
     Random random = new Random();
-    private int id;
+    int id;
 
-    public ArrayList<KonkurrenceSvømmer> seSvømmerListe(){
-        return db.seListeAfKonkurrenceSvømmere();
-    }
+    public int genererId() {return id = random.nextInt(999999) + 1;}
 
     public ArrayList<Medlem> seMedlemsListe() {
         return db.seListeAfMedlemmer();
@@ -32,6 +30,39 @@ public class Controller {
         return db.getSeniorSvømmere();
     }
 
+
+
+    public void indlæsMedlemmer() throws FileNotFoundException {
+        db.indlæs();
+    }
+    public void seKonkurrenceListe(){
+        db.seListeAfKonkurrenceSvømmere();
+    }
+
+    public double seKontingent(){
+        Økonomi økonomi = new Økonomi(db.medlemmer);
+        return økonomi.udregnTotalKontingent();
+    }
+
+    public ArrayList<Medlem> seRestanceListe() {
+        Økonomi økonomi = new Økonomi(db.medlemmer);
+        return økonomi.getRestanceListe();
+    }
+
+    public void gem() throws FileNotFoundException {
+        db.skrivMedlemmer();
+        db.skrivKonkurrenceSvømmere();
+    }
+    public ArrayList<Medlem> findMedlem(String søg){
+        return db.findMedlem(søg);
+    }
+
+    public ArrayList<KonkurrenceSvømmer> findSvømmer(String søg){return db.findSvømmer(søg);}
+
+    public void sletMedlem(Medlem medlem){
+        fjernSvømmer(medlem);
+        db.slet(medlem);
+    }
     public void tilføjMedlem(String navn, String fødselsdato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer){
         int fastId = genererId();
         Medlem medlem = new Medlem(navn, fødselsdato, aktivtMedlemskab, konkurrenceSvømmer, fastId);
@@ -45,6 +76,24 @@ public class Controller {
     public void tilføjKonkurrence(String dato, ArrayList<KonkurrenceSvømmer> deltagere, double[] tider, String disciplin){
         db.tilføjKonkurrence(dato, deltagere, tider, disciplin);
     }
+
+
+    public void tilføjSvømmer(Medlem medlem) {
+        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000, "");
+        db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
+
+    }
+    public void fjernSvømmer(Medlem medlem) {
+
+        db.fjernKonkurrenceSvømmer(medlem.getId());
+
+    }
+
+    public void tilføjTræner(KonkurrenceSvømmer konkurrenceSvømmer, String træner){
+        konkurrenceSvømmer.setTræner(træner);
+    }
+
+
     public ArrayList<KonkurrenceSvømmer>  udregnBrystJunior(){
         ArrayList <KonkurrenceSvømmer> juniorSvømmere = seJuniorSvømmere();
         SortérBryst sorterBryst = new SortérBryst();
@@ -98,69 +147,4 @@ public class Controller {
         return seniorSvømmere;
     }
 
-    public void indlæsMedlemmer() throws FileNotFoundException {
-        db.indlæs();
-    }
-    public void seKonkurrenceListe(){
-        db.seListeAfKonkurrenceSvømmere();
-    }
-/*
-    public void opretKonkurrenceSvømmer(KonkurrenceSvømmer konkurrenceSvømmer){
-        db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
-
-    }
-
- */
-
-    public double seKontingent(){
-        Økonomi økonomi = new Økonomi(db.medlemmer);
-        return økonomi.udregnTotalKontingent();
-    }
-
-    public ArrayList<Medlem> seRestanceListe() {
-        Økonomi økonomi = new Økonomi(db.medlemmer);
-        return økonomi.getRestanceListe();
-    }
-
-    public void gem() throws FileNotFoundException {
-        db.skrivMedlemmer();
-        db.skrivKonkurrenceSvømmere();
-    }
-    public ArrayList<Medlem> findMedlem(String søg){
-        return db.findMedlem(søg);
-    }
-
-    public ArrayList<KonkurrenceSvømmer> findSvømmer(String søg){return db.findSvømmer(søg);}
-
-    public void sletMedlem(Medlem medlem){
-        fjernSvømmer(medlem);
-        db.slet(medlem);
-    }
-
-    public void fjernSvømmer(Medlem medlem) {
-
-        //KonkurrenceSvømmer konkurrenceSvømmer = db.findSvømmer(medlem.getNavn());
-        db.fjernKonkurrenceSvømmer(medlem.getId());
-
-    }
-
-    public void tilføjSvømmer(Medlem medlem) {
-        KonkurrenceSvømmer konkurrenceSvømmer = new KonkurrenceSvømmer(medlem.getNavn(), medlem.getFødselsdato(), medlem.getId(), false, false, false, false, 1000, 1000, 1000, 1000, "");
-        db.tilføjKonkurrenceSvømmer(konkurrenceSvømmer);
-
-    }
-    public void tilføjTræner(KonkurrenceSvømmer konkurrenceSvømmer, String træner){
-        konkurrenceSvømmer.setTræner(træner);
-    }
-
-    public void opdaterSvømmere() throws FileNotFoundException {
-        db.skrivKonkurrenceSvømmere();
-        db.indlæs();
-    }
-
-    public int genererId() {return id = random.nextInt(999999) + 1;}
-
-    public void opdelSvømmere() {
-        db.opdelIJuniorOgSenior();
-    }
 }

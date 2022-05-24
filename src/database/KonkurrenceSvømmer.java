@@ -10,23 +10,6 @@ public class  KonkurrenceSvømmer extends Medlem{
     private double rygCrawlRekord;
     private double butterflyRekord;
 
-/*
-    public KonkurrenceSvømmer(Medlem medlem){
-        super.setNavn(medlem.getNavn());
-        super.setAlder(medlem.getAlder());
-
-    }
-
-    public KonkurrenceSvømmer(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance,
-                              boolean bryst, boolean crawl, boolean rygCrawl, boolean butterfly){
-        super(navn,  alder,  aktivtMedlemskab,  konkurrenceSvømmer, restance);
-        this.bryst = bryst;
-        this.crawl = crawl;
-        this.butterfly = butterfly;
-        this.rygCrawl = rygCrawl;
-    }
- */
-
     public void setTræner(String træner) {
         this.træner = træner;
     }
@@ -47,12 +30,6 @@ public class  KonkurrenceSvømmer extends Medlem{
         this.butterflyRekord = butterflyRekord;
         this.træner = træner;
     }
-    /*
-    public void tilføjKonkurrence(Konkurrence konkurrence){
-        konkurrencer.add(konkurrence);
-    }
-
-     */
 
     public void setCrawl(boolean crawl) {
         this.crawl = crawl;
@@ -114,12 +91,7 @@ public class  KonkurrenceSvømmer extends Medlem{
     public double getButterflyRekord() {
         return butterflyRekord;
     }
-/*
-    public ArrayList<Konkurrence> getKonkurrencer() {
-        return konkurrencer;
-    }
 
- */
 
     @Override
     public String toString() {

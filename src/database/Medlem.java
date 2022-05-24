@@ -3,7 +3,6 @@ package database;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Random;
 
 public class Medlem {
     private int alder;
@@ -14,18 +13,6 @@ public class Medlem {
     private int id;
     private String fødselsdato;
 
-/*
-    public Medlem(String navn, int alder, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, boolean restance) {
-        setNavn(navn);
-        setAlder(alder);
-        setAktivtMedlemskab(aktivtMedlemskab);
-        setKonkurrenceSvømmer(konkurrenceSvømmer);
-        setRestance(restance);
-    }
- */
-
-
-    //Medlems konstruktør til konkurrencesvømmere
     public Medlem(String navn, String fødselsDato, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
@@ -33,7 +20,6 @@ public class Medlem {
         setAlder(fødselsDato);
     }
 
-    //Medlems konstruktør til ikke konkurrencesvømmere
     public Medlem(String navn, String fødselsDato, boolean aktivtMedlemskab, boolean konkurrenceSvømmer, int fastId) {
         setNavn(navn);
         setFødselsdato(fødselsDato);
@@ -100,8 +86,8 @@ public class Medlem {
 
     @Override
     public String toString() {
-        String tmp = String.format("Navn: %-15s | " +
-                "Alder: %-15d | " +
+        String tmp = String.format("Navn: %-10s | " +
+                "Alder: %-10d | " +
                 "Aktivt Medlemskab:  %-10b | " +
                 "Konkurrencesvømmer:  %-10b | " +
                 "ID: %-10d | "
