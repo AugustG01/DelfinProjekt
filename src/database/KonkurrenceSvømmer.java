@@ -1,8 +1,4 @@
 package database;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 public class  KonkurrenceSvømmer extends Medlem{
     private String træner = "";
     private boolean crawl;
@@ -127,17 +123,17 @@ public class  KonkurrenceSvømmer extends Medlem{
 
     @Override
     public String toString() {
-        String tmp = String.format("Navn: %-15s | " +
-                "Alder: %-15d | " +
+        String tmp = String.format("Navn: %-10s | " +
+                "Alder: %-10d | " +
                 "Crawl:  %-10b | " +
                 "Bryst:  %-10b | " +
                 "Butterfly: %-10b | " +
                 "Rygcrawl:  %-10b | " +
-                "Crawl rekord: %-20f | " +
-                "Bryst rekord: %-20f | " +
-                "Rygcrawl rekord: %-20f | " +
-                "Butterfly rekord: %-20f  | "
-                + "Træner: %-20s"+ "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord, træner);
+                "Crawl rekord: %-10.2f | " +
+                "Bryst rekord: %-10.2f | " +
+                "Rygcrawl rekord: %-10.2f | " +
+                "Butterfly rekord: %-10.2f  | "
+                + "Træner: %-10s"+ "\n",super.getNavn(), super.getAlder(), crawl, bryst, butterfly, rygCrawl, crawlRekord, brystRekord, rygCrawlRekord, butterflyRekord, træner);
         return tmp.replaceAll("true", "ja").replaceAll("false", "nej");
     }
 }
